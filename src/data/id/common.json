@@ -1,0 +1,45 @@
+{
+  "header": {
+    "logo": "Kholik",
+    "nav": [
+      { "label": "Beranda", "href": "#home" },
+      { "label": "Tentang", "href": "#about" },
+      { "label": "Teknologi", "href": "#techstack" },
+      { "label": "Proyek", "href": "#projects" },
+      { "label": "Pengalaman", "href": "#experience" },
+      { "label": "Kontak", "href": "#contact" }
+    ]
+  },
+  "hero": {
+    "tagline": "Membangun Pengalaman Web Modern",
+    "name": "Salahudin Kholik Prasetyono",
+    "description": "Pengembang frontend yang fokus membangun pengalaman web yang modern, beranimasi, dan aksesibel.",
+    "buttons": {
+      "contact": "Hubungi Saya",
+      "projects": "Lihat Proyek"
+    }
+  },
+  "titles": {
+    "marquee": "Merek Kolaboratif"
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "name": "Nama",
+    "email": "Email",
+    "subject": "Subjek",
+    "message": "Pesan",
+    "send": "Kirim Pesan",
+    "sending": "Mengirim...",
+    "success": {
+      "title": "Pesan Terkirim!",
+      "message": "Terima kasih telah menghubungi. Saya akan membalas Anda sesegera mungkin.",
+      "button": "Kirim Pesan Lain"
+    },
+    "error": "Terjadi kesalahan. Silakan coba lagi nanti."
+  },
+  "footer": {
+    "logo": "Kholik",
+    "description": "Membangun pengalaman web yang modern dan interaktif dengan penuh semangat.",
+    "rights": "© 2026 Salahudin Kholik. Hak cipta dilindungi undang-undang."
+  }
+}

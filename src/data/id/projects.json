@@ -1,0 +1,37 @@
+{
+  "title": "Solusi Digital Inovatif",
+  "liveDemo": "Demo Langsung",
+  "sourceCode": "Kode Sumber",
+  "items": [
+    {
+      "id": "1",
+      "title": "Portofolio Profesional",
+      "description": "Situs web portofolio modern dan interaktif yang dibangun dengan Next.js, React, TailwindCSS, dan shadcn/ui.",
+      "image": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop",
+      "techStack": ["Next.js", "React", "TailwindCSS", "shadcn/ui", "Framer Motion"],
+      "projectUrl": "https://example.com/portfolio",
+      "github": "https://github.com/kholik-3/portfolio-kholik-3",
+      "featured": true
+    },
+    {
+      "id": "2",
+      "title": "Dashboard E-Commerce",
+      "description": "Dashboard komprehensif untuk mengelola platform e-commerce, termasuk pelacakan penjualan dan manajemen inventaris.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop",
+      "techStack": ["Next.js", "TanStack Query", "Prisma", "PostgreSQL"],
+      "projectUrl": "https://example.com/dashboard",
+      "github": null,
+      "featured": false
+    },
+    {
+      "id": "3",
+      "title": "Analytics Workspace",
+      "description": "Ruang kerja analitik data untuk wawasan, pelaporan, dan pemantauan KPI antar tim.",
+      "image": "https://images.unsplash.com/photo-1556155092-8707de31f9c4?q=80&w=1600&auto=format&fit=crop",
+      "techStack": ["React", "TypeScript", "Node.js", "PostgreSQL"],
+      "projectUrl": "https://example.com/analytics",
+      "github": "https://github.com/kholik-3/analytics-workspace",
+      "featured": true
+    }
+  ]
+}

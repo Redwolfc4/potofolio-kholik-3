@@ -1,0 +1,14 @@
+{
+  "title": "Academic Background",
+  "items": [
+    {
+      "degree": "S1 Informatics",
+      "institution": "Universitas Bina Sarana Informatika (Kaliabang)",
+      "period": "Sept 2021 - Aug 2025",
+      "location": "Bekasi, Indonesia",
+      "description": "GPA 4.00. Focus on software development, information systems, and UI engineering.",
+      "imageUrl": "https://s6.imgcdn.dev/YvvsqK.webp",
+      "websiteUrl": "https://bsi.ac.id/"
+    }
+  ]
+}

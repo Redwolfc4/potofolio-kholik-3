@@ -1,0 +1,19 @@
+{
+  "title": "Tentang Saya",
+  "summary": {
+    "title": "Ringkasan",
+    "content": "Pengembang frontend dengan fokus pada pembangunan UI yang skalabel dan berperforma tinggi dengan framework modern, arsitektur bersih, dan interaksi yang menyenangkan."
+  },
+  "focus": {
+    "title": "Fokus",
+    "content": "Membangun antarmuka yang aksesibel, sistem desain, dan aplikasi web yang dioptimalkan kinerjanya dengan perhatian besar pada detail dan pengalaman pengguna."
+  },
+  "highlights": {
+    "title": "Sorotan",
+    "items": [
+      "UI engineering dengan React dan Next.js",
+      "Desain animasi dan interaksi",
+      "Arsitektur komponen yang skalabel"
+    ]
+  }
+}

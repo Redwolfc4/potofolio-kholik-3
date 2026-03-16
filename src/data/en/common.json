@@ -1,0 +1,45 @@
+{
+  "header": {
+    "logo": "Kholik",
+    "nav": [
+      { "label": "Home", "href": "#home" },
+      { "label": "About", "href": "#about" },
+      { "label": "Tech Stack", "href": "#techstack" },
+      { "label": "Projects", "href": "#projects" },
+      { "label": "Experience", "href": "#experience" },
+      { "label": "Contact", "href": "#contact" }
+    ]
+  },
+  "hero": {
+    "tagline": "Brewing Modern Web Experiences",
+    "name": "Salahudin Kholik Prasetyono",
+    "description": "Frontend developer focused on building modern, animated, and accessible web experiences.",
+    "buttons": {
+      "contact": "Contact Me",
+      "projects": "View Projects"
+    }
+  },
+  "titles": {
+    "marquee": "Collaborative Brands"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": {
+      "title": "Message Sent!",
+      "message": "Thank you for reaching out. I will get back to you as soon as possible.",
+      "button": "Send Another Message"
+    },
+    "error": "Something went wrong. Please try again later."
+  },
+  "footer": {
+    "logo": "Kholik",
+    "description": "Building modern and interactive web experiences with passion.",
+    "rights": "© 2026 Salahudin Kholik. All rights reserved."
+  }
+}

@@ -1,0 +1,33 @@
+import { useQuery } from "@tanstack/react-query";
+import { Certificate } from "@/types/certificate";
+
+const certifications: Certificate[] = [
+  {
+    id: "1",
+    title: "AWS Certified Developer – Associate",
+    issuer: "Amazon Web Services (AWS)",
+    date: "Dec 2023",
+    credentialUrl: "https://example.com/aws-cert",
+    image:
+      "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1200&auto=format&fit=crop",
+    description: "Demonstrated proficiency in developing and maintaining AWS-based applications.",
+  },
+  {
+    id: "2",
+    title: "Professional Scrum Master I",
+    issuer: "Scrum.org",
+    date: "Aug 2022",
+    credentialUrl: "https://example.com/psm-i-cert",
+    image:
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200&auto=format&fit=crop",
+    description: "Learned the fundamental concepts of Scrum and how to apply them to project management.",
+  },
+];
+
+export const useCertifications = () => {
+  return useQuery({
+    queryKey: ["certifications"],
+    queryFn: async () => certifications,
+    staleTime: 5 * 60 * 1000,
+  });
+};

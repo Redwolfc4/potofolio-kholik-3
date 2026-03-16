@@ -1,0 +1,19 @@
+{
+  "title": "About Me",
+  "summary": {
+    "title": "Summary",
+    "content": "Frontend developer with a focus on building scalable, high-performance UI with modern frameworks, clean architecture, and delightful interactions."
+  },
+  "focus": {
+    "title": "Focus",
+    "content": "Building accessible interfaces, design systems, and performance-optimized web apps with strong attention to detail and user experience."
+  },
+  "highlights": {
+    "title": "Highlights",
+    "items": [
+      "UI engineering with React and Next.js",
+      "Animation and interaction design",
+      "Scalable component architecture"
+    ]
+  }
+}
