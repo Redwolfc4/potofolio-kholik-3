@@ -5,6 +5,7 @@ import ExperienceJourney from "@/components/experience/journey";
 import Projects from "@/components/projects/projects";
 import Education from "@/components/education/education";
 import CertGrid from "@/components/certifications/cert-grid";
+import LanguageSection from "@/components/languages/languages";
 import Marquee from "@/components/companies/marquee";
 import ContactForm from "@/components/contact/contact-form";
 import { Locale } from "@/types/i18n";
@@ -21,6 +22,7 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
     certifications: await getDictionary(lang, "certifications"),
     techstack: await getDictionary(lang, "techstack"),
     education: await getDictionary(lang, "education"),
+    languages: await getDictionary(lang, "languages"),
   };
 
   return (
@@ -32,6 +34,7 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
       <ExperienceJourney dict={dict.experience} />
       <Projects dict={dict.projects} />
       <Education dict={dict.education} />
+      <LanguageSection dict={dict.languages} />
       <CertGrid dict={dict.certifications} />
       <ContactForm dict={dict.common.contact} />
     </main>

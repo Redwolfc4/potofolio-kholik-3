@@ -4,34 +4,84 @@
   "sourceCode": "Source Code",
   "items": [
     {
-      "id": "1",
-      "title": "Professional Portfolio",
-      "description": "A modern, interactive portfolio website built with Next.js, React, TailwindCSS, and shadcn/ui.",
-      "image": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop",
-      "techStack": ["Next.js", "React", "TailwindCSS", "shadcn/ui", "Framer Motion"],
-      "projectUrl": "https://example.com/portfolio",
-      "github": "https://github.com/kholik-3/portfolio-kholik-3",
+      "id": "aura-parfume",
+      "title": "Aura Parfume - Brand Identity Web",
+      "description": "An innovative fragrance marketing platform leveraging Contentful CMS for ultra-fast content management and WhatsApp integration for instant sales conversion. Built with a focus on deployment efficiency and modern digital content strategies.",
+      "image": "https://media.licdn.com/dms/image/v2/D562DAQH4NR2hKSQY_w/profile-treasury-image-shrink_800_800/B56ZyA6jQmIcAY-/0/1771689359502?e=1774328400&v=beta&t=D3Gm8U3gZzZoHKkYnWb0Z205JOaxJUM0dYSq6Nf8pUw",
+      "techStack": ["Next.js", "Contentful CMS", "Tailwind CSS", "WhatsApp Integration"],
+      "projectUrl": "https://parfume-website-6zvr2a2ldv.edgeone.dev/produk",
+      "github": "https://github.com/Redwolfc4/parfume-website",
       "featured": true
     },
     {
-      "id": "2",
-      "title": "E-Commerce Dashboard",
-      "description": "A comprehensive dashboard for managing an e-commerce platform, including sales tracking and inventory management.",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop",
-      "techStack": ["Next.js", "TanStack Query", "Prisma", "PostgreSQL"],
-      "projectUrl": "https://example.com/dashboard",
+      "id": "absensiku",
+      "title": "AbsensiKu - Smart Workforce Management",
+      "description": "A smart attendance management system designed to optimize team productivity. Featuring proactive notification systems, integrated task tracking, and direct user support to resolve operational bottlenecks in real-time.",
+      "image": "https://media.licdn.com/dms/image/sync/v2/D5627AQFXQBT4YUjOnw/articleshare-shrink_480/articleshare-shrink_480/0/1736689582414?e=1774328400&v=beta&t=RbR47eGjkN9rKJESQVwvlY-dXpsVftE7EFOX6eSytVU",
+      "techStack": ["React.js", "Vercel", "Task Management API", "Notification Service"],
+      "projectUrl": "https://absensiku.vercel.app/",
       "github": null,
+      "featured": true
+    },
+    {
+      "id": "nusantarago",
+      "title": "Nusantara Go - ML-Powered Travel Discovery",
+      "description": "An ML-powered tourism accelerator transforming how travelers discover Indonesia's natural beauty. Delivering personalized recommendations for hidden gems to support equitable national tourism growth.",
+      "image": "https://media.licdn.com/dms/image/sync/v2/D5627AQEte33NbvNB3w/articleshare-shrink_800/B56ZghN2yyHQAI-/0/1752903937728?e=1774335600&v=beta&t=s6HkNBlvYiBmYhYqT8IkN9yvrdIFkMPjyAHa7Nljfrw",
+      "techStack": ["Machine Learning", "React.js", "API Integration", "Netlify"],
+      "projectUrl": "https://nusantarago.netlify.app/",
+      "github": null,
+      "featured": true
+    },
+    {
+      "id": "notes-app-fundamental",
+      "title": "Modern Notes Architecture",
+      "description": "A deep dive into modern JavaScript scalability using Web Components and Shadow DOM. Building encapsulated note systems with high performance and reusable UI design patterns.",
+      "image": "https://media.licdn.com/dms/image/v2/D562DAQHiTeRpadAF0A/profile-treasury-image-shrink_800_800/B56ZZ3eX97HsAY-/0/1745761174040?e=1774328400&v=beta&t=9u5nHSGEIj9Zcm6hYaqxrb1Xmd3LoJQGAlEz39lwKcI",
+      "techStack": ["Web Components", "Shadow DOM", "ES6+ Modules", "CSS Grid"],
+      "projectUrl": "https://redwolfc4.github.io/notes-app-fundamental-dicoding-1/",
+      "github": "https://github.com/Redwolfc4/notes-app-fundamental-dicoding-1",
       "featured": false
     },
     {
-      "id": "3",
-      "title": "Analytics Workspace",
-      "description": "A data analytics workspace for insights, reporting, and KPI monitoring across teams.",
-      "image": "https://images.unsplash.com/photo-1556155092-8707de31f9c4?q=80&w=1600&auto=format&fit=crop",
-      "techStack": ["React", "TypeScript", "Node.js", "PostgreSQL"],
-      "projectUrl": "https://example.com/analytics",
-      "github": "https://github.com/kholik-3/analytics-workspace",
-      "featured": true
+      "id": "bookshelf-app",
+      "title": "Bookshelf Precision Manager",
+      "description": "A high-precision digital library management system featuring Local Storage for serverless data persistence. Prioritizing user experience in organizing personal literature intuitively.",
+      "image": "https://media.licdn.com/dms/image/v2/D562DAQFAk6h1nTSaXg/profile-treasury-image-shrink_800_800/B56ZUxPehuGUAY-/0/1740287896536?e=1774328400&v=beta&t=KGr0EdT-G8V8gilOsszTyvjCO2x7yXLBMLRDiQWp2Es",
+      "techStack": ["JavaScript ES6", "Local Storage", "DOM Manipulation", "CSS3"],
+      "projectUrl": "https://redwolfc4.github.io/bookshelf_app_starter_project_proyek_akhir_dicoding/",
+      "github": "https://github.com/Redwolfc4/bookshelf_app_starter_project_proyek_akhir_dicoding",
+      "featured": false
+    },
+    {
+      "id": "animebook-project",
+      "title": "AnimeBook Ecosystem",
+      "description": "An interactive anime catalog blending dynamic visual design with responsive navigation. Achieving high quality standards aligned with the premium curriculum from Dicoding x DBS Foundation.",
+      "image": "https://media.licdn.com/dms/image/v2/D562DAQGU864XJ_c7qA/profile-treasury-image-shrink_8192_8192/B56ZUTQxKkHEAg-/0/1739784918990?e=1774328400&v=beta&t=L9nOmI4WDsHhQ5__-mbcVymQGPTa2PhS4Wj8-ki6EJI",
+      "techStack": ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+      "projectUrl": "https://redwolfc4.github.io/AnimeBook_ProjectAkhir_dicoding/",
+      "github": "https://github.com/Redwolfc4/AnimeBook_ProjectAkhir_dicoding",
+      "featured": false
+    },
+    {
+      "id": "mebest-travel",
+      "title": "MeBest Travel Integration",
+      "description": "A collaborative platform bridging destination insights with integrated travel transactions. Designed to amplify exposure to Indonesia's cultural heritage through unified digital solutions.",
+      "image": "https://media.licdn.com/dms/image/v2/D562DAQGYnYd4hXY2Kg/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1716457295562?e=1774335600&v=beta&t=j0yXOcgGrRV2TEh-0El5ZQLE5mnDO2hr-0t7Pqgd5wA",
+      "techStack": ["Web Development", "Team Collaboration", "Travel Tech", "UI/UX Design"],
+      "projectUrl": null,
+      "github": "https://github.com/sugunjenk/MeBest_Travel",
+      "featured": false
+    },
+    {
+      "id": "catatanku-react",
+      "title": "Catatanku - React Evolution",
+      "description": "The evolution of note management into a React.js architecture. Integrating dynamic routing (React Router) and advanced state management to deliver a seamless Single Page Application experience.",
+      "image": "https://media.licdn.com/dms/image/v2/D562DAQGw0xhs_pVXjA/profile-treasury-image-shrink_1920_1920/B56ZmrFF03JkAc-/0/1759511863763?e=1774335600&v=beta&t=lQcOf_pnPn3cAuvO46cwz_DRh4leYdw_gB8twdhJ_FQ",
+      "techStack": ["React.js", "React Router DOM", "Hooks", "SPA Architecture"],
+      "projectUrl": "https://redwolfc4.github.io/CatatanKu-lanjutan-app-dicoding/",
+      "github": "https://github.com/Redwolfc4/CatatanKu-lanjutan-app-dicoding",
+      "featured": false
     }
   ]
 }

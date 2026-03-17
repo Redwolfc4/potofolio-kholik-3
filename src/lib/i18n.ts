@@ -10,6 +10,7 @@ const dictionaries = {
     certifications: () => import("@/data/en/certifications.json").then((module) => module.default),
     techstack: () => import("@/data/en/techstack.json").then((module) => module.default),
     education: () => import("@/data/en/education.json").then((module) => module.default),
+    languages: () => import("@/data/en/languages.json").then((module) => module.default),
   },
   id: {
     common: () => import("@/data/id/common.json").then((module) => module.default),
@@ -19,6 +20,7 @@ const dictionaries = {
     certifications: () => import("@/data/id/certifications.json").then((module) => module.default),
     techstack: () => import("@/data/id/techstack.json").then((module) => module.default),
     education: () => import("@/data/id/education.json").then((module) => module.default),
+    languages: () => import("@/data/id/languages.json").then((module) => module.default),
   },
 };
 

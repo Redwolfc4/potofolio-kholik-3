@@ -1,0 +1,23 @@
+{
+  "title": "Bahasa",
+  "items": [
+    {
+      "name": "Bahasa Indonesia",
+      "level": "Native",
+      "proficiency": "Penutur Asli",
+      "icon": "Languages"
+    },
+    {
+      "name": "Inggris",
+      "level": "Provisional Working Proficiency",
+      "proficiency": "Kemampuan Kerja Terbatas",
+      "icon": "Globe"
+    },
+    {
+      "name": "Jepang",
+      "level": "Basic",
+      "proficiency": "Dasar",
+      "icon": "JapaneseYen"
+    }
+  ]
+}

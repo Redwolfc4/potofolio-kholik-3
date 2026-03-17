@@ -5,6 +5,7 @@ import { ProjectsDict } from "./projects";
 import { CertificationsDict } from "./certifications";
 import { TechStackDict } from "./techstack";
 import { EducationDict } from "./education";
+import { LanguagesDict } from "./languages";
 
 export type Locale = "en" | "id";
 
@@ -16,6 +17,7 @@ export interface Dictionary {
   certifications: CertificationsDict;
   techstack: TechStackDict;
   education: EducationDict;
+  languages: LanguagesDict;
 }
 
 export * from "./common";
@@ -25,3 +27,4 @@ export * from "./projects";
 export * from "./certifications";
 export * from "./techstack";
 export * from "./education";
+export * from "./languages";

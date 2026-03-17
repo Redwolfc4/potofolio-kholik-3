@@ -1,0 +1,23 @@
+{
+  "title": "Languages",
+  "items": [
+    {
+      "name": "Indonesian",
+      "level": "Native",
+      "proficiency": "Native Speaker",
+      "icon": "Languages"
+    },
+    {
+      "name": "English",
+      "level": "Provisional Working Proficiency",
+      "proficiency": "Limited Working Proficiency",
+      "icon": "Globe"
+    },
+    {
+      "name": "Japanese",
+      "level": "Basic",
+      "proficiency": "Basic",
+      "icon": "JapaneseYen"
+    }
+  ]
+}
