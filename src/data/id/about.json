@@ -1,19 +1,21 @@
 {
   "title": "Tentang Saya",
   "summary": {
-    "title": "Ringkasan",
-    "content": "Pengembang frontend dengan fokus pada pembangunan UI yang skalabel dan berperforma tinggi dengan framework modern, arsitektur bersih, dan interaksi yang menyenangkan."
+    "title": "Ringkasan Profesional",
+    "content": "Fullstack Web Developer dengan latar belakang Informatika dari Universitas Bina Sarana Informatika (IPK 4.00) dan pengalaman dalam membangun aplikasi web modern menggunakan teknologi seperti React.js, Next.js, Flask, Spring Boot, dan MongoDB."
   },
   "focus": {
-    "title": "Fokus",
-    "content": "Membangun antarmuka yang aksesibel, sistem desain, dan aplikasi web yang dioptimalkan kinerjanya dengan perhatian besar pada detail dan pengalaman pengguna."
+    "title": "Keahlian Teknis",
+    "content": "Ahli dalam mengembangkan layanan backend yang skalabel, merancang antarmuka frontend yang responsif, dan mengintegrasikan API untuk menciptakan solusi web yang efisien. Bersemangat dalam membangun sistem web yang andal."
   },
   "highlights": {
-    "title": "Sorotan",
+    "title": "Kekuatan Utama",
     "items": [
-      "UI engineering dengan React dan Next.js",
-      "Desain animasi dan interaksi",
-      "Arsitektur komponen yang skalabel"
+      "IPK 4.00 @ Universitas Bina Sarana Informatika",
+      "Fullstack: React.js, Next.js, Spring Boot, Flask",
+      "DevOps: Docker, Git, Modern CI/CD Tools",
+      "Quality Assurance: API Testing & Test Case Design"
     ]
   }
 }
+

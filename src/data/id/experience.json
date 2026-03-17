@@ -6,29 +6,101 @@
   "items": [
     {
       "id": "1",
-      "company": "Software Solutions Inc.",
-      "position": "Frontend Developer",
-      "location": "Jarak Jauh",
-      "period": "Jan 2023 - Sekarang",
+      "company": "PT Global Investment Institution",
+      "position": "Peserta Esential Programming Course- Fullstack Web Development",
+      "location": "Jakarta Selatan (Jarak Jauh)",
+      "period": "Agu 2023 - Des 2023",
       "description": [
-        "Mengembangkan dan mengelola antarmuka pengguna yang kompleks untuk berbagai aplikasi web menggunakan React dan Next.js.",
-        "Berkolaborasi dengan tim lintas fungsi untuk merancang dan mengimplementasikan fitur baru, memastikan kode berkualitas tinggi dan berperforma tinggi.",
-        "Mengoptimalkan performa dan responsivitas aplikasi, menghasilkan peningkatan 20% dalam skor kepuasan pengguna."
+        "Menyelesaikan kursus Fullstack Web Development (Learning X) yang berfokus pada teknologi web modern dan praktik rekayasa perangkat lunak.",
+        "Mengembangkan aplikasi backend menggunakan Python, Flask, REST API, JSON, otentikasi JWT, cookie, dan teknik web scraping.",
+        "Membangun antarmuka frontend menggunakan HTML, CSS, JavaScript, jQuery, Bootstrap, dan Bulma, dengan fokus pada desain responsif dan ramah pengguna.",
+        "Merancang prototipe UI menggunakan Figma dan menerapkan alur kerja kontrol versi menggunakan Git.",
+        "Mengembangkan dan mengelola aplikasi web menggunakan alat pengembangan modern seperti Visual Studio Code.",
+        "Menerapkan MongoDB untuk manajemen basis data dan penanganan data.",
+        "Berkolaborasi dengan konsep desain UI/UX untuk menerapkan arsitektur client-side dan server-side secara efektif.",
+        "Melakukan pengujian dan debugging untuk meningkatkan performa dan memastikan keandalan aplikasi."
       ],
-      "techStack": ["React", "Next.js", "TypeScript", "TailwindCSS"]
+      "techStack": ["Python", "Flask", "MongoDB", "JavaScript", "jQuery", "Bootstrap", "Bulma", "Git", "Figma"]
     },
     {
       "id": "2",
-      "company": "Tech Innovators Co.",
-      "position": "Junior Web Developer",
-      "location": "San Francisco, CA",
-      "period": "Juni 2021 - Des 2022",
+      "company": "PT.Winnicode Garuda Indonesia",
+      "position": "Web Development Intern",
+      "location": "Bandung (Jarak Jauh)",
+      "period": "Sep 2024 - Des 2024",
       "description": [
-        "Membantu dalam pengembangan berbagai proyek web, berfokus pada teknologi frontend seperti HTML, CSS, dan JavaScript.",
-        "Bekerja sama dengan pengembang senior untuk mempelajari praktik terbaik dan berkontribusi pada kesuksesan beberapa proyek klien.",
-        "Mengelola dan memperbarui situs web yang ada, memastikan situs tersebut tetap mutakhir dengan standar web saat ini."
+        "Mengembangkan dan memelihara aplikasi web full-stack, mengintegrasikan layanan backend dengan antarmuka frontend menggunakan teknologi web modern.",
+        "Menerapkan alur kerja kontrol versi menggunakan Git untuk mengelola kolaborasi kode dan pengembangan proyek secara efisien.",
+        "Menerapkan prinsip desain UI/UX, termasuk tata letak, warna, tipografi, dan spasi untuk menciptakan antarmuka yang intuitif dan ramah pengguna.",
+        "Melakukan analisis pengguna dan desain alur interaksi untuk meningkatkan pengalaman pengguna dan kegunaan secara keseluruhan.",
+        "Menerapkan teknik desain responsif menggunakan CSS dan sistem grid untuk memastikan performa optimal di berbagai perangkat dan ukuran layar.",
+        "Menerapkan praktik aksesibilitas web untuk memastikan aplikasi dapat digunakan oleh berbagai macam pengguna.",
+        "Menerapkan praktik keamanan web dasar, termasuk pencegahan serangan umum seperti XSS, CSRF, dan SQL Injection.",
+        "Menerapkan teknik enkripsi data (DES) untuk melindungi informasi pengguna yang sensitif dan meningkatkan keamanan aplikasi."
       ],
-      "techStack": ["HTML", "CSS", "JavaScript", "React"]
+      "techStack": ["Flask", "Python", "MongoDB", "Git", "JWT", "Swagger API", "SMTP", "Jinja"]
+    },
+    {
+      "id": "3",
+      "company": "Coding Camp powered by DBS Foundation",
+      "position": "Peserta Coding Camp 2025 - Fullstack Web Development",
+      "location": "Bandung (Jarak Jauh)",
+      "period": "Feb 2025 - Jun 2025",
+      "description": [
+        "Menyelesaikan program pelatihan Fullstack Web Development, dengan fokus pada teknologi pengembangan web modern seperti Hapi.js dan Webpack.",
+        "Melakukan pembelajaran mandiri dan tugas praktek untuk setiap modul pembelajaran untuk memperkuat keterampilan pengembangan praktis.",
+        "Mengembangkan Proyek Capstone yang menerapkan konsep fullstack, mengintegrasikan layanan backend dan implementasi frontend.",
+        "Meningkatkan soft skills dan komunikasi bahasa Inggris profesional agar selaras dengan standar industri dan persyaratan tempat kerja.",
+        "Menyiapkan CV profesional dan keterampilan kesiapan karir untuk mendukung transisi ke industri teknologi."
+      ],
+      "techStack": ["Hapi.js", "Webpack", "JavaScript", "Node.js", "SMTP"]
+    },
+    {
+      "id": "4",
+      "company": "Haltev IT Learning Center",
+      "position": "Instructor",
+      "location": "Bekasi Barat (Gabungan)",
+      "period": "Feb 2025 - Jan 2026",
+      "description": [
+        "Memberikan kursus coding baik secara jarak jauh (WFH) maupun di lokasi (WFO), termasuk program kolaborasi dengan Unity Technologies.",
+        "Merancang dan mengembangkan kurikulum terstruktur, materi pembelajaran, dan penilaian sertifikasi untuk memastikan siswa mencapai kompetensi yang dibutuhkan.",
+        "Melakukan sesi pengajaran terstruktur berdasarkan silabus yang dikembangkan untuk menjaga penyampaian pembelajaran yang konsisten dan efektif.",
+        "Mengevaluasi kinerja siswa dan menyusun laporan kemajuan untuk mengukur hasil belajar dan pengembangan keterampilan.",
+        "Terus belajar dan memperbarui pengetahuan teknis untuk memberikan instruksi berkualitas tinggi (Roblox Studio, Scratch, Alpine, Laravel).",
+        "Berkontribusi pada proyek pengembangan web internal, berkolaborasi dengan tim teknis saat dibutuhkan."
+      ],
+      "techStack": ["Roblox Studio", "Scratch", "Alpine.js", "Laravel", "Teaching", "Public Relations"]
+    },
+    {
+      "id": "5",
+      "company": "Lincah - Member of Ordonesia",
+      "position": "Information Technology Software Engineer Intern",
+      "location": "Batununggal (Di lokasi)",
+      "period": "Nov 2025 - Sekarang",
+      "description": [
+        "Berkontribusi pada aktivitas pengembangan web menggunakan Next.js, TanStack Query, Zod, Zustand, MongoDB, Docker, dan GitLab.",
+        "Berpartisipasi dalam kolaborasi pengembangan dalam proyek Salfok, membantu membangun dan meningkatkan fitur aplikasi web.",
+        "Melakukan pengujian Quality Assurance untuk sistem internal perusahaan yang digunakan oleh SAP.",
+        "Membuat Acceptance Criteria dengan analisis bantuan AI untuk memastikan fitur memenuhi persyaratan bisnis dan teknis.",
+        "Merancang dan mengeksekusi test case untuk berbagai modul sistem untuk memvalidasi fungsionalitas dan keandalan sistem.",
+        "Melaporkan dan melacak bug menggunakan ClickUp dan OpenProject.",
+        "Melakukan pengujian API menggunakan Postman dan melakukan pengujian manual di seluruh modul sistem."
+      ],
+      "techStack": ["Next.js", "TanStack Query", "Zustand", "Zod", "MongoDB", "Docker", "GitLab", "QA Testing", "Postman"]
+    },
+    {
+      "id": "6",
+      "company": "S-TechX",
+      "position": "Java Web Developer (Pekerja Lepas)",
+      "location": "Kota Bekasi (Jarak Jauh)",
+      "period": "Des 2025 - Sekarang",
+      "description": [
+        "Melakukan konsultasi mendalam dengan klien untuk menganalisis proses bisnis dan menterjemahkan persyaratan pengguna menjadi spesifikasi teknis yang jelas dan efisien.",
+        "Merancang dan mengembangkan aplikasi web berkinerja tinggi menggunakan arsitektur modern. Mengimplementasikan layanan backend menggunakan Spring Boot dan MySQL.",
+        "Membangun antarmuka frontend yang responsif menggunakan React.js, terintegrasi dengan TanStack Query untuk manajemen state yang efisien.",
+        "Menyiapkan dan memberikan pelatihan teknis (transfer pengetahuan) berdasarkan peran klien dan kebutuhan operasional."
+      ],
+      "techStack": ["Java", "Spring Boot", "MySQL", "React.js", "TanStack Query", "Training Teknis"]
     }
   ]
 }

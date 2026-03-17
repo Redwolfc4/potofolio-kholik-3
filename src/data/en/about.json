@@ -1,19 +1,21 @@
 {
   "title": "About Me",
   "summary": {
-    "title": "Summary",
-    "content": "Frontend developer with a focus on building scalable, high-performance UI with modern frameworks, clean architecture, and delightful interactions."
+    "title": "Professional Overview",
+    "content": "Fullstack Web Developer with a background in Informatics from Universitas Bina Sarana Informatika (GPA 4.00) and experience in building modern web applications using technologies such as React.js, Next.js, Flask, Spring Boot, and MongoDB."
   },
   "focus": {
-    "title": "Focus",
-    "content": "Building accessible interfaces, design systems, and performance-optimized web apps with strong attention to detail and user experience."
+    "title": "Technical Expertise",
+    "content": "Skilled in developing scalable backend services, designing responsive frontend interfaces, and integrating APIs to create efficient web solutions. Passionate about building reliable web systems and ensuring quality through rigorous testing."
   },
   "highlights": {
-    "title": "Highlights",
+    "title": "Core Strengths",
     "items": [
-      "UI engineering with React and Next.js",
-      "Animation and interaction design",
-      "Scalable component architecture"
+      "GPA 4.00 @ Universitas Bina Sarana Informatika",
+      "Fullstack: React.js, Next.js, Spring Boot, Flask",
+      "DevOps: Docker, Git, Modern CI/CD Tools",
+      "Quality Assurance: API Testing & Test Case Design"
     ]
   }
 }
+

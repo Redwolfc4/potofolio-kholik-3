@@ -6,29 +6,101 @@
   "items": [
     {
       "id": "1",
-      "company": "Software Solutions Inc.",
-      "position": "Frontend Developer",
-      "location": "Remote",
-      "period": "Jan 2023 - Present",
+      "company": "PT Global Investment Institution",
+      "position": "Peserta Esential Programming Course- Fullstack Web Development",
+      "location": "Jakarta Selatan (Remote)",
+      "period": "Aug 2023 - Dec 2023",
       "description": [
-        "Developed and maintained complex user interfaces for a range of web applications using React and Next.js.",
-        "Collaborated with cross-functional teams to design and implement new features, ensuring high-quality and performant code.",
-        "Optimized application performance and responsiveness, resulting in a 20% improvement in user satisfaction scores."
+        "Completed a Fullstack Web Development course focusing on modern web development technologies and software engineering practices.",
+        "Developed backend applications using Python, Flask, REST API, JSON, JWT authentication, cookies, and web scraping techniques.",
+        "Built frontend interfaces using HTML, CSS, JavaScript, jQuery, Bootstrap, and Bulma, focusing on responsive and user-friendly design.",
+        "Designed UI prototypes using Figma and implemented version control workflows using Git.",
+        "Developed and maintained web applications using modern development tools such as Visual Studio Code.",
+        "Implemented MongoDB for database management and data handling.",
+        "Collaborated with UI/UX design concepts to implement client-side and server-side architecture effectively.",
+        "Performed testing and debugging to improve performance and ensure application reliability."
       ],
-      "techStack": ["React", "Next.js", "TypeScript", "TailwindCSS"]
+      "techStack": ["Python", "Flask", "MongoDB", "JavaScript", "jQuery", "Bootstrap", "Bulma", "Git", "Figma"]
     },
     {
       "id": "2",
-      "company": "Tech Innovators Co.",
-      "position": "Junior Web Developer",
-      "location": "San Francisco, CA",
-      "period": "June 2021 - Dec 2022",
+      "company": "PT.Winnicode Garuda Indonesia",
+      "position": "Web Development Intern",
+      "location": "Bandung (Remote)",
+      "period": "Sep 2024 - Dec 2024",
       "description": [
-        "Assisted in the development of various web projects, focusing on frontend technologies like HTML, CSS, and JavaScript.",
-        "Worked closely with senior developers to learn best practices and contribute to the success of multiple client projects.",
-        "Maintained and updated existing websites, ensuring they remained up-to-date with current web standards."
+        "Develop and maintain full-stack web applications, integrating backend services with frontend interfaces using modern web technologies.",
+        "Implement version control workflows using Git to manage code collaboration and project development efficiently.",
+        "Apply UI/UX design principles, including layout, color, typography, and spacing to create intuitive and user-friendly interfaces.",
+        "Conduct user analysis and interaction flow design to improve overall user experience and usability.",
+        "Implement responsive design techniques using CSS and grid systems to ensure optimal performance across multiple devices and screen sizes.",
+        "Apply web accessibility practices to ensure applications are usable by a wide range of users.",
+        "Implement basic web security practices, including prevention of common attacks such as XSS, CSRF, and SQL Injection.",
+        "Apply data encryption techniques (DES) to protect sensitive user information and enhance application security."
       ],
-      "techStack": ["HTML", "CSS", "JavaScript", "React"]
+      "techStack": ["Flask", "Python", "MongoDB", "Git", "JWT", "Swagger API", "SMTP", "Jinja"]
+    },
+    {
+      "id": "3",
+      "company": "Coding Camp powered by DBS Foundation",
+      "position": "Participant - Fullstack Web Development",
+      "location": "Bandung (Remote)",
+      "period": "Feb 2025 - Jun 2025",
+      "description": [
+        "Completed a Fullstack Web Development training program, focusing on modern web development technologies such as Hapi.js and Webpack.",
+        "Performed independent learning and hands-on assignments for each learning module to strengthen practical development skills.",
+        "Developed a Capstone Project that applied fullstack concepts, integrating backend services and frontend implementation.",
+        "Improved soft skills and professional English communication to align with industry standards.",
+        "Prepared professional CV and career readiness skills to support transition into the technology industry."
+      ],
+      "techStack": ["Hapi.js", "Webpack", "JavaScript", "Node.js", "SMTP"]
+    },
+    {
+      "id": "4",
+      "company": "Haltev IT Learning Center",
+      "position": "Instructor",
+      "location": "Bekasi Barat (Hybrid)",
+      "period": "Feb 2025 - Jan 2026",
+      "description": [
+        "Deliver coding courses both remotely (WFH) and on-site (WFO), including collaboration programs with Unity Technologies.",
+        "Design and develop structured curriculum, learning materials, and certification assessments.",
+        "Conduct structured teaching sessions based on the developed syllabus to maintain consistent and effective learning delivery.",
+        "Evaluate student performance and prepare progress reports to measure learning outcomes.",
+        "Continuously learn and update technical knowledge to provide high-quality instruction (Roblox Studio, Scratch, Alpine, Laravel).",
+        "Contribute to internal web development projects, collaborating with the technical team when needed."
+      ],
+      "techStack": ["Roblox Studio", "Scratch", "Alpine.js", "Laravel", "Teaching", "Public Relations"]
+    },
+    {
+      "id": "5",
+      "company": "Lincah - Member of Ordonesia",
+      "position": "Information Technology Software Engineer Intern",
+      "location": "Batununggal (On-site)",
+      "period": "Nov 2025 - Present",
+      "description": [
+        "Contributed to web development activities using Next.js, TanStack Query, Zod, Zustand, MongoDB, Docker, and GitLab.",
+        "Participated in development collaboration within the Salfok project, assisting in building and improving web application features.",
+        "Performed Quality Assurance testing for internal enterprise systems used by SAP.",
+        "Created Acceptance Criteria with AI-assisted analysis to ensure features met business and technical requirements.",
+        "Designed and executed test cases for various system modules to validate functionality.",
+        "Reported and tracked bugs using ClickUp and OpenProject.",
+        "Conducted API testing using Postman and performed manual testing across system modules."
+      ],
+      "techStack": ["Next.js", "TanStack Query", "Zustand", "Zod", "MongoDB", "Docker", "GitLab", "QA Testing", "Postman"]
+    },
+    {
+      "id": "6",
+      "company": "S-TechX",
+      "position": "Java Web Developer (Freelance)",
+      "location": "Bekasi (Remote)",
+      "period": "Dec 2025 - Present",
+      "description": [
+        "Conduct in-depth consultations with clients to analyze business processes and translate user requirements into technical specifications.",
+        "Design and develop high-performance web applications using Spring Boot and MySQL for reliable data management.",
+        "Build responsive frontend interfaces using React.js, integrated with TanStack Query for efficient state management.",
+        "Prepare and deliver tailored technical training (knowledge transfer) to ensure effective system adoption."
+      ],
+      "techStack": ["Java", "Spring Boot", "MySQL", "React.js", "TanStack Query", "Technical Training"]
     }
   ]
 }
