@@ -8,7 +8,10 @@ export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
   const isDragging = React.useRef(false);
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
         setIsVisible(true);
@@ -30,6 +33,8 @@ export default function ScrollToTop() {
       behavior: "smooth",
     });
   };
+
+  if (!mounted) return null;
 
   return (
     <AnimatePresence>

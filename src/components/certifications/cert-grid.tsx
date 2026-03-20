@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useSyncExternalStore } from "react";
+import { useCallback, useSyncExternalStore, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -15,6 +15,11 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
     align: "center",
     containScroll: "trimSnaps",
   });
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const prevBtnDisabled = useSyncExternalStore(
     useCallback(
@@ -59,24 +64,28 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20">
           <div className="relative">
-            <button
-              type="button"
-              onClick={() => emblaApi?.scrollPrev()}
-              disabled={prevBtnDisabled}
-              aria-label="Previous certification"
-              className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => emblaApi?.scrollNext()}
-              disabled={nextBtnDisabled}
-              aria-label="Next certification"
-              className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+            {mounted && (
+              <button
+                type="button"
+                onClick={() => emblaApi?.scrollPrev()}
+                disabled={prevBtnDisabled}
+                aria-label="Previous certification"
+                className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+            )}
+            {mounted && (
+              <button
+                type="button"
+                onClick={() => emblaApi?.scrollNext()}
+                disabled={nextBtnDisabled}
+                aria-label="Next certification"
+                className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            )}
             
             <div ref={emblaRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
               <div className="flex gap-6">

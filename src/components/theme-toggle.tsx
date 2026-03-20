@@ -24,6 +24,7 @@ export function ThemeToggle() {
         size="icon"
         className="border border-border/70 bg-card/70 shadow-sm transition-colors hover:bg-accent/60"
         disabled
+        suppressHydrationWarning
       >
         <div className="h-5 w-5 animate-pulse rounded-full bg-muted" />
         <span className="sr-only">Loading theme</span>
