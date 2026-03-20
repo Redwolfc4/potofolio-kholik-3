@@ -55,6 +55,38 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
     () => true
   );
 
+  useEffect(() => {
+    if (!emblaApi) return;
+    const viewport = emblaApi.rootNode();
+    const container = viewport.parentElement; // The relative div containing buttons
+    if (!container) return;
+
+    let isScrolling = false;
+
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 10) {
+        if (isScrolling) return;
+        isScrolling = true;
+
+        if (e.deltaX > 0) {
+          if (emblaApi.canScrollNext()) emblaApi.scrollNext();
+        } else {
+          if (emblaApi.canScrollPrev()) emblaApi.scrollPrev();
+        }
+
+        setTimeout(() => {
+          isScrolling = false;
+        }, 500);
+
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    container.addEventListener("wheel", onWheel, { passive: false });
+    return () => container.removeEventListener("wheel", onWheel);
+  }, [emblaApi]);
+
   return (
     <section id="projects" className="w-full">
       <div className="mx-auto px-10 py-10 md:py-12">
@@ -62,7 +94,7 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
       </div>
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20">
-          <div className="relative">
+          <div className="relative overscroll-x-none touch-pan-y">
             {mounted && (
               <button
                 type="button"
@@ -85,7 +117,10 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
                 <ChevronRight className="w-4 h-4" />
               </button>
             )}
-            <div ref={emblaRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
+            <div 
+              ref={emblaRef} 
+              className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
+            >
               <div className="flex gap-6">
                 {projects?.map((project, index) => (
                   <motion.div
