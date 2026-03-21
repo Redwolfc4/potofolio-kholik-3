@@ -37,10 +37,7 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "img2.lokercepat.id",
       },
-      {
-        protocol: "https",
-        hostname: "lincah.id",
-      },
+
       {
         protocol: "https",
         hostname: "images.glints.com",

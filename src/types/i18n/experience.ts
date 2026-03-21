@@ -6,6 +6,7 @@ export interface ExperienceItem {
   location: string;
   description: string[];
   techStack: string[];
+  logo?: string;
 }
 
 export interface ExperienceDict {

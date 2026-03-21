@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 
 import { ExperienceDict } from "@/types/i18n";
 
@@ -71,7 +72,18 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
                           <div className="flex flex-col gap-1 mb-4">
                             <span className="text-[10px] font-black text-primary/70 uppercase tracking-[0.2em]">{exp.period}</span>
                             <h3 className="text-xl md:text-2xl font-black group-hover/card:text-primary transition-colors leading-tight">{exp.position}</h3>
-                            <p className="text-sm font-bold text-muted-foreground/80 group-hover/card:text-foreground transition-colors">{exp.company}</p>
+                            <div className="flex items-center gap-2">
+                              {exp.logo && (
+                                <Image
+                                  src={exp.logo}
+                                  alt={exp.company}
+                                  width={24}
+                                  height={24}
+                                  className="h-5 w-5 object-contain rounded-sm"
+                                />
+                              )}
+                              <p className="text-sm font-bold text-muted-foreground/80 group-hover/card:text-foreground transition-colors">{exp.company}</p>
+                            </div>
                           </div>
 
                           <p className="text-xs text-muted-foreground/70 leading-relaxed line-clamp-2 md:line-clamp-3 mb-4">
@@ -160,7 +172,18 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
             <div className="flex items-start justify-between gap-4 mb-6">
               <div>
                 <h3 className="text-2xl font-bold text-primary">{selected.position}</h3>
-                <p className="text-lg font-semibold">{selected.company}</p>
+                <div className="flex items-center gap-2">
+                  {selected.logo && (
+                    <Image
+                      src={selected.logo}
+                      alt={selected.company}
+                      width={28}
+                      height={28}
+                      className="h-6 w-6 object-contain rounded-sm"
+                    />
+                  )}
+                  <p className="text-lg font-semibold">{selected.company}</p>
+                </div>
                 <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-muted-foreground">
                   <span>{selected.period}</span>
                   <span className="hidden sm:inline">•</span>

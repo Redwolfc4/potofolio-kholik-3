@@ -7,6 +7,7 @@
     {
       "id": "1",
       "company": "PT Global Investment Institution",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHiEr3t7vVoTw/company-logo_200_200/company-logo_200_200/0/1698201934811?e=2147483647&v=beta&t=bnR39RREUkRAfBpKxURRKWJawoiAHNxcLMc-C0qvh5c",
       "position": "Peserta Esential Programming Course- Fullstack Web Development",
       "location": "Jakarta Selatan (Jarak Jauh)",
       "period": "Agu 2023 - Des 2023",
@@ -20,11 +21,22 @@
         "Berkolaborasi dengan konsep desain UI/UX untuk menerapkan arsitektur client-side dan server-side secara efektif.",
         "Melakukan pengujian dan debugging untuk meningkatkan performa dan memastikan keandalan aplikasi."
       ],
-      "techStack": ["Python", "Flask", "MongoDB", "JavaScript", "jQuery", "Bootstrap", "Bulma", "Git", "Figma"]
+      "techStack": [
+        "Python",
+        "Flask",
+        "MongoDB",
+        "JavaScript",
+        "jQuery",
+        "Bootstrap",
+        "Bulma",
+        "Git",
+        "Figma"
+      ]
     },
     {
       "id": "2",
       "company": "PT.Winnicode Garuda Indonesia",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHBchDFb5AGrg/company-logo_200_200/company-logo_200_200/0/1728400424449/winnicodegarudateknologi_logo?e=2147483647&v=beta&t=DvI93tqUX1U-fhSCtFErpAhyKGeIf8JD-IpNEfsDYi4",
       "position": "Web Development Intern",
       "location": "Bandung (Jarak Jauh)",
       "period": "Sep 2024 - Des 2024",
@@ -38,11 +50,21 @@
         "Menerapkan praktik keamanan web dasar, termasuk pencegahan serangan umum seperti XSS, CSRF, dan SQL Injection.",
         "Menerapkan teknik enkripsi data (DES) untuk melindungi informasi pengguna yang sensitif dan meningkatkan keamanan aplikasi."
       ],
-      "techStack": ["Flask", "Python", "MongoDB", "Git", "JWT", "Swagger API", "SMTP", "Jinja"]
+      "techStack": [
+        "Flask",
+        "Python",
+        "MongoDB",
+        "Git",
+        "JWT",
+        "Swagger API",
+        "SMTP",
+        "Jinja"
+      ]
     },
     {
       "id": "3",
       "company": "Coding Camp powered by DBS Foundation",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQEONBPsiZnU8w/company-logo_100_100/company-logo_100_100/0/1729482329489?e=1775692800&v=beta&t=SSej3tPbM4SQREUhW9p0kXT3p24uvTtt4BwX7LIjl6s",
       "position": "Peserta Coding Camp 2025 - Fullstack Web Development",
       "location": "Bandung (Jarak Jauh)",
       "period": "Feb 2025 - Jun 2025",
@@ -53,11 +75,18 @@
         "Meningkatkan soft skills dan komunikasi bahasa Inggris profesional agar selaras dengan standar industri dan persyaratan tempat kerja.",
         "Menyiapkan CV profesional dan keterampilan kesiapan karir untuk mendukung transisi ke industri teknologi."
       ],
-      "techStack": ["Hapi.js", "Webpack", "JavaScript", "Node.js", "SMTP"]
+      "techStack": [
+        "Hapi.js",
+        "Webpack",
+        "JavaScript",
+        "Node.js",
+        "SMTP"
+      ]
     },
     {
       "id": "4",
       "company": "Haltev IT Learning Center",
+      "logo": "https://media.licdn.com/dms/image/v2/C510BAQFe5m12fqQeqA/company-logo_200_200/company-logo_200_200/0/1630602549140/haltegh_it_learning_center_logo?e=2147483647&v=beta&t=IEtmzolkjF295_W8qNHBY5u-AyTGzltcJzTT9rK5ei8",
       "position": "Instructor",
       "location": "Bekasi Barat (Gabungan)",
       "period": "Feb 2025 - Jan 2026",
@@ -69,11 +98,19 @@
         "Terus belajar dan memperbarui pengetahuan teknis untuk memberikan instruksi berkualitas tinggi (Roblox Studio, Scratch, Alpine, Laravel).",
         "Berkontribusi pada proyek pengembangan web internal, berkolaborasi dengan tim teknis saat dibutuhkan."
       ],
-      "techStack": ["Roblox Studio", "Scratch", "Alpine.js", "Laravel", "Teaching", "Public Relations"]
+      "techStack": [
+        "Roblox Studio",
+        "Scratch",
+        "Alpine.js",
+        "Laravel",
+        "Teaching",
+        "Public Relations"
+      ]
     },
     {
       "id": "5",
       "company": "Lincah - Member of Ordonesia",
+      "logo": "https://media.licdn.com/dms/image/v2/D4D0BAQG1dfM_JU4iZA/company-logo_200_200/company-logo_200_200/0/1708671274468?e=2147483647&v=beta&t=-9_xJ6vRlFQsFzFlmc44uRtKXlgrCxBTzRSkyElMzfg",
       "position": "Information Technology Software Engineer Intern",
       "location": "Batununggal (Di lokasi)",
       "period": "Nov 2025 - Sekarang",
@@ -86,11 +123,22 @@
         "Melaporkan dan melacak bug menggunakan ClickUp dan OpenProject.",
         "Melakukan pengujian API menggunakan Postman dan melakukan pengujian manual di seluruh modul sistem."
       ],
-      "techStack": ["Next.js", "TanStack Query", "Zustand", "Zod", "MongoDB", "Docker", "GitLab", "QA Testing", "Postman"]
+      "techStack": [
+        "Next.js",
+        "TanStack Query",
+        "Zustand",
+        "Zod",
+        "MongoDB",
+        "Docker",
+        "GitLab",
+        "QA Testing",
+        "Postman"
+      ]
     },
     {
       "id": "6",
       "company": "S-TechX",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHHGlSE-EwN_w/company-logo_100_100/B56Zuod6zeGsAQ-/0/1768057976755?e=1775692800&v=beta&t=ix9BM94DAGdQGLpDW84WaV2vQGQ1MUk__3m7csWWv2E",
       "position": "Java Web Developer (Pekerja Lepas)",
       "location": "Kota Bekasi (Jarak Jauh)",
       "period": "Des 2025 - Sekarang",
@@ -100,7 +148,14 @@
         "Membangun antarmuka frontend yang responsif menggunakan React.js, terintegrasi dengan TanStack Query untuk manajemen state yang efisien.",
         "Menyiapkan dan memberikan pelatihan teknis (transfer pengetahuan) berdasarkan peran klien dan kebutuhan operasional."
       ],
-      "techStack": ["Java", "Spring Boot", "MySQL", "React.js", "TanStack Query", "Training Teknis"]
+      "techStack": [
+        "Java",
+        "Spring Boot",
+        "MySQL",
+        "React.js",
+        "TanStack Query",
+        "Training Teknis"
+      ]
     }
   ]
 }
