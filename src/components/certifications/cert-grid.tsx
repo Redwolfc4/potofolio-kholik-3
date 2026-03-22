@@ -12,7 +12,7 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
   const certifications = dict.items;
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
-    align: "center",
+    align: "start",
     containScroll: "trimSnaps",
   });
 
@@ -123,43 +123,48 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
               ref={emblaRef} 
               className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
             >
-              <div className="flex gap-6">
+              <div className="flex gap-6 px-4 pb-4">
               {certifications?.map((cert, index) => (
                 <motion.div
                   key={cert.id}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
-                  className="min-w-60 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                  className="min-w-64 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="relative aspect-video overflow-hidden">
+                  <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
                       src={cert.image ?? ""}
                       alt={cert.title}
                       width={800}
-                      height={600}
+                      height={1000}
+                      unoptimized
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="p-6 h-full flex flex-col justify-between">
-                        <div>
-                          <h3 className="text-xl font-bold mb-2">{cert.title}</h3>
-                          <p className="text-primary font-medium mb-1">{cert.issuer}</p>
-                          <p className="text-sm text-muted-foreground mb-4">{cert.date}</p>
+                    <div className="absolute inset-0 bg-background/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="p-5 h-full flex flex-col justify-between overflow-y-auto scrollbar-hide">
+                        <div className="space-y-3">
+                          <div>
+                            <h3 className="text-lg font-bold leading-tight mb-1">{cert.title}</h3>
+                            <p className="text-primary text-sm font-semibold">{cert.issuer}</p>
+                            <p className="text-xs text-muted-foreground">{cert.date}</p>
+                          </div>
                           {cert.description && (
-                            <p className="text-sm text-muted-foreground line-clamp-3">
+                            <p className="text-sm text-muted-foreground leading-relaxed">
                               {cert.description}
                             </p>
                           )}
                         </div>
-                        <a
-                          href={cert.credentialUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline flex items-center gap-1 text-sm font-medium"
-                        >
-                          {dict.viewCredential} <ExternalLink className="w-4 h-4" />
-                        </a>
+                        <div className="pt-4 mt-auto border-t">
+                          <a
+                            href={cert.credentialUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline flex items-center gap-1.5 text-sm font-bold"
+                          >
+                            {dict.viewCredential} <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>

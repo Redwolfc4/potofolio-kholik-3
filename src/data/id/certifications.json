@@ -4,21 +4,138 @@
   "items": [
     {
       "id": "1",
-      "title": "AWS Certified Developer – Associate",
-      "issuer": "Amazon Web Services (AWS)",
+      "title": "Alibaba Cloud Certified Developer",
+      "issuer": "Alibaba Cloud",
       "date": "Des 2023",
-      "credentialUrl": "https://example.com/aws-cert",
-      "image": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1200&auto=format&fit=crop",
-      "description": "Mendemonstrasikan kemahiran dalam mengembangkan dan memelihara aplikasi berbasis AWS."
+      "credentialUrl": "https://www.linkedin.com/in/salahudin-kholik-prasetyono/details/certifications/",
+      "image": "https://media.licdn.com/dms/image/v2/D560BAQEZecjjDTVXJA/company-logo_200_200/company-logo_200_200/0/1723709190350/alibaba_cloud_computing_company_logo?e=2147483647&v=beta&t=1FHUaY5bUljA6wOuiToEuHKzWxmwekl3QODKi-JaQM4",
+      "description": "Mendemonstrasikan kemahiran dalam mengembangkan aplikasi cloud-native menggunakan layanan Alibaba Cloud. Nomor Seri: ACCD011910010002841."
     },
     {
       "id": "2",
-      "title": "Professional Scrum Master I",
-      "issuer": "Scrum.org",
-      "date": "Agu 2022",
-      "credentialUrl": "https://example.com/psm-i-cert",
-      "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200&auto=format&fit=crop",
-      "description": "Mempelajari konsep dasar Scrum dan cara menerapkannya pada manajemen proyek."
+      "title": "MikroTik Certified Network Associate (MTCNA)",
+      "issuer": "MikroTik",
+      "date": "Jan 2024",
+      "credentialUrl": "https://mikrotik.com/training/certificates/c283446c050f0974bc99",
+      "image": "https://media.licdn.com/dms/image/v2/D4D0BAQFHyCuFZWniRg/company-logo_200_200/company-logo_200_200/0/1716286182359/mikrotik_logo?e=2147483647&v=beta&t=IjsNIUCRV5qJF7fV69njQBUHmNDE7cwBSmXautPqxfI",
+      "description": "Tersertifikasi dalam konfigurasi MikroTik RouterOS, manajemen jaringan, dan troubleshooting. ID Kredensial: 2401NA3446."
+    },
+    {
+      "id": "3",
+      "title": "Sertifikat Kompetensi - Magang Fullstack Web Development",
+      "issuer": "PT Winnicode Garuda Teknologi",
+      "date": "2024",
+      "credentialUrl": "https://winnicode.com/sertifikat/WINNI-MG-2024-6930CAEC",
+      "image": "https://media.licdn.com/dms/image/v2/D560BAQHBchDFb5AGrg/company-logo_200_200/company-logo_200_200/0/1728400424449/winnicodegarudateknologi_logo?e=2147483647&v=beta&t=DvI93tqUX1U-fhSCtFErpAhyKGeIf8JD-IpNEfsDYi4",
+      "description": "Menyelesaikan program magang Kampus Merdeka dengan fokus pada Fullstack Web Development."
+    },
+    {
+      "id": "4",
+      "title": "Belajar RESTful dengan Express.js",
+      "issuer": "Codepolitan",
+      "date": "Apr 2024",
+      "credentialUrl": "https://www.codepolitan.com/c/D7AVNXH/",
+      "image": "https://media.licdn.com/dms/image/v2/C510BAQE7k2gASfZNbA/company-logo_100_100/company-logo_100_100/0/1631343789870?e=2147483647&v=beta&t=qm1pGgEovTJ11qU30EmGLzxXjRVSp_bgOQPunwRu0cU",
+      "description": "Mempelajari arsitektur RESTful API dan implementasinya menggunakan framework Express.js."
+    },
+    {
+      "id": "5",
+      "title": "Belajar JavaScript Asynchronous",
+      "issuer": "Codepolitan",
+      "date": "Jan 2024",
+      "credentialUrl": "https://www.codepolitan.com/c/7POCYLF/",
+      "image": "https://media.licdn.com/dms/image/v2/C510BAQE7k2gASfZNbA/company-logo_100_100/company-logo_100_100/0/1631343789870?e=2147483647&v=beta&t=qm1pGgEovTJ11qU30EmGLzxXjRVSp_bgOQPunwRu0cU",
+      "description": "Menguasai konsep JavaScript asinkron termasuk Promise, async/await, dan pola callback."
+    },
+    {
+      "id": "6",
+      "title": "Get Started Building with Power BI",
+      "issuer": "Microsoft Learn",
+      "date": "2024",
+      "credentialUrl": "https://learn.microsoft.com/api/achievements/share/en-gb/RinnimeCrack-6114/9RFDW8RU",
+      "image": "https://media.licdn.com/dms/image/v2/D560BAQH32RJQCl3dDQ/company-logo_100_100/B56ZYQ0mrGGoAU-/0/1744038948046/microsoft_logo?e=2147483647&v=beta&t=rr_7_bFRKp6umQxIHErPOZHtR8dMPIYeTjlKFdotJBY",
+      "description": "Menyelesaikan modul Microsoft Learn tentang visualisasi data dan business intelligence menggunakan Power BI."
+    },
+    {
+      "id": "7",
+      "title": "Memulai Pemrograman dengan Dart",
+      "issuer": "Dicoding Indonesia",
+      "date": "2025",
+      "credentialUrl": "https://www.dicoding.com/certificates/EYX4KK286PDL",
+      "image": "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+      "description": "Mempelajari dasar pemrograman Dart termasuk variabel, control flow, collection, OOP, dan functional programming."
+    },
+    {
+      "id": "8",
+      "title": "Belajar Fundamental Front-End Web Development",
+      "issuer": "Dicoding Indonesia",
+      "date": "2025",
+      "credentialUrl": "https://www.dicoding.com/users/redwolfc4/academies",
+      "image": "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+      "description": "Mempelajari konsep fundamental front-end web development termasuk manipulasi DOM, Web Components, dan JavaScript modern."
+    },
+    {
+      "id": "9",
+      "title": "Belajar Membuat Front-End Web untuk Pemula",
+      "issuer": "Dicoding Indonesia",
+      "date": "2025",
+      "credentialUrl": "https://www.dicoding.com/users/redwolfc4/academies",
+      "image": "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+      "description": "Membangun aplikasi web front-end interaktif menggunakan HTML, CSS, dan JavaScript."
+    },
+    {
+      "id": "10",
+      "title": "Belajar Dasar Pemrograman Web",
+      "issuer": "Dicoding Indonesia",
+      "date": "2025",
+      "credentialUrl": "https://www.dicoding.com/users/redwolfc4/academies",
+      "image": "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+      "description": "Mempelajari dasar-dasar pemrograman web termasuk HTML dan CSS."
+    },
+    {
+      "id": "11",
+      "title": "Belajar Dasar Pemrograman JavaScript",
+      "issuer": "Dicoding Indonesia",
+      "date": "2025",
+      "credentialUrl": "https://www.dicoding.com/users/redwolfc4/academies",
+      "image": "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+      "description": "Menguasai dasar JavaScript termasuk tipe data, fungsi, OOP, modul, error handling, dan pola asinkron."
+    },
+    {
+      "id": "12",
+      "title": "Belajar Dasar Git dengan GitHub",
+      "issuer": "Dicoding Indonesia",
+      "date": "2025",
+      "credentialUrl": "https://www.dicoding.com/users/redwolfc4/academies",
+      "image": "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+      "description": "Mempelajari dasar-dasar version control Git dan alur kerja kolaborasi GitHub."
+    },
+    {
+      "id": "13",
+      "title": "Pengenalan ke Logika Pemrograman (Programming Logic 101)",
+      "issuer": "Dicoding Indonesia",
+      "date": "2025",
+      "credentialUrl": "https://www.dicoding.com/users/redwolfc4/academies",
+      "image": "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+      "description": "Mempelajari dasar-dasar logika pemrograman termasuk algoritma, flowchart, dan pseudocode."
+    },
+    {
+      "id": "14",
+      "title": "Belajar Dasar AI",
+      "issuer": "Dicoding Indonesia",
+      "date": "2025",
+      "credentialUrl": "https://www.dicoding.com/users/redwolfc4/academies",
+      "image": "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+      "description": "Mempelajari dasar-dasar AI termasuk konsep machine learning, neural network, dan aplikasi AI praktis."
+    },
+    {
+      "id": "15",
+      "title": "Memulai Dasar Pemrograman untuk Menjadi Pengembang Software",
+      "issuer": "Dicoding Indonesia",
+      "date": "2025",
+      "credentialUrl": "https://www.dicoding.com/users/redwolfc4/academies",
+      "image": "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+      "description": "Mempelajari konsep dasar pengembangan software termasuk paradigma pemrograman dan prinsip rekayasa perangkat lunak."
     }
   ]
 }

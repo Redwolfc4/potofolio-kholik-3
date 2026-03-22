@@ -1,12 +1,31 @@
 {
   "title": "Academic Background",
+  "activitiesLabel": "Activities and societies",
+  "skillsLabel": "Skills",
   "items": [
     {
       "degree": "S1 Informatics",
       "institution": "Universitas Bina Sarana Informatika (Kaliabang)",
       "period": "Sept 2021 - Aug 2025",
       "location": "Bekasi, Indonesia",
-      "description": "GPA 4.00. Focus on software development, information systems, and UI engineering.",
+      "description": "GPA: 4.00",
+      "activities": "Informatics Student Association (HR)",
+      "responsibilities": "My task as HR is to conduct screening and offering to students for activities that will be carried out in the informatics student association.",
+      "skills": "During my studies, I have deeply immersed myself in <strong>Full-Stack Development</strong>, heavily utilizing <strong>Object-Oriented Programming (OOP)</strong> principles with <strong>PHP</strong> and <strong>JavaScript</strong>. I am highly capable of managing databases via <strong>PhpMyAdmin</strong> and local server environments using <strong>XAMPP</strong>, while leveraging <strong>Composers</strong> for efficient <strong>Library Management</strong>. For front-end interfaces, I rely on the <strong>Bootstrap (Framework)</strong> to deliver responsive designs. Beyond web development, I possess a strong foundation in data analysis, applying <strong>Basic Python Algorithms</strong> and <strong>k-means clustering</strong> models using tools like <strong>RapidMiner</strong>.",
+      "media": [
+        {
+          "thumbnailUrl": "https://s6.imgcdn.dev/Yx190g.png",
+          "linkUrl": "https://drive.google.com/file/d/17PkpnVUU0oCH2np7m1N4I1_GCPrVD28q/view?usp=drive_link"
+        },
+        {
+          "thumbnailUrl": "https://s6.imgcdn.dev/Yx1R3v.png",
+          "linkUrl": "https://drive.google.com/file/d/121s5xJqBbvThQmeHgM-DImCBiG1ZQJ5h/view?usp=drive_link"
+        },
+        {
+          "thumbnailUrl": "https://s6.imgcdn.dev/Yx1fwN.png",
+          "linkUrl": "https://drive.google.com/file/d/1bB-0hsckkVnTHpH5zfuUvAWhcNU_1XIp/view?usp=drive_link"
+        }
+      ],
       "imageUrl": "https://s6.imgcdn.dev/YvvsqK.webp",
       "websiteUrl": "https://bsi.ac.id/"
     }

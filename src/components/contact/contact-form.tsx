@@ -59,7 +59,7 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        className="max-w-5xl mx-auto rounded-xl border border-border/80 bg-card/85 p-8 shadow-[0_24px_60px_rgba(95,58,34,0.14)] backdrop-blur-sm dark:shadow-[0_24px_60px_rgba(0,0,0,0.32)]"
+        className="mx-auto rounded-xl border border-border/80 bg-card/85 p-8 shadow-[0_24px_60px_rgba(95,58,34,0.14)] backdrop-blur-sm dark:shadow-[0_24px_60px_rgba(0,0,0,0.32)]"
       >
         {status === "success" ? (
           <div className="flex flex-col items-center justify-center space-y-4 py-10">

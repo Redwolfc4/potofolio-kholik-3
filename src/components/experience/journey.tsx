@@ -79,6 +79,7 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
                                   alt={exp.company}
                                   width={24}
                                   height={24}
+                                  unoptimized
                                   className="h-5 w-5 object-contain rounded-sm"
                                 />
                               )}
@@ -179,6 +180,7 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
                       alt={selected.company}
                       width={28}
                       height={28}
+                      unoptimized
                       className="h-6 w-6 object-contain rounded-sm"
                     />
                   )}

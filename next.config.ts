@@ -37,7 +37,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "img2.lokercepat.id",
       },
-
       {
         protocol: "https",
         hostname: "images.glints.com",
@@ -53,6 +52,30 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "nusantarago.netlify.app",
+      },
+      {
+        protocol: "https",
+        hostname: "www.dicoding.com",
+      },
+      {
+        protocol: "https",
+        hostname: "dicoding-web-img.sgp1.cdn.digitaloceanspaces.com",
+      },
+      {
+        protocol: "https",
+        hostname: "mikrotik.com",
+      },
+      {
+        protocol: "https",
+        hostname: "img.alicdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.codepolitan.com",
+      },
+      {
+        protocol: "https",
+        hostname: "img-prod-cms-rt-microsoft-com.akamaized.net",
       },
     ],
   },

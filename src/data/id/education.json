@@ -1,12 +1,31 @@
 {
   "title": "Latar Belakang Akademik",
+  "activitiesLabel": "Kegiatan dan masyarakat",
+  "skillsLabel": "Keahlian",
   "items": [
     {
       "degree": "S1 Informatika",
       "institution": "Universitas Bina Sarana Informatika (Kaliabang)",
       "period": "Sept 2021 - Agu 2025",
       "location": "Bekasi, Indonesia",
-      "description": "IPK 4.00. Fokus pada pengembangan perangkat lunak, sistem informasi, dan rekayasa UI.",
+      "description": "IPK: 4.00",
+      "activities": "Himpunan Mahasiswa Informatika (SDM)",
+      "responsibilities": "Tugas saya sebagai SDM yaitu melakukan screening dan offering kepada mahasiswa kegiatan yang akan dilakukan di himpunan mahasiswa informatika.",
+      "skills": "Selama masa studi, saya mendalami <strong>Full-Stack Development</strong>, berpegang pada prinsip <strong>Object-Oriented Programming (OOP)</strong> menggunakan <strong>PHP</strong> dan <strong>JavaScript</strong>. Saya terbiasa mengelola basis data melalui <strong>PhpMyAdmin</strong> dan lingkungan server lokal dengan <strong>XAMPP</strong>, serta memanfaatkan <strong>Composers</strong> untuk <strong>Library Management</strong> yang efisien. Dalam membangun antarmuka web, saya mengandalkan <strong>Bootstrap (Framework)</strong> untuk memberikan desain yang responsif. Di luar pengembangan web, saya juga memiliki pemahaman kuat dalam analisis data, menerapkan <strong>Algorithms Dasar Python</strong> serta model <strong>k-means clustering</strong> menggunakan <strong>RapidMiner</strong>.",
+      "media": [
+        {
+          "thumbnailUrl": "https://s6.imgcdn.dev/Yx190g.png",
+          "linkUrl": "https://drive.google.com/file/d/17PkpnVUU0oCH2np7m1N4I1_GCPrVD28q/view?usp=drive_link"
+        },
+        {
+          "thumbnailUrl": "https://s6.imgcdn.dev/Yx1R3v.png",
+          "linkUrl": "https://drive.google.com/file/d/121s5xJqBbvThQmeHgM-DImCBiG1ZQJ5h/view?usp=drive_link"
+        },
+        {
+          "thumbnailUrl": "https://s6.imgcdn.dev/Yx1fwN.png",
+          "linkUrl": "https://drive.google.com/file/d/1bB-0hsckkVnTHpH5zfuUvAWhcNU_1XIp/view?usp=drive_link"
+        }
+      ],
       "imageUrl": "https://s6.imgcdn.dev/YvvsqK.webp",
       "websiteUrl": "https://bsi.ac.id/"
     }

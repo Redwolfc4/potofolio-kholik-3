@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+// Using native img to avoid Next.js image proxy 403 errors
 
 const companies = [
   {
@@ -15,7 +15,7 @@ const companies = [
   },
   {
     name: "Coding Camp powered by DBS Foundation",
-    logo: "https://media.licdn.com/dms/image/v2/D560BAQEONBPsiZnU8w/company-logo_100_100/company-logo_100_100/0/1729482329489?e=1775692800&v=beta&t=SSej3tPbM4SQREUhW9p0kXT3p24uvTtt4BwX7LIjl6s",
+    logo: "https://media.licdn.com/dms/image/v2/D560BAQEONBPsiZnU8w/company-logo_200_200/company-logo_200_200/0/1729482329489?e=2147483647&v=beta&t=dkMktUDkXt7130IuDwAyygkV13ZUc5gnI4JksnlUQ84",
     url: "https://www.dbs.com/foundation/",
   },
   {
@@ -32,6 +32,31 @@ const companies = [
     name: "S-TechX",
     logo: "https://media.licdn.com/dms/image/v2/D560BAQHHGlSE-EwN_w/company-logo_100_100/B56Zuod6zeGsAQ-/0/1768057976755?e=1775692800&v=beta&t=ix9BM94DAGdQGLpDW84WaV2vQGQ1MUk__3m7csWWv2E",
     url: "#",
+  },
+  {
+    name: "Dicoding Indonesia",
+    logo: "https://media.licdn.com/dms/image/v2/C560BAQHOIi63tC8k8w/company-logo_200_200/company-logo_200_200/0/1660182933847/dicoding_logo?e=2147483647&v=beta&t=l_wm1BWTs5_HJgWfWCMyc5Q6H13x7p2ofF5MdjagCv0",
+    url: "https://www.dicoding.com/",
+  },
+  {
+    name: "MikroTik",
+    logo: "https://media.licdn.com/dms/image/v2/D4D0BAQFHyCuFZWniRg/company-logo_200_200/company-logo_200_200/0/1716286182359/mikrotik_logo?e=2147483647&v=beta&t=IjsNIUCRV5qJF7fV69njQBUHmNDE7cwBSmXautPqxfI",
+    url: "https://mikrotik.com/",
+  },
+  {
+    name: "Alibaba Cloud",
+    logo: "https://media.licdn.com/dms/image/v2/D560BAQEZecjjDTVXJA/company-logo_200_200/company-logo_200_200/0/1723709190350/alibaba_cloud_computing_company_logo?e=2147483647&v=beta&t=1FHUaY5bUljA6wOuiToEuHKzWxmwekl3QODKi-JaQM4",
+    url: "https://www.alibabacloud.com/",
+  },
+  {
+    name: "Codepolitan",
+    logo: "https://media.licdn.com/dms/image/v2/C510BAQE7k2gASfZNbA/company-logo_100_100/company-logo_100_100/0/1631343789870?e=2147483647&v=beta&t=qm1pGgEovTJ11qU30EmGLzxXjRVSp_bgOQPunwRu0cU",
+    url: "https://www.codepolitan.com/",
+  },
+  {
+    name: "Microsoft",
+    logo: "https://media.licdn.com/dms/image/v2/D560BAQH32RJQCl3dDQ/company-logo_100_100/B56ZYQ0mrGGoAU-/0/1744038948046/microsoft_logo?e=2147483647&v=beta&t=rr_7_bFRKp6umQxIHErPOZHtR8dMPIYeTjlKFdotJBY",
+    url: "https://www.microsoft.com/",
   },
 ];
 
@@ -58,15 +83,13 @@ export default function Marquee({ dict }: { dict: CommonDict }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     title={company.name}
-                    className="shrink-0 flex items-center justify-center h-16 md:h-20 px-4"
+                    className="shrink-0 flex items-center justify-center h-24 md:h-32 px-4"
                   >
                     {company.logo ? (
-                      <Image
+                      <img
                         src={company.logo}
                         alt={company.name}
-                        width={200}
-                        height={80}
-                        className="h-25 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 hover:scale-110"
+                        className="h-20 md:h-28 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 hover:scale-110"
                       />
                     ) : (
                       <span className="text-xl font-bold tracking-tight text-foreground/50 hover:text-foreground transition-colors duration-500 hover:scale-110">
