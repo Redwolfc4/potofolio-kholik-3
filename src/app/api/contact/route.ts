@@ -5,9 +5,14 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
     const { name, email, subject, message } = data ?? {};
+    const contactEmail = process.env.CONTACT_EMAIL;
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json({ success: false, error: "Missing fields" }, { status: 400 });
+    }
+
+    if (!contactEmail) {
+      return NextResponse.json({ success: false, error: "Missing contact configuration" }, { status: 500 });
     }
 
     const transporter = nodemailer.createTransport({
@@ -22,7 +27,7 @@ export async function POST(req: Request) {
 
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.SMTP_USER}>`,
-      to: "salahudinkoliq10@gmail.com",
+      to: contactEmail,
       replyTo: email,
       subject: `[Portfolio] ${subject}`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,

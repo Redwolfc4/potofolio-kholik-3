@@ -20,6 +20,12 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
     <div
       key={exp.id}
       className={`relative flex items-center w-full ${isEven ? "md:flex-row" : "md:flex-row-reverse"} flex-col`}
+      onMouseEnter={() => {
+        // Sync desktop hover with store
+        if (window.matchMedia("(hover: hover)").matches) {
+          useLongPressStore.getState().setActive("experience", exp.id);
+        }
+      }}
       onMouseLeave={() => {
         // Only clear on desktop mouse leave, not on touch
         if (window.matchMedia("(hover: hover)").matches) {

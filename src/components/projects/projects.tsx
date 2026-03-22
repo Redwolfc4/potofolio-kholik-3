@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import { ProjectsDict } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
+import { useLongPressStore } from "@/stores/use-longpress-store";
 
 interface ProjectItemProps {
   project: NonNullable<ProjectsDict["items"]>[number];
@@ -25,6 +26,19 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ delay: index * 0.1 }}
       {...handlers}
+      onMouseEnter={() => {
+        if (window.matchMedia("(hover: hover)").matches) {
+          useLongPressStore.getState().setActive("projects", project.id);
+        }
+      }}
+      onMouseLeave={() => {
+        if (window.matchMedia("(hover: hover)").matches) {
+          const state = useLongPressStore.getState();
+          if (state.activeSection === "projects" && state.activeId === project.id) {
+            state.clear();
+          }
+        }
+      }}
       className={`lp-project min-w-64 sm:min-w-80 lg:min-w-96 xl:min-w-md 2xl:min-w-xl group relative bg-card rounded-2xl overflow-hidden cursor-pointer transition-shadow after:absolute after:inset-0 after:rounded-2xl after:border after:border-border after:pointer-events-none ${isActive ? "shadow-lg after:border-primary/60" : "shadow-sm hover:shadow-lg hover:after:border-primary/60"}`}
     >
       <div className="aspect-video bg-muted relative overflow-hidden">

@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import { CertificationsDict } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
+import { useLongPressStore } from "@/stores/use-longpress-store";
 
 interface CertItemProps {
   cert: NonNullable<CertificationsDict["items"]>[number];
@@ -25,6 +26,19 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ delay: index * 0.1 }}
       {...handlers}
+      onMouseEnter={() => {
+        if (window.matchMedia("(hover: hover)").matches) {
+          useLongPressStore.getState().setActive("certifications", cert.id);
+        }
+      }}
+      onMouseLeave={() => {
+        if (window.matchMedia("(hover: hover)").matches) {
+          const state = useLongPressStore.getState();
+          if (state.activeSection === "certifications" && state.activeId === cert.id) {
+            state.clear();
+          }
+        }
+      }}
       className="lp-cert min-w-64 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
     >
       <div className="relative aspect-[4/5] overflow-hidden">
