@@ -148,6 +148,15 @@ html {
   html {
     @apply bg-background font-sans;
   }
+
+  /* Automatically scale up the entire website gracefully on ultra-wide screens */
+  @media (min-width: 1536px) {
+    html {
+      /* 1rem = 16px at 1536px width, grows linearly larger */
+      font-size: calc(100vw / 96);
+    }
+  }
+
   ::selection {
     background: color-mix(in srgb, var(--primary) 26%, transparent);
     color: var(--foreground);
