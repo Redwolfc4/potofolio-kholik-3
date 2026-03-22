@@ -12,10 +12,15 @@ const TechItemSchema = z.object({
   logoUrl: z.string().nullable().optional(),
 });
 
-function TechItem({ tech, itemKey }: { tech: any; itemKey: string }) {
+interface TechStackItemProps {
+  tech: any;
+  itemKey: string;
+}
+
+function TechStackItem({ tech, itemKey }: TechStackItemProps) {
   const { isActive, handlers } = useLongPress("techstack", itemKey, "lp-techstack");
   
-  // Validate data at runtime
+  // Validate data at runtime for extra safety
   const result = TechItemSchema.safeParse(tech);
   if (!result.success) return null;
   const data = result.data;
@@ -25,12 +30,12 @@ function TechItem({ tech, itemKey }: { tech: any; itemKey: string }) {
       {...handlers}
       onMouseEnter={() => {
         // Sync desktop hover with store
-        if (window.matchMedia("(hover: hover)").matches) {
+        if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
           useLongPressStore.getState().setActive("techstack", itemKey);
         }
       }}
       onMouseLeave={() => {
-        if (window.matchMedia("(hover: hover)").matches) {
+        if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
           const state = useLongPressStore.getState();
           if (state.activeSection === "techstack" && state.activeId === itemKey) {
             state.clear();
@@ -43,43 +48,65 @@ function TechItem({ tech, itemKey }: { tech: any; itemKey: string }) {
       <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-muted/70">
         <Image
           src={data.logoUrl ?? ""}
-          alt={data.name}
+          alt={data.name || "Tech Item"}
           width={40}
           height={40}
           className="w-10 h-10 object-contain"
+          unoptimized
         />
-        <div className={`absolute inset-0 rounded-2xl transition-opacity ring-2 ring-primary/35 shadow-[0_0_30px_rgba(173,117,71,0.32)] ${isActive ? "opacity-100" : "opacity-0"}`} />
+        <div 
+          className="absolute inset-0 rounded-2xl transition-opacity ring-2 ring-primary/35 shadow-[0_0_30px_rgba(173,117,71,0.32)]"
+          style={{ 
+            opacity: isActive ? 1 : 0,
+            pointerEvents: "none"
+          }}
+        />
       </div>
       <span 
-        data-name={data.name}
-        className={`text-sm font-semibold transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-0"}`}
+        data-tech-name={data.name}
+        className="text-sm font-semibold transition-opacity duration-300 pointer-events-none"
+        style={{ 
+          color: "var(--foreground)",
+          opacity: isActive ? 1 : 0,
+          visibility: isActive ? "visible" : "hidden"
+        }}
       >
-        {data.name}
+        {data.name || "N/A"}
       </span>
     </div>
   );
 }
 
 export default function TechStack({ dict }: { dict: TechStackDict }) {
-  const items = dict.items ? [...dict.items, ...dict.items] : [];
+  const rawItems = dict.items || [];
+  // Duplicate for smooth marquee
+  const items = [...rawItems, ...rawItems];
 
   return (
     <section id="techstack" className="w-full py-20">
       <div className="px-4">
         <h2 className="text-3xl font-bold tracking-tight text-center mb-12">
-          {dict.title}
+          {dict?.title || "Technological Arsenal"}
         </h2>
       </div>
-      <div className="tech-marquee w-full">
+      <div className="tech-marquee w-full overflow-hidden">
         <div className="tech-marquee-track px-10 py-1 cursor-grab active:cursor-grabbing">
           <div className="tech-marquee-group">
             {items.map((tech, index) => (
-              <TechItem key={`first-${tech.name}-${index}`} tech={tech} itemKey={`first-${tech.name}-${index}`} />
+              <TechStackItem 
+                key={`first-${tech.name}-${index}`} 
+                tech={tech} 
+                itemKey={`first-${tech.name}-${index}`} 
+              />
             ))}
           </div>
           <div className="tech-marquee-group" aria-hidden="true">
             {items.map((tech, index) => (
-              <TechItem key={`second-${tech.name}-${index}`} tech={tech} itemKey={`second-${tech.name}-${index}`} />
+              <TechStackItem 
+                key={`second-${tech.name}-${index}`} 
+                tech={tech} 
+                itemKey={`second-${tech.name}-${index}`} 
+              />
             ))}
           </div>
         </div>
