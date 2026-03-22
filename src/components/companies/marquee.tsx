@@ -60,6 +60,7 @@ const companies = [
   },
 ];
 
+import Image from "next/image";
 import { CommonDict } from "@/types/i18n";
 
 export default function Marquee({ dict }: { dict: CommonDict }) {
@@ -86,11 +87,16 @@ export default function Marquee({ dict }: { dict: CommonDict }) {
                     className="shrink-0 flex items-center justify-center h-24 md:h-32 px-4"
                   >
                     {company.logo ? (
-                      <img
-                        src={company.logo}
-                        alt={company.name}
-                        className="h-20 md:h-28 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 hover:scale-110"
-                      />
+                      <div className="relative h-20 md:h-28 w-40">
+                        <Image
+                          src={company.logo}
+                          alt={company.name}
+                          fill
+                          sizes="(max-width: 768px) 80px, 112px"
+                          className="object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 hover:scale-110"
+                          unoptimized
+                        />
+                      </div>
                     ) : (
                       <span className="text-xl font-bold tracking-tight text-foreground/50 hover:text-foreground transition-colors duration-500 hover:scale-110">
                         {company.name}

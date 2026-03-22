@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useSyncExternalStore, useState, useEffect } from "react";
+import React, { useCallback, useSyncExternalStore, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -9,6 +9,7 @@ import Image from "next/image";
 import { ProjectsDict } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
+import { useHasMounted } from "@/hooks/use-has-mounted";
 
 interface ProjectItemProps {
   project: NonNullable<ProjectsDict["items"]>[number];
@@ -100,10 +101,7 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
     containScroll: "trimSnaps",
   });
 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useHasMounted();
 
   const prevBtnDisabled = useSyncExternalStore(
     useCallback(

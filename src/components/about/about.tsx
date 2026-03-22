@@ -35,7 +35,7 @@ export default function About({ dict }: { dict: AboutDict }) {
       </div>
 
       <div className="container mx-auto px-6 max-w-6xl">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -45,13 +45,13 @@ export default function About({ dict }: { dict: AboutDict }) {
             <Terminal className="w-3 h-3" />
             {dict.title}
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/60 max-w-4xl leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/60 max-w-4xl leading-tight">
             &quot;First, solve the problem. Then, write the code.&quot;
           </h2>
           <div className="h-1.5 w-20 bg-primary rounded-full mb-8" />
         </motion.div>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -100,7 +100,7 @@ export default function About({ dict }: { dict: AboutDict }) {
                 </div>
                 <h4 className="text-2xl font-extrabold mb-1">Universitas Bina Sarana Informatika</h4>
                 <p className="text-primary-foreground/80 mb-6 font-medium">Bach. of Informatics</p>
-                
+
                 <div className="flex items-center gap-4 bg-white/10 backdrop-blur p-4 rounded-2xl border border-white/20">
                   <Trophy className="w-10 h-10 text-yellow-300" />
                   <div>

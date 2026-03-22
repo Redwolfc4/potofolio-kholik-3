@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useSyncExternalStore, useState, useEffect } from "react";
+import { useCallback, useSyncExternalStore, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -9,6 +9,7 @@ import Image from "next/image";
 import { CertificationsDict } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
+import { useHasMounted } from "@/hooks/use-has-mounted";
 
 interface CertItemProps {
   cert: NonNullable<CertificationsDict["items"]>[number];
@@ -41,7 +42,7 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
       }}
       className="lp-cert min-w-64 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
     >
-      <div className="relative aspect-[4/5] overflow-hidden">
+      <div className="relative aspect-4/5 overflow-hidden">
         <Image
           src={cert.image ?? ""}
           alt={cert.title}
@@ -89,15 +90,12 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
     containScroll: "trimSnaps",
   });
 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useHasMounted();
 
   const prevBtnDisabled = useSyncExternalStore(
     useCallback(
       (onStoreChange) => {
-        if (!emblaApi) return () => {};
+        if (!emblaApi) return () => { };
         emblaApi.on("select", onStoreChange);
         emblaApi.on("reInit", onStoreChange);
         return () => {
@@ -114,7 +112,7 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
   const nextBtnDisabled = useSyncExternalStore(
     useCallback(
       (onStoreChange) => {
-        if (!emblaApi) return () => {};
+        if (!emblaApi) return () => { };
         emblaApi.on("select", onStoreChange);
         emblaApi.on("reInit", onStoreChange);
         return () => {
@@ -165,7 +163,7 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
       <div className="mx-auto px-10 py-10 md:py-12">
         <h2 className="text-3xl font-bold text-center">{dict.title}</h2>
       </div>
-      
+
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20">
           <div className="relative overscroll-x-none touch-pan-y">
@@ -191,9 +189,9 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
                 <ChevronRight className="w-4 h-4" />
               </button>
             )}
-            
-            <div 
-              ref={emblaRef} 
+
+            <div
+              ref={emblaRef}
               className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
             >
               <div className="flex gap-6 px-4 pb-4">

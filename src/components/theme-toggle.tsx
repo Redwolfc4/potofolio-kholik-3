@@ -1,19 +1,13 @@
-import { useState, useEffect } from "react";
+import { useHasMounted } from "@/hooks/use-has-mounted";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHasMounted();
   const { theme, setTheme, resolvedTheme } = useTheme();
 
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      setMounted(true);
-    });
-    return () => cancelAnimationFrame(frame);
-  }, []);
 
   const currentTheme = resolvedTheme ?? theme ?? "light";
 

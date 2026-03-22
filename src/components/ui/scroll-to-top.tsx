@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useHasMounted } from "@/hooks/use-has-mounted";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 
@@ -8,10 +9,9 @@ export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
   const isDragging = React.useRef(false);
 
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHasMounted();
 
   useEffect(() => {
-    setMounted(true);
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
         setIsVisible(true);

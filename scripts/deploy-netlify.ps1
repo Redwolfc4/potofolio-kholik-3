@@ -49,7 +49,7 @@ if ($missingVars.Count -gt 0) {
 }
 
 Write-Host "Deploying to Netlify production..."
-pnpm dlx netlify-cli deploy --build --prod
+pnpm --package=netlify-cli dlx netlify deploy --build --prod
 
 if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE

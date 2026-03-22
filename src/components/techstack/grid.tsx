@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { TechStackDict } from "@/types/i18n";
+import { TechStackDict, TechItem } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
 import { z } from "zod";
@@ -13,7 +13,7 @@ const TechItemSchema = z.object({
 });
 
 interface TechStackItemProps {
-  tech: any;
+  tech: TechItem;
   itemKey: string;
 }
 
