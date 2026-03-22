@@ -7,6 +7,65 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 
 import { CertificationsDict } from "@/types/i18n";
+import { useLongPress } from "@/hooks/use-long-press";
+
+interface CertItemProps {
+  cert: NonNullable<CertificationsDict["items"]>[number];
+  index: number;
+  viewCredentialLabel: string;
+}
+
+function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
+  const { isActive, handlers } = useLongPress("certifications", cert.id, "lp-cert");
+
+  return (
+    <motion.div
+      key={cert.id}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.1 }}
+      {...handlers}
+      className="lp-cert min-w-64 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+    >
+      <div className="relative aspect-[4/5] overflow-hidden">
+        <Image
+          src={cert.image ?? ""}
+          alt={cert.title}
+          width={800}
+          height={1000}
+          unoptimized
+          className={`w-full h-full object-cover transition-transform duration-500 ${isActive ? "scale-105" : "md:group-hover:scale-105"}`}
+        />
+        <div className={`absolute inset-0 bg-background/95 transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-0 md:group-hover:opacity-100"}`}>
+          <div className="p-5 h-full flex flex-col justify-between overflow-y-auto scrollbar-hide">
+            <div className="space-y-3">
+              <div>
+                <h3 className="text-lg font-bold leading-tight mb-1">{cert.title}</h3>
+                <p className="text-primary text-sm font-semibold">{cert.issuer}</p>
+                <p className="text-xs text-muted-foreground">{cert.date}</p>
+              </div>
+              {cert.description && (
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {cert.description}
+                </p>
+              )}
+            </div>
+            <div className="pt-4 mt-auto border-t">
+              <a
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline flex items-center gap-1.5 text-sm font-bold"
+              >
+                {viewCredentialLabel} <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function CertGrid({ dict }: { dict: CertificationsDict }) {
   const certifications = dict.items;
@@ -124,57 +183,19 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
               className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
             >
               <div className="flex gap-6 px-4 pb-4">
-              {certifications?.map((cert, index) => (
-                <motion.div
-                  key={cert.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="min-w-64 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src={cert.image ?? ""}
-                      alt={cert.title}
-                      width={800}
-                      height={1000}
-                      unoptimized
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-background/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="p-5 h-full flex flex-col justify-between overflow-y-auto scrollbar-hide">
-                        <div className="space-y-3">
-                          <div>
-                            <h3 className="text-lg font-bold leading-tight mb-1">{cert.title}</h3>
-                            <p className="text-primary text-sm font-semibold">{cert.issuer}</p>
-                            <p className="text-xs text-muted-foreground">{cert.date}</p>
-                          </div>
-                          {cert.description && (
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                              {cert.description}
-                            </p>
-                          )}
-                        </div>
-                        <div className="pt-4 mt-auto border-t">
-                          <a
-                            href={cert.credentialUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary hover:underline flex items-center gap-1.5 text-sm font-bold"
-                          >
-                            {dict.viewCredential} <ExternalLink className="w-4 h-4" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                {certifications?.map((cert, index) => (
+                  <CertItem
+                    key={cert.id}
+                    cert={cert}
+                    index={index}
+                    viewCredentialLabel={dict.viewCredential}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
 }
