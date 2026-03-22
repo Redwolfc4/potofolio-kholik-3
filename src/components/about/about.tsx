@@ -45,8 +45,8 @@ export default function About({ dict }: { dict: AboutDict }) {
             <Terminal className="w-3 h-3" />
             {dict.title}
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/60">
-            Crafting Digital Excellence
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/60 max-w-4xl leading-tight">
+            &quot;First, solve the problem. Then, write the code.&quot;
           </h2>
           <div className="h-1.5 w-20 bg-primary rounded-full mb-8" />
         </motion.div>
@@ -59,25 +59,28 @@ export default function About({ dict }: { dict: AboutDict }) {
           className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
         >
           {/* Main Content Column */}
-          <motion.div variants={itemVariants} className="lg:col-span-7 space-y-8">
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-8 md:p-10 shadow-xl shadow-primary/5">
+          {/* Main Content Column */}
+          <motion.div variants={itemVariants} className="lg:col-span-7 flex flex-col gap-6">
+            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-8 md:p-10 shadow-xl shadow-primary/5 flex-1 transition-all hover:bg-card/80 group">
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-2xl bg-primary/10 text-primary">
+                <div className="p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
                   <Terminal className="w-6 h-6" />
                 </div>
                 <h3 className="text-2xl font-bold tracking-tight">{dict.summary.title}</h3>
               </div>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-6 font-medium">
+              <p className="text-muted-foreground text-lg leading-relaxed font-medium group-hover:text-foreground/90 transition-colors">
                 {dict.summary.content}
               </p>
-              <div className="h-px w-full bg-gradient-to-r from-border/50 via-border to-transparent my-8" />
+            </div>
+
+            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-8 md:p-10 shadow-xl shadow-primary/5 flex-1 transition-all hover:bg-card/80 group">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-primary/10 text-primary mt-1">
+                <div className="p-3 rounded-2xl bg-primary/10 text-primary mt-1 group-hover:bg-primary/20 transition-colors">
                   <Code2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2 tracking-tight">{dict.focus.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed italic">
+                  <h3 className="text-xl font-bold mb-3 tracking-tight">{dict.focus.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed italic group-hover:text-foreground/80 transition-colors">
                     {dict.focus.content}
                   </p>
                 </div>
