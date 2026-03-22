@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "netlify:deploy": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-netlify.ps1"
+    "prod": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-netlify.ps1"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.2",

@@ -28,7 +28,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-[25rem] mx-auto mt-8 h-105 w-full overflow-hidden rounded-3xl border border-border/60 bg-muted shadow-[0_24px_60px_rgba(95,58,34,0.18)] ring-1 ring-background/60 md:mt-0 md:h-105 dark:shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
+          className="max-w-100 mx-auto mt-8 h-105 w-full overflow-hidden rounded-3xl border border-border/60 bg-muted shadow-[0_24px_60px_rgba(95,58,34,0.18)] ring-1 ring-background/60 md:mt-0 md:h-105 dark:shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
         >
           <Image
             src="https://s6.imgcdn.dev/Yvva8q.webp"
