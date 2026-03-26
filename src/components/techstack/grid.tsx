@@ -4,14 +4,6 @@ import Image from "next/image";
 import { TechStackDict, TechItem } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
-import { z } from "zod";
-
-const TechItemSchema = z.object({
-  name: z.string(),
-  category: z.string(),
-  logoUrl: z.string().nullable().optional(),
-});
-
 interface TechStackItemProps {
   tech: TechItem;
   itemKey: string;
@@ -19,11 +11,6 @@ interface TechStackItemProps {
 
 function TechStackItem({ tech, itemKey }: TechStackItemProps) {
   const { isActive, handlers } = useLongPress("techstack", itemKey, "lp-techstack");
-  
-  // Validate data at runtime for extra safety
-  const result = TechItemSchema.safeParse(tech);
-  if (!result.success) return null;
-  const data = result.data;
 
   return (
     <div
@@ -47,8 +34,8 @@ function TechStackItem({ tech, itemKey }: TechStackItemProps) {
     >
       <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-muted/70">
         <Image
-          src={data.logoUrl ?? ""}
-          alt={data.name || "Tech Item"}
+          src={tech.logoUrl ?? ""}
+          alt={tech.name || "Tech Item"}
           width={40}
           height={40}
           className="w-10 h-10 object-contain"
@@ -63,7 +50,7 @@ function TechStackItem({ tech, itemKey }: TechStackItemProps) {
         />
       </div>
       <span 
-        data-tech-name={data.name}
+        data-tech-name={tech.name}
         className="text-sm font-semibold transition-opacity duration-300 pointer-events-none"
         style={{ 
           color: "var(--foreground)",
@@ -71,7 +58,7 @@ function TechStackItem({ tech, itemKey }: TechStackItemProps) {
           visibility: isActive ? "visible" : "hidden"
         }}
       >
-        {data.name || "N/A"}
+        {tech.name || "N/A"}
       </span>
     </div>
   );
