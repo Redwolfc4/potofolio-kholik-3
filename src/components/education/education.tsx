@@ -26,6 +26,7 @@ export default function Education({ dict }: { dict: EducationDict }) {
                   alt={edu.institution}
                   width={400}
                   height={400}
+                  unoptimized
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </a>

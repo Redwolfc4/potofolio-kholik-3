@@ -37,6 +37,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
             height={1200}
             className="w-full h-full object-cover object-top"
             priority
+            unoptimized
           />
         </motion.div>
         <div className="text-center md:text-left">
