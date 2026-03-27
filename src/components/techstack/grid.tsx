@@ -41,18 +41,18 @@ function TechStackItem({ tech, itemKey }: TechStackItemProps) {
           className="w-10 h-10 object-contain"
           unoptimized
         />
-        <div 
+        <div
           className="absolute inset-0 rounded-2xl transition-opacity ring-2 ring-primary/35 shadow-[0_0_30px_rgba(173,117,71,0.32)]"
-          style={{ 
+          style={{
             opacity: isActive ? 1 : 0,
             pointerEvents: "none"
           }}
         />
       </div>
-      <span 
+      <span
         data-tech-name={tech.name}
         className="text-sm font-semibold transition-opacity duration-300 pointer-events-none"
-        style={{ 
+        style={{
           color: "var(--foreground)",
           opacity: isActive ? 1 : 0,
           visibility: isActive ? "visible" : "hidden"
@@ -77,22 +77,22 @@ export default function TechStack({ dict }: { dict: TechStackDict }) {
         </h2>
       </div>
       <div className="tech-marquee w-full overflow-hidden">
-        <div className="tech-marquee-track px-10 py-1 cursor-grab active:cursor-grabbing">
+        <div className="tech-marquee-track px-10 py-10 cursor-grab active:cursor-grabbing">
           <div className="tech-marquee-group">
             {items.map((tech, index) => (
-              <TechStackItem 
-                key={`first-${tech.name}-${index}`} 
-                tech={tech} 
-                itemKey={`first-${tech.name}-${index}`} 
+              <TechStackItem
+                key={`first-${tech.name}-${index}`}
+                tech={tech}
+                itemKey={`first-${tech.name}-${index}`}
               />
             ))}
           </div>
           <div className="tech-marquee-group" aria-hidden="true">
             {items.map((tech, index) => (
-              <TechStackItem 
-                key={`second-${tech.name}-${index}`} 
-                tech={tech} 
-                itemKey={`second-${tech.name}-${index}`} 
+              <TechStackItem
+                key={`second-${tech.name}-${index}`}
+                tech={tech}
+                itemKey={`second-${tech.name}-${index}`}
               />
             ))}
           </div>

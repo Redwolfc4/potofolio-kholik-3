@@ -1,18 +1,56 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+type ContactApiResponse = {
+  success: boolean;
+  statusCode: number;
+  timestamp: string;
+  path: string;
+  method: string;
+  requestId: string;
+  message: string;
+  error?: string;
+};
+
+function buildResponse(
+  req: Request,
+  requestId: string,
+  statusCode: number,
+  message: string,
+  options?: { error?: string },
+) {
+  const body: ContactApiResponse = {
+    success: statusCode >= 200 && statusCode < 300,
+    statusCode,
+    timestamp: new Date().toISOString(),
+    path: new URL(req.url).pathname,
+    method: req.method,
+    requestId,
+    message,
+    ...(options?.error ? { error: options.error } : {}),
+  };
+
+  return NextResponse.json(body, { status: statusCode });
+}
+
 export async function POST(req: Request) {
+  const requestId = crypto.randomUUID();
+
   try {
     const data = await req.json();
     const { name, email, subject, message } = data ?? {};
     const contactEmail = process.env.CONTACT_EMAIL;
 
     if (!name || !email || !subject || !message) {
-      return NextResponse.json({ success: false, error: "Missing fields" }, { status: 400 });
+      return buildResponse(req, requestId, 400, "Contact form validation failed", {
+        error: "Missing required fields",
+      });
     }
 
     if (!contactEmail) {
-      return NextResponse.json({ success: false, error: "Missing contact configuration" }, { status: 500 });
+      return buildResponse(req, requestId, 500, "Contact service is not configured", {
+        error: "Missing contact configuration",
+      });
     }
 
     const transporter = nodemailer.createTransport({
@@ -33,9 +71,11 @@ export async function POST(req: Request) {
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
     });
 
-    return NextResponse.json({ success: true });
+    return buildResponse(req, requestId, 200, "Email sent successfully");
   } catch (error) {
-    console.error("Contact API error:", error);
-    return NextResponse.json({ success: false, error: "Failed to send email" }, { status: 500 });
+    console.error("Contact API error:", { requestId, error });
+    return buildResponse(req, requestId, 500, "Failed to send email", {
+      error: "Internal server error",
+    });
   }
 }
