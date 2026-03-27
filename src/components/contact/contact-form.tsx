@@ -11,10 +11,26 @@ import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import { ContactDict } from "@/types/i18n";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  name: z
+    .string()
+    .trim()
+    .min(1, "Name is required")
+    .min(2, "Name must be at least 2 characters"),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Email is required")
+    .email("Please enter a valid email address"),
+  subject: z
+    .string()
+    .trim()
+    .min(1, "Subject is required")
+    .min(5, "Subject must be at least 5 characters"),
+  message: z
+    .string()
+    .trim()
+    .min(1, "Message is required")
+    .min(10, "Message must be at least 10 characters"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -26,9 +42,12 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
     register,
     handleSubmit,
     reset,
+    trigger,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    mode: "onSubmit",
+    reValidateMode: "onChange",
     defaultValues: {
       name: "",
       email: "",
@@ -50,6 +69,25 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
     } catch (error) {
       console.error("Error sending email:", error);
       setStatus("error");
+    }
+  };
+
+  const handleEnterSubmit = async (
+    event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (event.key !== "Enter" || event.shiftKey || event.currentTarget.tagName === "TEXTAREA") {
+      return;
+    }
+
+    event.preventDefault();
+
+    if (status === "loading") {
+      return;
+    }
+
+    const isValid = await trigger();
+    if (isValid) {
+      void handleSubmit(onSubmit)();
     }
   };
 
@@ -76,12 +114,15 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-medium">{dict.name}</label>
               <input
                 id="name"
                 {...register("name")}
+                required
+                aria-invalid={errors.name ? "true" : "false"}
+                onKeyDown={handleEnterSubmit}
                 className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${errors.name ? "border-red-500 focus:ring-red-500" : "border-border/80"
                   }`}
               />
@@ -98,6 +139,9 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
                 id="email"
                 type="email"
                 {...register("email")}
+                required
+                aria-invalid={errors.email ? "true" : "false"}
+                onKeyDown={handleEnterSubmit}
                 className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${errors.email ? "border-red-500 focus:ring-red-500" : "border-border/80"
                   }`}
               />
@@ -113,6 +157,9 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
               <input
                 id="subject"
                 {...register("subject")}
+                required
+                aria-invalid={errors.subject ? "true" : "false"}
+                onKeyDown={handleEnterSubmit}
                 className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${errors.subject ? "border-red-500 focus:ring-red-500" : "border-border/80"
                   }`}
               />
@@ -129,6 +176,9 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
                 id="message"
                 rows={5}
                 {...register("message")}
+                required
+                aria-invalid={errors.message ? "true" : "false"}
+                onKeyDown={handleEnterSubmit}
                 className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${errors.message ? "border-red-500 focus:ring-red-500" : "border-border/80"
                   }`}
               />

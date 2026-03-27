@@ -19,7 +19,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
   return (
     <div
       key={exp.id}
-      className={`relative flex items-center w-full ${isEven ? "md:flex-row" : "md:flex-row-reverse"} flex-col`}
+      className={`relative flex items-center w-full ${isEven ? "md:flex-row" : "md:flex-row-reverse"} flex-col ${isHovered ? "z-40" : "z-10"}`}
       onMouseEnter={() => {
         // Sync desktop hover with store
         if (window.matchMedia("(hover: hover)").matches) {
