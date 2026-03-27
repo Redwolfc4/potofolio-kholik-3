@@ -53,7 +53,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
             mass: 1,
             duration: 0.6
           }}
-          className={`w-full max-w-md xl:max-w-lg 2xl:max-w-xl ${isHovered ? "pointer-events-auto" : "pointer-events-none"}`}
+          className="w-full max-w-md xl:max-w-lg 2xl:max-w-2xl z-20"
         >
           <motion.div
             whileHover={{ y: -5, scale: 1.02 }}
@@ -62,7 +62,10 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
               useLongPressStore.getState().setActive("experience", exp.id);
             }}
             {...handlers}
-            onClick={() => onSelect(exp.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect(exp.id);
+            }}
           >
             {/* Hover Glow Effect */}
             <div className={`absolute -inset-px bg-linear-to-br from-primary/20 via-transparent to-transparent transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0 md:group-hover/card:opacity-100"}`} />
@@ -112,7 +115,10 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
           useLongPressStore.getState().setActive("experience", exp.id);
         }}
         {...handlers}
-        onClick={() => onSelect(exp.id)}
+        onClick={(e) => {
+          e.stopPropagation();
+          onSelect(exp.id);
+        }}
       >
         <motion.div
           animate={{
@@ -167,11 +173,11 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
   const experiences = dict.items;
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const selected = experiences?.find((exp) => exp.id === selectedId) ?? null;
+  const selected = experiences?.find((exp) => String(exp.id) === String(selectedId)) ?? null;
 
   return (
     <section id="experience" className="py-24 w-full px-4 sm:px-10 lg:px-20 xl:px-24 2xl:px-32 overflow-hidden">
-      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto">
+      <div className="">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -183,7 +189,7 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
 
         <div className="relative">
           {/* Vertical Line - Center Positioned */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-linear-to-b from-primary/50 via-primary/20 to-transparent" />
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-linear-to-b from-primary via-primary/50 to-transparent" />
 
           <div className="space-y-12 md:space-y-24">
             {experiences?.map((exp, index) => (
@@ -209,11 +215,11 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-card border rounded-2xl shadow-xl w-full max-w-2xl xl:max-w-4xl p-6 md:p-8 xl:p-12"
+            className="bg-card border rounded-3xl shadow-xl w-full max-w-2xl xl:max-w-4xl p-8"
           >
             <div className="flex items-start justify-between gap-4 mb-6 xl:mb-8">
               <div>
-                <h3 className="text-2xl xl:text-4xl font-bold text-primary">{selected.position}</h3>
+                <h3 className="text-lg md:text-xl xl:text-2xl font-bold text-primary">{selected.position}</h3>
                 <div className="flex items-center gap-2 xl:gap-4 mt-2">
                   {selected.logo && (
                     <Image
@@ -222,12 +228,12 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
                       width={28}
                       height={28}
                       unoptimized
-                      className="h-6 w-6 xl:h-8 xl:w-8 object-contain rounded-sm"
+                      className="h-5 w-5 xl:h-6 xl:w-6 object-contain rounded-sm"
                     />
                   )}
-                  <p className="text-lg xl:text-xl font-semibold">{selected.company}</p>
+                  <p className="text-sm xl:text-base font-semibold">{selected.company}</p>
                 </div>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 xl:mt-3 text-sm xl:text-base text-muted-foreground">
+                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 xl:mt-3 text-xs text-muted-foreground">
                   <span>{selected.period}</span>
                   <span className="hidden sm:inline">•</span>
                   <span>{selected.location}</span>
@@ -246,22 +252,22 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
             </div>
 
             <div className="space-y-4 xl:space-y-6">
-              <h4 className="font-bold text-sm xl:text-base uppercase tracking-widest text-muted-foreground">{dict.responsibilities}</h4>
+              <h4 className="font-bold text-xs uppercase tracking-widest text-muted-foreground">{dict.responsibilities}</h4>
               <ul className="space-y-3 xl:space-y-4">
                 {selected.description.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 text-sm xl:text-base text-muted-foreground leading-relaxed">
+                  <li key={idx} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                     {item}
                   </li>
                 ))}
               </ul>
 
-              <h4 className="font-bold text-sm xl:text-base uppercase tracking-widest text-muted-foreground mt-8 xl:mt-10">{dict.technologies}</h4>
+              <h4 className="font-bold text-xs uppercase tracking-widest text-muted-foreground mt-8 xl:mt-10">{dict.technologies}</h4>
               <div className="flex flex-wrap gap-2 xl:gap-3">
                 {selected.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 xl:px-4 xl:py-1.5 bg-primary/5 text-primary border border-primary/10 rounded-full text-xs xl:text-sm font-medium"
+                    className="px-3 py-1 bg-primary/5 text-primary border border-primary/10 rounded-full text-xs font-medium"
                   >
                     {tech}
                   </span>
