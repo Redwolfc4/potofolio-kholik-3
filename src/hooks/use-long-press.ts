@@ -24,6 +24,8 @@ export function useLongPress(
 
   // Click-outside listener
   useEffect(() => {
+    if (!isActive) return;
+
     const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       const target = e.target as HTMLElement;
       if (!target.closest(`.${containerClass}`)) {
@@ -36,7 +38,7 @@ export function useLongPress(
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("touchstart", handleClickOutside);
     };
-  }, [containerClass, clear]);
+  }, [containerClass, clear, isActive]);
 
   const onTouchStart = useCallback(() => {
     isLongPressRef.current = false;

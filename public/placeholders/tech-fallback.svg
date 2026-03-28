@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tech icon fallback</title>
+  <desc id="desc">Fallback icon for technology logos.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5d3821"/>
+      <stop offset="100%" stop-color="#d7a882"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path d="M40 38l-18 26 18 26" fill="none" stroke="#fff6ee" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
+  <path d="M88 38l18 26-18 26" fill="none" stroke="#fff6ee" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
+  <path d="M72 24L56 104" fill="none" stroke="#fff6ee" stroke-linecap="round" stroke-width="10"/>
+</svg>

@@ -12,6 +12,11 @@ export interface HeroDict {
   tagline: string;
   name: string;
   description: string;
+  image: {
+    src: string;
+    alt: string;
+    fallbackSrc: string;
+  };
   buttons: {
     contact: string;
     projects: string;

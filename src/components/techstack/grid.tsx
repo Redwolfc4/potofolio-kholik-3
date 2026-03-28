@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { TechStackDict, TechItem } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 interface TechStackItemProps {
   tech: TechItem;
   itemKey: string;
@@ -33,13 +34,14 @@ function TechStackItem({ tech, itemKey }: TechStackItemProps) {
         ${isActive ? "-translate-y-1 border-primary/40 shadow-[0_22px_44px_rgba(95,58,34,0.16)] scale-105" : "border-border/80"}`}
     >
       <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-muted/70">
-        <Image
+        <ImageWithFallback
           src={tech.logoUrl ?? ""}
           alt={tech.name || "Tech Item"}
+          fallbackSrc="/placeholders/tech-fallback.svg"
           width={40}
           height={40}
+          sizes="40px"
           className="w-10 h-10 object-contain"
-          unoptimized
         />
         <div
           className="absolute inset-0 rounded-2xl transition-opacity ring-2 ring-primary/35 shadow-[0_0_30px_rgba(173,117,71,0.32)]"
@@ -65,9 +67,9 @@ function TechStackItem({ tech, itemKey }: TechStackItemProps) {
 }
 
 export default function TechStack({ dict }: { dict: TechStackDict }) {
+  const isMobile = useIsMobile();
   const rawItems = dict.items || [];
-  // Duplicate for smooth marquee
-  const items = [...rawItems, ...rawItems];
+  const items = isMobile ? rawItems : [...rawItems, ...rawItems];
 
   return (
     <section id="techstack" className="w-full py-20">
@@ -76,28 +78,42 @@ export default function TechStack({ dict }: { dict: TechStackDict }) {
           {dict?.title || "Technological Arsenal"}
         </h2>
       </div>
-      <div className="tech-marquee w-full overflow-hidden">
-        <div className="tech-marquee-track px-10 py-10 cursor-grab active:cursor-grabbing">
-          <div className="tech-marquee-group">
+      {isMobile ? (
+        <div className="px-4">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
             {items.map((tech, index) => (
               <TechStackItem
-                key={`first-${tech.name}-${index}`}
+                key={`mobile-${tech.name}-${index}`}
                 tech={tech}
-                itemKey={`first-${tech.name}-${index}`}
-              />
-            ))}
-          </div>
-          <div className="tech-marquee-group" aria-hidden="true">
-            {items.map((tech, index) => (
-              <TechStackItem
-                key={`second-${tech.name}-${index}`}
-                tech={tech}
-                itemKey={`second-${tech.name}-${index}`}
+                itemKey={`mobile-${tech.name}-${index}`}
               />
             ))}
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="tech-marquee w-full overflow-hidden">
+          <div className="tech-marquee-track px-10 py-10 cursor-grab active:cursor-grabbing">
+            <div className="tech-marquee-group">
+              {items.map((tech, index) => (
+                <TechStackItem
+                  key={`first-${tech.name}-${index}`}
+                  tech={tech}
+                  itemKey={`first-${tech.name}-${index}`}
+                />
+              ))}
+            </div>
+            <div className="tech-marquee-group" aria-hidden="true">
+              {items.map((tech, index) => (
+                <TechStackItem
+                  key={`second-${tech.name}-${index}`}
+                  tech={tech}
+                  itemKey={`second-${tech.name}-${index}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

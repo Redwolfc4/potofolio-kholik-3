@@ -3,6 +3,10 @@
   "viewDetails": "View Details",
   "responsibilities": "Key Responsibilities",
   "technologies": "Technologies",
+  "activitiesLabel": "Activities and societies",
+  "showMore": "Show more",
+  "showLess": "Show less",
+  "skillsLabel": "Skills",
   "items": [
     {
       "id": "1",

@@ -13,5 +13,7 @@ export interface ProjectsDict {
   title: string;
   liveDemo: string;
   sourceCode: string;
+  showMore: string;
+  showLess: string;
   items: ProjectItem[];
 }

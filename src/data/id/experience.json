@@ -3,6 +3,10 @@
   "viewDetails": "Lihat Detail",
   "responsibilities": "Tanggung Jawab Utama",
   "technologies": "Teknologi",
+  "activitiesLabel": "Kegiatan dan masyarakat",
+  "showMore": "Tampilkan lebih banyak",
+  "showLess": "Tampilkan lebih sedikit",
+  "skillsLabel": "Keahlian",
   "items": [
     {
       "id": "1",

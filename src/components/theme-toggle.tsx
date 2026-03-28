@@ -3,10 +3,13 @@ import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useMotionEnabled } from "@/hooks/use-motion-enabled";
+import { whenMotionEnabled } from "@/lib/motion";
 
 export function ThemeToggle() {
   const mounted = useHasMounted();
   const { theme, setTheme, resolvedTheme } = useTheme();
+  const motionEnabled = useMotionEnabled();
 
 
   const currentTheme = resolvedTheme ?? theme ?? "light";
@@ -36,8 +39,10 @@ export function ThemeToggle() {
       {currentTheme === "dark" ? (
         <motion.span
           className="relative flex items-center justify-center"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          {...whenMotionEnabled(motionEnabled, {
+            animate: { rotate: 360 },
+            transition: { duration: 6, repeat: Infinity, ease: "linear" },
+          })}
         >
           <Sun className="h-5 w-5 text-amber-300 drop-shadow-[0_0_12px_rgba(212,161,115,0.8)]" />
         </motion.span>
@@ -46,8 +51,10 @@ export function ThemeToggle() {
           <Moon className="h-5 w-5 text-primary" />
           <motion.span
             className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-accent"
-            animate={{ opacity: [0.2, 1, 0.2], scale: [0.6, 1.1, 0.6] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            {...whenMotionEnabled(motionEnabled, {
+              animate: { opacity: [0.2, 1, 0.2], scale: [0.6, 1.1, 0.6] },
+              transition: { duration: 1.6, repeat: Infinity, ease: "easeInOut" },
+            })}
           />
         </span>
       )}

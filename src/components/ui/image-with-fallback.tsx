@@ -9,6 +9,24 @@ type ImageWithFallbackProps = Omit<ImageProps, "src" | "alt"> & {
   fallbackSrc: string;
 };
 
+const UNOPTIMIZED_REMOTE_HOSTS = new Set(["media.licdn.com"]);
+
+function isRemoteImage(src: string) {
+  return src.startsWith("http://") || src.startsWith("https://");
+}
+
+function shouldBypassImageOptimization(src: string) {
+  if (!isRemoteImage(src)) {
+    return false;
+  }
+
+  try {
+    return UNOPTIMIZED_REMOTE_HOSTS.has(new URL(src).hostname);
+  } catch {
+    return true;
+  }
+}
+
 export default function ImageWithFallback({
   src,
   alt,
@@ -27,6 +45,8 @@ export default function ImageWithFallback({
       {...props}
       src={currentSrc}
       alt={alt}
+      unoptimized={props.unoptimized ?? shouldBypassImageOptimization(currentSrc)}
+      loading={props.priority ? undefined : (props.loading ?? "lazy")}
       onError={(event) => {
         if (currentSrc !== fallbackSrc) {
           setCurrentSrc(fallbackSrc);

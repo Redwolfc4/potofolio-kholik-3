@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Logo fallback</title>
+  <desc id="desc">Fallback logo for company, certification, and experience images.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4f2f1c"/>
+      <stop offset="100%" stop-color="#d29a72"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="48" fill="url(#bg)"/>
+  <path d="M70 94h116v22H70zm0 46h116v22H70zm0 46h74v22H70z" fill="#fff4ea"/>
+  <circle cx="184" cy="178" r="28" fill="#fff4ea"/>
+</svg>

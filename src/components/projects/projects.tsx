@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useSyncExternalStore, useEffect } from "react";
+import React, { useCallback, useSyncExternalStore, useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -10,6 +10,7 @@ import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
 import { useHasMounted } from "@/hooks/use-has-mounted";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 
 interface ProjectItemProps {
   project: NonNullable<ProjectsDict["items"]>[number];
@@ -18,14 +19,36 @@ interface ProjectItemProps {
 }
 
 function ProjectItem({ project, index, dict }: ProjectItemProps) {
+  const isMobile = useIsMobile();
   const { isActive, handlers } = useLongPress("projects", project.id, "lp-project");
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isTruncated, setIsTruncated] = useState(false);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const checkTruncation = () => {
+      if (descriptionRef.current) {
+        const { scrollHeight, clientHeight } = descriptionRef.current;
+        setIsTruncated(scrollHeight > clientHeight || isExpanded);
+      }
+    };
+
+    checkTruncation();
+    const timer = setTimeout(checkTruncation, 300); // Wait for animations
+    window.addEventListener("resize", checkTruncation);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", checkTruncation);
+    };
+  }, [project.description, isExpanded, isActive]);
 
   return (
     <motion.div
       key={project.id}
-      initial={{ opacity: 0, scale: 0.96 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ delay: index * 0.1 }}
+      initial={isMobile ? false : { opacity: 0, scale: 0.96 }}
+      whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
+      transition={isMobile ? undefined : { delay: index * 0.1 }}
+      viewport={isMobile ? undefined : { once: true, amount: 0.2 }}
       {...handlers}
       onMouseEnter={() => {
         if (window.matchMedia("(hover: hover)").matches) {
@@ -49,15 +72,31 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
           fallbackSrc="/placeholders/project-fallback.svg"
           width={960}
           height={540}
-          unoptimized
+          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 320px, 420px"
           className={`w-full h-full object-cover transition-transform duration-500 ${isActive ? "scale-105" : "md:group-hover:scale-105"}`}
         />
       </div>
       <div className="p-6 xl:p-8 2xl:p-10">
         <h3 className="text-xl xl:text-2xl 2xl:text-3xl font-bold mb-2 xl:mb-4">{project.title}</h3>
-        <p className="text-muted-foreground text-sm xl:text-base 2xl:text-lg mb-4 xl:mb-6 line-clamp-3">
+        <p 
+          ref={descriptionRef}
+          className={`text-start text-muted-foreground text-sm xl:text-base 2xl:text-lg transition-all duration-300 ${isExpanded ? "" : "line-clamp-3"} ${isExpanded ? "mb-2" : "mb-4 xl:mb-6"}`}
+        >
           {project.description}
         </p>
+
+        {isTruncated && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
+            }}
+            className="text-[10px] xl:text-xs font-bold text-primary/60 hover:text-primary transition-colors mb-4 focus:outline-hidden block"
+          >
+            {isExpanded ? dict.showLess : dict.showMore}
+          </button>
+        )}
         <div className="flex flex-wrap gap-2 xl:gap-3 mb-6 xl:mb-8">
           {project.techStack.map((tech) => (
             <span
@@ -96,6 +135,7 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
 }
 
 export default function Projects({ dict }: { dict: ProjectsDict }) {
+  const isMobile = useIsMobile();
   const projects = dict.items;
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
@@ -140,6 +180,7 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
   );
 
   useEffect(() => {
+    if (isMobile) return;
     if (!emblaApi) return;
     const viewport = emblaApi.rootNode();
     const container = viewport.parentElement;
@@ -169,7 +210,7 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
 
     container.addEventListener("wheel", onWheel, { passive: false });
     return () => container.removeEventListener("wheel", onWheel);
-  }, [emblaApi]);
+  }, [emblaApi, isMobile]);
 
   return (
     <section id="projects" className="w-full">
@@ -179,7 +220,7 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20 xl:py-24 2xl:py-32">
           <div className="relative overscroll-x-none touch-pan-y">
-            {mounted && (
+            {mounted && !isMobile && (
               <button
                 type="button"
                 onClick={() => emblaApi?.scrollPrev()}
@@ -190,7 +231,7 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
                 <ChevronLeft className="w-4 h-4 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8" />
               </button>
             )}
-            {mounted && (
+            {mounted && !isMobile && (
               <button
                 type="button"
                 onClick={() => emblaApi?.scrollNext()}

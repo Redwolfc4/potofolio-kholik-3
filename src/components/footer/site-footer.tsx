@@ -11,7 +11,7 @@ export default function SiteFooter({ dict }: { dict: FooterDict }) {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <h3 className="text-lg font-bold text-primary">{dict.logo}</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-start text-sm text-muted-foreground">
               {dict.description}
             </p>
           </div>
@@ -59,7 +59,7 @@ export default function SiteFooter({ dict }: { dict: FooterDict }) {
             </a>
           </div>
         </div>
-        <div className="mt-6 text-xs text-muted-foreground">
+        <div className="mt-6 text-start text-xs text-muted-foreground">
           {dict.rights}
         </div>
       </div>

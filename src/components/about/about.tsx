@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Code2, ShieldCheck, Trophy, Terminal } from "lucide-react";
 import { AboutDict } from "@/types/i18n";
+import { useMotionEnabled } from "@/hooks/use-motion-enabled";
+import { whenMotionEnabled } from "@/lib/motion";
 
 export default function About({ dict }: { dict: AboutDict }) {
+  const motionEnabled = useMotionEnabled();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -36,9 +39,11 @@ export default function About({ dict }: { dict: AboutDict }) {
 
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...whenMotionEnabled(motionEnabled, {
+            initial: { opacity: 0, y: 20 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true },
+          })}
           className="flex flex-col items-center mb-16 text-center"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-4">
@@ -52,15 +57,17 @@ export default function About({ dict }: { dict: AboutDict }) {
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          {...whenMotionEnabled(motionEnabled, {
+            variants: containerVariants,
+            initial: "hidden",
+            whileInView: "visible",
+            viewport: { once: true },
+          } as never)}
           className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
         >
           {/* Main Content Column */}
           {/* Main Content Column */}
-          <motion.div variants={itemVariants} className="lg:col-span-7 flex flex-col gap-6">
+          <motion.div {...whenMotionEnabled(motionEnabled, { variants: itemVariants } as never)} className="lg:col-span-7 flex flex-col gap-6">
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-8 md:p-10 shadow-xl shadow-primary/5 flex-1 transition-all hover:bg-card/80 group">
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-3 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
@@ -68,7 +75,7 @@ export default function About({ dict }: { dict: AboutDict }) {
                 </div>
                 <h3 className="text-2xl font-bold tracking-tight">{dict.summary.title}</h3>
               </div>
-              <p className="text-muted-foreground text-lg leading-relaxed font-medium group-hover:text-foreground/90 transition-colors">
+              <p className="text-start text-muted-foreground text-lg leading-relaxed font-medium group-hover:text-foreground/90 transition-colors">
                 {dict.summary.content}
               </p>
             </div>
@@ -80,7 +87,7 @@ export default function About({ dict }: { dict: AboutDict }) {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-3 tracking-tight">{dict.focus.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed italic group-hover:text-foreground/80 transition-colors">
+                  <p className="text-start text-muted-foreground leading-relaxed italic group-hover:text-foreground/80 transition-colors">
                     {dict.focus.content}
                   </p>
                 </div>
@@ -89,7 +96,7 @@ export default function About({ dict }: { dict: AboutDict }) {
           </motion.div>
 
           {/* Sidebar Column */}
-          <motion.div variants={itemVariants} className="lg:col-span-5 space-y-6 flex flex-col">
+          <motion.div {...whenMotionEnabled(motionEnabled, { variants: itemVariants } as never)} className="lg:col-span-5 space-y-6 flex flex-col">
             {/* Education Highlight Card */}
             <div className="bg-primary text-primary-foreground rounded-3xl p-8 relative overflow-hidden flex-1 group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 -mr-8 -mt-8 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
@@ -121,7 +128,7 @@ export default function About({ dict }: { dict: AboutDict }) {
                 {dict.highlights.items.map((item, index) => (
                   <li key={index} className="flex items-start gap-3 group">
                     <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary ring-4 ring-primary/10 group-hover:scale-125 transition-transform" />
-                    <span className="text-muted-foreground font-medium group-hover:text-foreground transition-colors">
+                    <span className="text-start text-muted-foreground font-medium group-hover:text-foreground transition-colors">
                       {item}
                     </span>
                   </li>

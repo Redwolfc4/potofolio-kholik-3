@@ -51,6 +51,18 @@ html {
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* Project-wide text alignment policy:
+   treat left/start text utilities as justified text, while leaving
+   center/end/right utilities unchanged. Tailwind variants such as
+   `md:text-left` and `rtl:text-start` inherit this override. */
+@utility text-left {
+  text-align: justify;
+}
+
+@utility text-start {
+  text-align: justify;
+}
+
 :root {
   --background: #f5ede3;
   --foreground: #3e2818;
@@ -184,6 +196,23 @@ html {
   }
   ::-webkit-scrollbar-thumb:hover {
     background: color-mix(in srgb, var(--primary) 70%, transparent);
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .marquee,
+  .tech-marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .marquee-track,
+  .tech-marquee-track {
+    animation: none;
   }
 }
 

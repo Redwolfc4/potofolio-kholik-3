@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Profile image fallback</title>
+  <desc id="desc">Fallback portrait image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2c1a10"/>
+      <stop offset="100%" stop-color="#b8794a"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg)"/>
+  <circle cx="450" cy="360" r="150" fill="#f8ecdf" fill-opacity="0.9"/>
+  <path d="M206 930c38-176 166-282 244-282s206 106 244 282" fill="#f8ecdf" fill-opacity="0.9"/>
+  <rect x="126" y="90" width="648" height="1020" rx="48" fill="none" stroke="#f8ecdf" stroke-opacity="0.25" stroke-width="12"/>
+</svg>

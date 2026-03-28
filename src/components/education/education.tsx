@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 
 import { EducationDict } from "@/types/i18n";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
+import { useMotionEnabled } from "@/hooks/use-motion-enabled";
+import { whenMotionEnabled } from "@/lib/motion";
 
 export default function Education({ dict }: { dict: EducationDict }) {
+  const motionEnabled = useMotionEnabled();
   const education = dict.items;
   return (
     <section id="education" className="py-20 px-10 w-full">
@@ -14,9 +17,12 @@ export default function Education({ dict }: { dict: EducationDict }) {
         {education?.map((edu, index) => (
           <motion.div
             key={`${edu.institution}-${edu.period}`}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
+            {...whenMotionEnabled(motionEnabled, {
+              initial: { opacity: 0, x: -20 },
+              whileInView: { opacity: 1, x: 0 },
+              transition: { delay: index * 0.1 },
+              viewport: { once: true, amount: 0.2 },
+            })}
             className="p-8 bg-card border rounded-2xl shadow-sm cursor-pointer hover:shadow-md transition-shadow  w-full"
           >
             <div className="grid grid-cols-1 md:grid-cols-[28rem_1fr] gap-10 lg:gap-15 items-center px-4 md:px-6">
@@ -27,7 +33,7 @@ export default function Education({ dict }: { dict: EducationDict }) {
                   fallbackSrc="/placeholders/education-fallback.svg"
                   width={400}
                   height={400}
-                  unoptimized
+                  sizes="(max-width: 768px) 100vw, 448px"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </a>
@@ -40,16 +46,16 @@ export default function Education({ dict }: { dict: EducationDict }) {
                   {edu.institution}
                 </a>
                 <p className="text-sm text-muted-foreground mb-3 italic">{edu.location}</p>
-                <p className="text-muted-foreground mb-4">{edu.description}</p>
+                <p className="text-start text-muted-foreground mb-4">{edu.description}</p>
 
                 {edu.activities && (
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-start text-sm text-muted-foreground mb-2">
                     <strong className="text-foreground">{dict.activitiesLabel || "Activities and societies"}:</strong> {edu.activities}
                   </p>
                 )}
 
                 {edu.responsibilities && (
-                  <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-start text-sm text-muted-foreground mb-6 leading-relaxed">
                     {edu.responsibilities}
                   </p>
                 )}
@@ -58,7 +64,7 @@ export default function Education({ dict }: { dict: EducationDict }) {
                   <div className="mb-6">
                     <strong className="text-sm text-foreground block mb-2">{dict.skillsLabel || "Skills"}:</strong>
                     <p
-                      className="text-sm text-muted-foreground leading-relaxed [&>strong]:text-foreground [&>strong]:font-semibold"
+                      className="text-start text-sm text-muted-foreground leading-relaxed [&>strong]:text-foreground [&>strong]:font-semibold"
                       dangerouslySetInnerHTML={{ __html: edu.skills }}
                     />
                   </div>
@@ -73,7 +79,7 @@ export default function Education({ dict }: { dict: EducationDict }) {
                           alt={`Certificate ${i + 1}`}
                           fallbackSrc="/placeholders/certificate-fallback.svg"
                           fill
-                          unoptimized
+                          sizes="128px"
                           className="object-cover transition-transform duration-300 group-hover:scale-110"
                         />
                       </a>

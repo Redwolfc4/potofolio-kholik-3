@@ -4,12 +4,13 @@ import { useCallback, useSyncExternalStore, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
 
 import { CertificationsDict } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
 import { useHasMounted } from "@/hooks/use-has-mounted";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 
 interface CertItemProps {
   cert: NonNullable<CertificationsDict["items"]>[number];
@@ -18,14 +19,16 @@ interface CertItemProps {
 }
 
 function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
+  const isMobile = useIsMobile();
   const { isActive, handlers } = useLongPress("certifications", cert.id, "lp-cert");
 
   return (
     <motion.div
       key={cert.id}
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ delay: index * 0.1 }}
+      initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
+      whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
+      transition={isMobile ? undefined : { delay: index * 0.1 }}
+      viewport={isMobile ? undefined : { once: true, amount: 0.2 }}
       {...handlers}
       onMouseEnter={() => {
         if (window.matchMedia("(hover: hover)").matches) {
@@ -43,12 +46,13 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
       className="lp-cert min-w-64 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
     >
       <div className="relative aspect-4/5 overflow-hidden">
-        <Image
+        <ImageWithFallback
           src={cert.image ?? ""}
           alt={cert.title}
+          fallbackSrc="/placeholders/logo-fallback.svg"
           width={800}
           height={1000}
-          unoptimized
+          sizes="(max-width: 640px) 70vw, (max-width: 1024px) 288px, 320px"
           className={`w-full h-full object-cover transition-transform duration-500 ${isActive ? "scale-105" : "md:group-hover:scale-105"}`}
         />
         <div className={`absolute inset-0 bg-background/95 transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-0 md:group-hover:opacity-100"}`}>
@@ -60,7 +64,7 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
                 <p className="text-xs text-muted-foreground">{cert.date}</p>
               </div>
               {cert.description && (
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-start text-sm text-muted-foreground leading-relaxed">
                   {cert.description}
                 </p>
               )}
@@ -83,6 +87,7 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
 }
 
 export default function CertGrid({ dict }: { dict: CertificationsDict }) {
+  const isMobile = useIsMobile();
   const certifications = dict.items;
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
@@ -127,6 +132,7 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
   );
 
   useEffect(() => {
+    if (isMobile) return;
     if (!emblaApi) return;
     const viewport = emblaApi.rootNode();
     const container = viewport.parentElement;
@@ -156,7 +162,7 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
 
     container.addEventListener("wheel", onWheel, { passive: false });
     return () => container.removeEventListener("wheel", onWheel);
-  }, [emblaApi]);
+  }, [emblaApi, isMobile]);
 
   return (
     <section id="certifications" className="w-full">
@@ -167,7 +173,7 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20">
           <div className="relative overscroll-x-none touch-pan-y">
-            {mounted && (
+            {mounted && !isMobile && (
               <button
                 type="button"
                 onClick={() => emblaApi?.scrollPrev()}
@@ -178,7 +184,7 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
                 <ChevronLeft className="w-4 h-4" />
               </button>
             )}
-            {mounted && (
+            {mounted && !isMobile && (
               <button
                 type="button"
                 onClick={() => emblaApi?.scrollNext()}

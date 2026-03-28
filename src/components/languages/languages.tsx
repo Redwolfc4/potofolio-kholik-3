@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Languages, Globe, JapaneseYen, LucideIcon } from "lucide-react";
 import { LanguagesDict } from "@/types/i18n";
+import { useMotionEnabled } from "@/hooks/use-motion-enabled";
+import { whenMotionEnabled } from "@/lib/motion";
 
 const iconMap: Record<string, LucideIcon> = {
   Languages,
@@ -11,13 +13,17 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
+  const motionEnabled = useMotionEnabled();
+
   return (
     <section className="py-20 w-full flex flex-col items-center justify-center bg-background/50 backdrop-blur-sm border-y border-border/50">
       <div className="container px-4 md:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...whenMotionEnabled(motionEnabled, {
+            initial: { opacity: 0, y: 20 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true },
+          })}
           className="flex flex-col items-center text-center space-y-4 mb-12"
         >
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/60">
@@ -32,11 +38,13 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
             return (
               <motion.div
                 key={item.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+                {...whenMotionEnabled(motionEnabled, {
+                  initial: { opacity: 0, y: 20 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true },
+                  transition: { delay: index * 0.1 },
+                  whileHover: { y: -5 },
+                })}
                 className="group relative p-6 rounded-2xl bg-card border border-border/50 hover:border-primary/50 transition-all duration-300 overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
@@ -61,9 +69,12 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
                   {/* Visual proficiency bar */}
                   <div className="w-full h-1.5 bg-secondary rounded-full overflow-hidden">
                     <motion.div 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: item.level === "Native" ? "100%" : item.level.includes("Working") ? "75%" : "30%" }}
-                      transition={{ duration: 1, delay: 0.5 }}
+                      {...whenMotionEnabled(motionEnabled, {
+                        initial: { width: 0 },
+                        whileInView: { width: item.level === "Native" ? "100%" : item.level.includes("Working") ? "75%" : "30%" },
+                        transition: { duration: 1, delay: 0.5 },
+                      })}
+                      style={!motionEnabled ? { width: item.level === "Native" ? "100%" : item.level.includes("Working") ? "75%" : "30%" } : undefined}
                       className="h-full bg-primary"
                     />
                   </div>

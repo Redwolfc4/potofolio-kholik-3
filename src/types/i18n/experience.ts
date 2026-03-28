@@ -12,6 +12,8 @@ export interface ExperienceItem {
 export interface ExperienceDict {
   title: string;
   viewDetails: string;
+  showMore: string;
+  showLess: string;
   responsibilities: string;
   technologies: string;
   items: ExperienceItem[];

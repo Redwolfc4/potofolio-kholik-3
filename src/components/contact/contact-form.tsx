@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 
 import { ContactDict } from "@/types/i18n";
+import { useMotionEnabled } from "@/hooks/use-motion-enabled";
+import { whenMotionEnabled } from "@/lib/motion";
 
 const contactSchema = z.object({
   name: z
@@ -36,6 +38,7 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactForm({ dict }: { dict: ContactDict }) {
+  const motionEnabled = useMotionEnabled();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const {
@@ -95,8 +98,11 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
     <section id="contact" className="py-20 w-full px-10">
       <h2 className="text-3xl font-bold mb-10 text-center">{dict.title}</h2>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        {...whenMotionEnabled(motionEnabled, {
+          initial: { opacity: 0, y: 20 },
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true, amount: 0.2 },
+        })}
         className="mx-auto rounded-xl border border-border/80 bg-card/85 p-8 shadow-[0_24px_60px_rgba(95,58,34,0.14)] backdrop-blur-sm dark:shadow-[0_24px_60px_rgba(0,0,0,0.32)]"
       >
         {status === "success" ? (
