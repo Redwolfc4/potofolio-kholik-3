@@ -21,14 +21,15 @@ interface CertItemProps {
 function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
   const isMobile = useIsMobile();
   const { isActive, handlers } = useLongPress("certifications", cert.id, "lp-cert");
+  const showDetails = isMobile || isActive;
 
   return (
     <motion.div
       key={cert.id}
-      initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
-      whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
-      transition={isMobile ? undefined : { delay: index * 0.1 }}
-      viewport={isMobile ? undefined : { once: true, amount: 0.2 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.1 }}
+      viewport={{ once: true, amount: 0.2 }}
       {...handlers}
       onMouseEnter={() => {
         if (window.matchMedia("(hover: hover)").matches) {
@@ -43,7 +44,7 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
           }
         }
       }}
-      className="lp-cert min-w-64 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+      className="lp-cert w-full md:w-auto md:min-w-64 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
     >
       <div className="relative aspect-4/5 overflow-hidden">
         <ImageWithFallback
@@ -55,7 +56,7 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
           sizes="(max-width: 640px) 70vw, (max-width: 1024px) 288px, 320px"
           className={`w-full h-full object-cover transition-transform duration-500 ${isActive ? "scale-105" : "md:group-hover:scale-105"}`}
         />
-        <div className={`absolute inset-0 bg-background/95 transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-0 md:group-hover:opacity-100"}`}>
+        <div className={`absolute inset-0 bg-background/95 transition-opacity duration-300 ${showDetails ? "opacity-100" : "opacity-0 md:group-hover:opacity-100"}`}>
           <div className="p-5 h-full flex flex-col justify-between overflow-y-auto scrollbar-hide">
             <div className="space-y-3">
               <div>
@@ -172,46 +173,59 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
 
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20">
-          <div className="relative overscroll-x-none touch-pan-y">
-            {mounted && !isMobile && (
-              <button
-                type="button"
-                onClick={() => emblaApi?.scrollPrev()}
-                disabled={prevBtnDisabled}
-                aria-label="Previous certification"
-                className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-            )}
-            {mounted && !isMobile && (
-              <button
-                type="button"
-                onClick={() => emblaApi?.scrollNext()}
-                disabled={nextBtnDisabled}
-                aria-label="Next certification"
-                className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            )}
+          {isMobile ? (
+            <div className="grid grid-cols-1 gap-6">
+              {certifications?.map((cert, index) => (
+                <CertItem
+                  key={cert.id}
+                  cert={cert}
+                  index={index}
+                  viewCredentialLabel={dict.viewCredential}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="relative overscroll-x-none touch-pan-y">
+              {mounted && !isMobile && (
+                <button
+                  type="button"
+                  onClick={() => emblaApi?.scrollPrev()}
+                  disabled={prevBtnDisabled}
+                  aria-label="Previous certification"
+                  className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+              )}
+              {mounted && !isMobile && (
+                <button
+                  type="button"
+                  onClick={() => emblaApi?.scrollNext()}
+                  disabled={nextBtnDisabled}
+                  aria-label="Next certification"
+                  className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
 
-            <div
-              ref={emblaRef}
-              className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
-            >
-              <div className="flex gap-6 px-4 pb-4">
-                {certifications?.map((cert, index) => (
-                  <CertItem
-                    key={cert.id}
-                    cert={cert}
-                    index={index}
-                    viewCredentialLabel={dict.viewCredential}
-                  />
-                ))}
+              <div
+                ref={emblaRef}
+                className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
+              >
+                <div className="flex gap-6 px-4 pb-4">
+                  {certifications?.map((cert, index) => (
+                    <CertItem
+                      key={cert.id}
+                      cert={cert}
+                      index={index}
+                      viewCredentialLabel={dict.viewCredential}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

@@ -45,10 +45,10 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
   return (
     <motion.div
       key={project.id}
-      initial={isMobile ? false : { opacity: 0, scale: 0.96 }}
-      whileInView={isMobile ? undefined : { opacity: 1, scale: 1 }}
-      transition={isMobile ? undefined : { delay: index * 0.1 }}
-      viewport={isMobile ? undefined : { once: true, amount: 0.2 }}
+      initial={{ opacity: 0, scale: 0.96 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.1 }}
+      viewport={{ once: true, amount: 0.2 }}
       {...handlers}
       onMouseEnter={() => {
         if (window.matchMedia("(hover: hover)").matches) {
@@ -63,7 +63,7 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
           }
         }
       }}
-      className={`lp-project min-w-64 sm:min-w-80 lg:min-w-96 xl:min-w-md 2xl:min-w-xl group relative bg-card rounded-2xl overflow-hidden cursor-pointer transition-shadow after:absolute after:inset-0 after:rounded-2xl after:border after:border-border after:pointer-events-none ${isActive ? "shadow-lg after:border-primary/60" : "shadow-sm hover:shadow-lg hover:after:border-primary/60"}`}
+      className={`lp-project w-full md:w-auto md:min-w-80 lg:min-w-96 xl:min-w-md 2xl:min-w-xl group relative bg-card rounded-2xl overflow-hidden cursor-pointer transition-shadow after:absolute after:inset-0 after:rounded-2xl after:border after:border-border after:pointer-events-none ${isActive ? "shadow-lg after:border-primary/60" : "shadow-sm hover:shadow-lg hover:after:border-primary/60"}`}
     >
       <div className="aspect-video bg-muted relative overflow-hidden">
         <ImageWithFallback
@@ -219,6 +219,13 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
       </div>
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20 xl:py-24 2xl:py-32">
+          {isMobile ? (
+            <div className="grid grid-cols-1 gap-6">
+              {projects?.map((project, index) => (
+                <ProjectItem key={project.id} project={project} index={index} dict={dict} />
+              ))}
+            </div>
+          ) : (
           <div className="relative overscroll-x-none touch-pan-y">
             {mounted && !isMobile && (
               <button
@@ -253,6 +260,7 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
               </div>
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>
