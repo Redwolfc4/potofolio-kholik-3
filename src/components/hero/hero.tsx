@@ -69,7 +69,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
                 animate: { opacity: 1, y: 0 },
                 transition: { delay: 0.1, duration: 0.8 },
               })}
-              className="bg-linear-to-r from-foreground via-primary to-foreground bg-clip-text text-4xl font-bold tracking-tight text-transparent lg:text-6xl"
+              className="[text-align:start] bg-linear-to-r from-foreground via-primary to-foreground bg-clip-text text-4xl font-bold tracking-tight text-transparent lg:text-6xl"
             >
               {dict.name}
             </motion.h1>

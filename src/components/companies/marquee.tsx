@@ -77,7 +77,7 @@ export default function Marquee({ dict }: { dict: CommonDict }) {
       </div>
 
       <div className="w-full border-y bg-muted/30 py-12">
-        <div className={`w-full relative ${isMobile ? "overflow-x-auto px-4" : "marquee"}`}>
+        <div className={`w-full relative ${isMobile ? "marquee px-4" : "marquee"}`}>
           <div className="marquee-track py-3">
             {groups.map((groupIndex) => (
               <div key={`group-${groupIndex}`} className="marquee-group">
