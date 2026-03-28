@@ -44,7 +44,7 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
           }
         }
       }}
-      className="lp-cert w-full md:w-auto md:min-w-64 sm:min-w-72 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+      className="lp-cert shrink-0 md:shrink w-[85vw] md:w-auto md:min-w-64 lg:min-w-80 group relative bg-card border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
     >
       <div className="relative aspect-4/5 overflow-hidden">
         <ImageWithFallback
@@ -173,37 +173,25 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
 
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20">
-          {isMobile ? (
-            <div className="grid grid-cols-1 gap-6">
-              {certifications?.map((cert, index) => (
-                <CertItem
-                  key={cert.id}
-                  cert={cert}
-                  index={index}
-                  viewCredentialLabel={dict.viewCredential}
-                />
-              ))}
-            </div>
-          ) : (
             <div className="relative overscroll-x-none touch-pan-y">
-              {mounted && !isMobile && (
+              {mounted && (
                 <button
                   type="button"
                   onClick={() => emblaApi?.scrollPrev()}
                   disabled={prevBtnDisabled}
                   aria-label="Previous certification"
-                  className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+                  className="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
               )}
-              {mounted && !isMobile && (
+              {mounted && (
                 <button
                   type="button"
                   onClick={() => emblaApi?.scrollNext()}
                   disabled={nextBtnDisabled}
                   aria-label="Next certification"
-                  className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+                  className="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer shadow-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -213,7 +201,7 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
                 ref={emblaRef}
                 className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
               >
-                <div className="flex gap-6 px-4 pb-4">
+                <div className="flex gap-6 pb-4">
                   {certifications?.map((cert, index) => (
                     <CertItem
                       key={cert.id}
@@ -225,7 +213,6 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
                 </div>
               </div>
             </div>
-          )}
         </div>
       </div>
     </section>

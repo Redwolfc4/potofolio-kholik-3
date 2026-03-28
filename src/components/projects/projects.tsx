@@ -63,7 +63,7 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
           }
         }
       }}
-      className={`lp-project w-full md:w-auto md:min-w-80 lg:min-w-96 xl:min-w-md 2xl:min-w-xl group relative bg-card rounded-2xl overflow-hidden cursor-pointer transition-shadow after:absolute after:inset-0 after:rounded-2xl after:border after:border-border after:pointer-events-none ${isActive ? "shadow-lg after:border-primary/60" : "shadow-sm hover:shadow-lg hover:after:border-primary/60"}`}
+      className={`lp-project shrink-0 md:shrink w-[85vw] md:w-auto md:min-w-80 lg:min-w-96 xl:min-w-md 2xl:min-w-xl group relative bg-card rounded-2xl overflow-hidden cursor-pointer transition-shadow after:absolute after:inset-0 after:rounded-2xl after:border after:border-border after:pointer-events-none ${isActive ? "shadow-lg after:border-primary/60" : "shadow-sm hover:shadow-lg hover:after:border-primary/60"}`}
     >
       <div className="aspect-video bg-muted relative overflow-hidden">
         <ImageWithFallback
@@ -219,32 +219,25 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
       </div>
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20 xl:py-24 2xl:py-32">
-          {isMobile ? (
-            <div className="grid grid-cols-1 gap-6">
-              {projects?.map((project, index) => (
-                <ProjectItem key={project.id} project={project} index={index} dict={dict} />
-              ))}
-            </div>
-          ) : (
           <div className="relative overscroll-x-none touch-pan-y">
-            {mounted && !isMobile && (
+            {mounted && (
               <button
                 type="button"
                 onClick={() => emblaApi?.scrollPrev()}
                 disabled={prevBtnDisabled}
                 aria-label="Previous project"
-                className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 xl:p-3 2xl:p-4 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+                className="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 z-10 p-2 xl:p-3 2xl:p-4 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
               >
                 <ChevronLeft className="w-4 h-4 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8" />
               </button>
             )}
-            {mounted && !isMobile && (
+            {mounted && (
               <button
                 type="button"
                 onClick={() => emblaApi?.scrollNext()}
                 disabled={nextBtnDisabled}
                 aria-label="Next project"
-                className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 xl:p-3 2xl:p-4 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+                className="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 z-10 p-2 xl:p-3 2xl:p-4 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
               >
                 <ChevronRight className="w-4 h-4 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8" />
               </button>
@@ -253,14 +246,13 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
               ref={emblaRef} 
               className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
             >
-              <div className="flex gap-6">
+              <div className="flex gap-6 pb-4">
                 {projects?.map((project, index) => (
                   <ProjectItem key={project.id} project={project} index={index} dict={dict} />
                 ))}
               </div>
             </div>
           </div>
-          )}
         </div>
       </div>
     </section>
