@@ -4,12 +4,12 @@ import React, { useCallback, useSyncExternalStore, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
 
 import { ProjectsDict } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
 import { useHasMounted } from "@/hooks/use-has-mounted";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
 
 interface ProjectItemProps {
   project: NonNullable<ProjectsDict["items"]>[number];
@@ -43,9 +43,10 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
       className={`lp-project min-w-64 sm:min-w-80 lg:min-w-96 xl:min-w-md 2xl:min-w-xl group relative bg-card rounded-2xl overflow-hidden cursor-pointer transition-shadow after:absolute after:inset-0 after:rounded-2xl after:border after:border-border after:pointer-events-none ${isActive ? "shadow-lg after:border-primary/60" : "shadow-sm hover:shadow-lg hover:after:border-primary/60"}`}
     >
       <div className="aspect-video bg-muted relative overflow-hidden">
-        <Image
+        <ImageWithFallback
           src={project.image}
           alt={project.title}
+          fallbackSrc="/placeholders/project-fallback.svg"
           width={960}
           height={540}
           unoptimized

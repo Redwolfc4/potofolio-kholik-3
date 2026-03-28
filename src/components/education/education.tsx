@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 import { EducationDict } from "@/types/i18n";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
 
 export default function Education({ dict }: { dict: EducationDict }) {
   const education = dict.items;
@@ -21,9 +21,10 @@ export default function Education({ dict }: { dict: EducationDict }) {
           >
             <div className="grid grid-cols-1 md:grid-cols-[28rem_1fr] gap-10 lg:gap-15 items-center px-4 md:px-6">
               <a href={edu.websiteUrl} target="_blank" rel="noopener noreferrer" className="w-full h-48 md:h-full rounded-2xl overflow-hidden bg-muted block group">
-                <Image
+                <ImageWithFallback
                   src={edu.imageUrl}
                   alt={edu.institution}
+                  fallbackSrc="/placeholders/education-fallback.svg"
                   width={400}
                   height={400}
                   unoptimized
@@ -67,7 +68,14 @@ export default function Education({ dict }: { dict: EducationDict }) {
                   <div className="flex flex-wrap gap-4 mt-2">
                     {edu.media.map((item, i) => (
                       <a href={item.linkUrl} target="_blank" rel="noopener noreferrer" key={i} className="block relative h-20 w-32 rounded-lg overflow-hidden border border-border hover:border-primary transition-colors group">
-                        <Image src={item.thumbnailUrl} alt={`Certificate ${i + 1}`} fill unoptimized className="object-cover transition-transform duration-300 group-hover:scale-110" />
+                        <ImageWithFallback
+                          src={item.thumbnailUrl}
+                          alt={`Certificate ${i + 1}`}
+                          fallbackSrc="/placeholders/certificate-fallback.svg"
+                          fill
+                          unoptimized
+                          className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
                       </a>
                     ))}
                   </div>

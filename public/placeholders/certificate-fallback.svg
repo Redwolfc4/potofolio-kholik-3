@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+  <title id="title">Certificate image fallback</title>
+  <desc id="desc">Fallback image for certificate thumbnails.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#583723"/>
+      <stop offset="100%" stop-color="#d2a37f"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#bg)"/>
+  <rect x="82" y="64" width="476" height="272" rx="22" fill="#fff7ef" fill-opacity="0.2"/>
+  <rect x="136" y="122" width="220" height="20" rx="10" fill="#fff7ef"/>
+  <rect x="136" y="166" width="310" height="14" rx="7" fill="#fff7ef" fill-opacity="0.8"/>
+  <rect x="136" y="196" width="262" height="14" rx="7" fill="#fff7ef" fill-opacity="0.6"/>
+  <circle cx="478" cy="204" r="42" fill="#fff7ef"/>
+  <path d="M478 176l11 22 24 4-17 17 4 24-22-12-22 12 4-24-17-17 24-4z" fill="#a36a43"/>
+</svg>

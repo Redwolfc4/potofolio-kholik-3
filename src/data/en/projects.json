@@ -112,7 +112,7 @@
       "id": "catatanku-react",
       "title": "Catatanku - React Evolution",
       "description": "The evolution of note management into a React.js architecture. Integrating dynamic routing (React Router) and advanced state management to deliver a seamless Single Page Application experience.",
-      "image": "/imgPortofolio/catatanku_app.png",
+      "image": "/imgPortofolio/catatanku_react.jpeg",
       "techStack": [
         "React.js",
         "React Router DOM",
