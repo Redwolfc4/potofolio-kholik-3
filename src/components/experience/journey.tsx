@@ -133,7 +133,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
                     e.stopPropagation();
                     setIsExpanded(!isExpanded);
                   }}
-                  className="text-[10px] xl:text-xs font-bold text-primary/60 hover:text-primary transition-colors mb-4 focus:outline-hidden block"
+                  className="text-[0.625rem] xl:text-xs font-bold text-primary/60 hover:text-primary transition-colors mb-4 focus:outline-hidden block"
                 >
                   {isExpanded ? dict.showLess : dict.showMore}
                 </button>
@@ -141,7 +141,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
               {!isTruncated && <div className="mb-4" />}
 
               <div 
-                className="inline-flex items-center gap-2 text-[10px] xl:text-xs font-black text-primary uppercase tracking-widest cursor-pointer hover:opacity-70 transition-opacity"
+                className="inline-flex items-center gap-2 text-[0.625rem] xl:text-xs font-black text-primary uppercase tracking-widest cursor-pointer hover:opacity-70 transition-opacity"
                 onClick={(e) => {
                   e.stopPropagation();
                   onSelect(exp.id);
@@ -218,7 +218,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
 
       {/* Mobile Date - only visible if not desktop */}
       <div className="md:hidden ml-12 mt-2 mb-4">
-        <span className="text-[10px] font-black text-muted-foreground/50 tracking-widest">{exp.period}</span>
+        <span className="text-[0.625rem] font-black text-muted-foreground/50 tracking-widest">{exp.period}</span>
       </div>
     </div>
   );

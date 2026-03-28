@@ -92,7 +92,7 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
               e.stopPropagation();
               setIsExpanded(!isExpanded);
             }}
-            className="text-[10px] xl:text-xs font-bold text-primary/60 hover:text-primary transition-colors mb-4 focus:outline-hidden block"
+            className="text-[0.625rem] xl:text-xs font-bold text-primary/60 hover:text-primary transition-colors mb-4 focus:outline-hidden block"
           >
             {isExpanded ? dict.showLess : dict.showMore}
           </button>
@@ -101,7 +101,7 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
           {project.techStack.map((tech) => (
             <span
               key={tech}
-              className="px-2 py-1 xl:px-3 xl:py-1.5 2xl:px-4 2xl:py-2 bg-secondary text-secondary-foreground rounded-md text-[10px] xl:text-xs 2xl:text-sm uppercase font-bold tracking-wider"
+              className="px-2 py-1 xl:px-3 xl:py-1.5 2xl:px-4 2xl:py-2 bg-secondary text-secondary-foreground rounded-md text-[0.625rem] xl:text-xs 2xl:text-sm uppercase font-bold tracking-wider"
             >
               {tech}
             </span>

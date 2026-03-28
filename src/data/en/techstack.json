@@ -30,6 +30,76 @@
       "name": "Docker",
       "category": "DevOps",
       "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+    },
+    {
+      "name": "Python",
+      "category": "Language",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+    },
+    {
+      "name": "PHP",
+      "category": "Language",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+    },
+    {
+      "name": "Flask",
+      "category": "Backend",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
+    },
+    {
+      "name": "Laravel",
+      "category": "Backend",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg"
+    },
+    {
+      "name": "Spring Boot",
+      "category": "Backend",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+    },
+    {
+      "name": "MongoDB",
+      "category": "Database",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+    },
+    {
+      "name": "MySQL",
+      "category": "Database",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "Frontend",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+    },
+    {
+      "name": "Figma",
+      "category": "UI/UX",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
+    },
+    {
+      "name": "Git",
+      "category": "DevOps",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+    },
+    {
+      "name": "GitLab",
+      "category": "DevOps",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg"
+    },
+    {
+      "name": "Postman",
+      "category": "DevOps",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
+    },
+    {
+      "name": "jQuery",
+      "category": "Frontend",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg"
+    },
+    {
+      "name": "Bootstrap",
+      "category": "Frontend",
+      "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
     }
   ]
 }
