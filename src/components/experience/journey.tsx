@@ -23,6 +23,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const isCardVisible = isMobile || isHovered;
 
   useEffect(() => {
     const checkTruncation = () => {
@@ -70,23 +71,21 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
       {/* Card Section */}
       <div className="w-full md:w-1/2 flex justify-center md:px-8 2xl:px-12 order-last md:order-0 mt-4 md:mt-0">
         <motion.div
-          {...whenMotionEnabled(motionEnabled, {
-            initial: false,
-            animate: {
-              opacity: isHovered ? 1 : 0,
-              x: isHovered ? 0 : (isEven ? -100 : 100),
-              scale: isHovered ? 1 : 0.8,
-              rotateY: isHovered ? 0 : (isEven ? 15 : -15)
-            },
-            transition: {
-              type: "spring",
-              stiffness: 80,
-              damping: 15,
-              mass: 1,
-              duration: 0.6
-            },
-          })}
-          className="w-full max-w-md xl:max-w-lg 2xl:max-w-2xl z-20"
+          initial={false}
+          animate={{
+            opacity: isCardVisible ? 1 : 0,
+            x: isMobile ? 0 : (isCardVisible ? 0 : (isEven ? -100 : 100)),
+            scale: isMobile ? 1 : (isCardVisible ? 1 : 0.8),
+            rotateY: isMobile ? 0 : (isCardVisible ? 0 : (isEven ? 15 : -15)),
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 80,
+            damping: 15,
+            mass: 1,
+            duration: 0.6,
+          }}
+          className={`w-full max-w-md xl:max-w-lg 2xl:max-w-2xl z-20 ${isCardVisible ? "pointer-events-auto" : "pointer-events-none"}`}
         >
           <motion.div
             {...whenMotionEnabled(motionEnabled, { whileHover: { y: -5, scale: 1.02 } })}
@@ -226,10 +225,15 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
 
 export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
   const motionEnabled = useMotionEnabled();
+  const isMobile = useIsMobile();
   const experiences = dict.items;
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const selected = experiences?.find((exp) => String(exp.id) === String(selectedId)) ?? null;
+
+  useEffect(() => {
+    useLongPressStore.getState().clear();
+  }, [isMobile]);
 
   return (
     <section id="experience" className="py-24 w-full px-4 sm:px-10 lg:px-20 xl:px-24 2xl:px-32 overflow-hidden">

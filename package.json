@@ -12,6 +12,7 @@
     "prod": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-netlify.ps1"
   },
   "dependencies": {
+    "@eslint/eslintrc": "^3.3.5",
     "@hookform/resolvers": "^5.2.2",
     "@tanstack/react-query": "^5.95.2",
     "class-variance-authority": "^0.7.1",

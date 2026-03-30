@@ -14,6 +14,11 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
   const motionEnabled = useMotionEnabled();
+  const getLevelWidth = (level: string) => {
+    if (level === "Native") return "100%";
+    if (level.includes("Working")) return "75%";
+    return "30%";
+  };
 
   return (
     <section className="py-20 w-full flex flex-col items-center justify-center bg-background/50 backdrop-blur-sm border-y border-border/50">
@@ -32,9 +37,11 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
           <div className="w-20 h-1.5 bg-primary rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {dict.items.map((item, index) => {
             const Icon = iconMap[item.icon as string] || Globe;
+            const levelWidth = getLevelWidth(item.level);
+
             return (
               <motion.div
                 key={item.name}
@@ -45,36 +52,41 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
                   transition: { delay: index * 0.1 },
                   whileHover: { y: -5 },
                 })}
-                className="group relative p-6 rounded-2xl bg-card border border-border/50 hover:border-primary/50 transition-all duration-300 overflow-hidden"
+                className="group relative flex min-h-[clamp(16rem,14rem+4vw,19rem)] flex-col overflow-hidden rounded-2xl border border-border/50 bg-card p-[clamp(1.25rem,1rem+0.9vw,2rem)] transition-all duration-300 hover:border-primary/50"
               >
-                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <Icon size={80} />
-                </div>
-                
-                <div className="flex items-center space-x-4 mb-4">
-                  <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                    <Icon size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold">{item.name}</h3>
-                    <p className="text-sm font-medium text-primary">{item.level}</p>
+                <div className="absolute right-[clamp(0.75rem,0.5rem+0.8vw,1.5rem)] top-[clamp(0.75rem,0.5rem+0.8vw,1.5rem)] opacity-5 transition-opacity group-hover:opacity-10">
+                  <div className="size-[clamp(3.75rem,3rem+2vw,5.5rem)]">
+                    <Icon className="size-full" />
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                <div className="mb-[clamp(1rem,0.75rem+0.8vw,1.5rem)] grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-center gap-[clamp(0.875rem,0.6rem+0.8vw,1.25rem)]">
+                  <div className="flex size-[clamp(3rem,2.6rem+1.4vw,4.25rem)] shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Icon className="size-[clamp(1.25rem,1rem+0.8vw,1.75rem)]" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-[clamp(1.125rem,1rem+0.5vw,1.375rem)] font-bold leading-tight">
+                      {item.name}
+                    </h3>
+                    <p className="text-[clamp(0.875rem,0.8rem+0.3vw,1rem)] font-medium leading-tight text-primary">
+                      {item.level}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-auto space-y-[clamp(0.75rem,0.6rem+0.4vw,1rem)]">
+                  <p className="text-[clamp(0.925rem,0.85rem+0.2vw,1rem)] leading-relaxed text-muted-foreground">
                     {item.proficiency}
                   </p>
-                  
-                  {/* Visual proficiency bar */}
-                  <div className="w-full h-1.5 bg-secondary rounded-full overflow-hidden">
-                    <motion.div 
+
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
+                    <motion.div
                       {...whenMotionEnabled(motionEnabled, {
                         initial: { width: 0 },
-                        whileInView: { width: item.level === "Native" ? "100%" : item.level.includes("Working") ? "75%" : "30%" },
+                        whileInView: { width: levelWidth },
                         transition: { duration: 1, delay: 0.5 },
                       })}
-                      style={!motionEnabled ? { width: item.level === "Native" ? "100%" : item.level.includes("Working") ? "75%" : "30%" } : undefined}
+                      style={!motionEnabled ? { width: levelWidth } : undefined}
                       className="h-full bg-primary"
                     />
                   </div>
