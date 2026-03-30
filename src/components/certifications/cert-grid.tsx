@@ -19,7 +19,6 @@ interface CertItemProps {
 }
 
 function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
-  const isMobile = useIsMobile();
   const { isActive, handlers } = useLongPress("certifications", cert.id, "lp-cert");
   const showDetails = isActive;
 

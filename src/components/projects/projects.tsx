@@ -19,7 +19,6 @@ interface ProjectItemProps {
 }
 
 function ProjectItem({ project, index, dict }: ProjectItemProps) {
-  const isMobile = useIsMobile();
   const { isActive, handlers } = useLongPress("projects", project.id, "lp-project");
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
