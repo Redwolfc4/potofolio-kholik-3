@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import { EducationDict } from "@/types/i18n";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
@@ -15,7 +15,7 @@ export default function Education({ dict }: { dict: EducationDict }) {
       <h2 className="text-3xl font-bold mb-10 text-center text-foreground">{dict.title}</h2>
       <div className="space-y-8">
         {education?.map((edu, index) => (
-          <motion.div
+          <m.div
             key={`${edu.institution}-${edu.period}`}
             {...whenMotionEnabled(motionEnabled, {
               initial: { opacity: 0, x: -20 },
@@ -88,7 +88,7 @@ export default function Education({ dict }: { dict: EducationDict }) {
                 )}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </section>

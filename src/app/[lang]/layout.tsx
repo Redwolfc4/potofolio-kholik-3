@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import QueryProvider from "@/components/query-provider";
 import SiteHeader from "@/components/header/site-header";
 import SiteFooter from "@/components/footer/site-footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import { Locale } from "@/types/i18n";
 import { getDictionary } from "@/lib/i18n";
+import MotionProvider from "@/components/motion-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,6 +84,7 @@ export default async function RootLayout({
 }>) {
   const { lang } = (await params) as { lang: Locale };
   const dict = await getDictionary(lang, "common");
+  const baseUrl = "https://salahudinkholiq.com";
 
   return (
     <html lang={lang} suppressHydrationWarning>
@@ -100,24 +101,27 @@ export default async function RootLayout({
               name: "Salahudin Kholiq",
               jobTitle: "Frontend Developer",
               email: "salahudinkoliq10@gmail.com",
-              url: "https://example.com",
-              sameAs: ["https://github.com/kholik-3"],
+              url: baseUrl,
+              sameAs: [
+                "https://github.com/kholik-3",
+                "https://www.linkedin.com/in/salahudin-kholik-prasetyono",
+              ],
             }),
           }}
         />
-        <QueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <MotionProvider>
             <SiteHeader lang={lang} dict={dict.header} />
             {children}
             <SiteFooter dict={dict.footer} />
             <ScrollToTop />
-          </ThemeProvider>
-        </QueryProvider>
+          </MotionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

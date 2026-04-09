@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { emailService } from "@/services/email.service";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 
 import { ContactDict } from "@/types/i18n";
@@ -97,7 +97,7 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
   return (
     <section id="contact" className="py-20 w-full px-10">
       <h2 className="text-3xl font-bold mb-10 text-center">{dict.title}</h2>
-      <motion.div
+      <m.div
         {...whenMotionEnabled(motionEnabled, {
           initial: { opacity: 0, y: 20 },
           whileInView: { opacity: 1, y: 0 },
@@ -210,7 +210,7 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
             )}
           </form>
         )}
-      </motion.div>
+      </m.div>
     </section>
   );
 }

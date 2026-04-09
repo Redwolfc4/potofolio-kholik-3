@@ -2,7 +2,7 @@ import { useHasMounted } from "@/hooks/use-has-mounted";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { whenMotionEnabled } from "@/lib/motion";
 
@@ -37,7 +37,7 @@ export function ThemeToggle() {
       className="cursor-pointer border border-border/70 bg-card/70 shadow-sm transition-colors hover:bg-accent/60"
     >
       {currentTheme === "dark" ? (
-        <motion.span
+        <m.span
           className="relative flex items-center justify-center"
           {...whenMotionEnabled(motionEnabled, {
             animate: { rotate: 360 },
@@ -45,11 +45,11 @@ export function ThemeToggle() {
           })}
         >
           <Sun className="h-5 w-5 text-amber-300 drop-shadow-[0_0_12px_rgba(212,161,115,0.8)]" />
-        </motion.span>
+        </m.span>
       ) : (
         <span className="relative flex items-center justify-center">
           <Moon className="h-5 w-5 text-primary" />
-          <motion.span
+          <m.span
             className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-accent"
             {...whenMotionEnabled(motionEnabled, {
               animate: { opacity: [0.2, 1, 0.2], scale: [0.6, 1.1, 0.6] },

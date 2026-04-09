@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useSyncExternalStore, useEffect } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -23,7 +23,7 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
   const showDetails = isActive;
 
   return (
-    <motion.div
+    <m.div
       key={cert.id}
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -82,7 +82,7 @@ function CertItem({ cert, index, viewCredentialLabel }: CertItemProps) {
           </div>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 

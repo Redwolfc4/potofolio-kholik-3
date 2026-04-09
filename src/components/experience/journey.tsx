@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
 import { ExperienceDict } from "@/types/i18n";
@@ -70,7 +70,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
     >
       {/* Card Section */}
       <div className="w-full md:w-1/2 flex justify-center md:px-8 2xl:px-12 order-last md:order-0 mt-4 md:mt-0">
-        <motion.div
+        <m.div
           initial={false}
           animate={{
             opacity: isCardVisible ? 1 : 0,
@@ -87,7 +87,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
           }}
           className={`w-full max-w-md xl:max-w-lg 2xl:max-w-2xl z-20 ${isCardVisible ? "pointer-events-auto" : "pointer-events-none"}`}
         >
-          <motion.div
+          <m.div
             {...whenMotionEnabled(motionEnabled, { whileHover: { y: -5, scale: 1.02 } })}
             className={`lp-exp relative backdrop-blur-xl border rounded-3xl p-6 2xl:p-8 transition-all duration-500 group/card overflow-hidden ${isHovered ? "shadow-primary/10 bg-card border-primary/40 -translate-y-1 scale-[1.02]" : "bg-card/40 border-primary/20 shadow-2xl"}`}
             onMouseEnter={() => {
@@ -156,8 +156,8 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
                 {exp.location}
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
 
       {/* Bullet / Dot in the Middle */}
@@ -168,7 +168,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
         }}
         {...handlers}
       >
-        <motion.div
+        <m.div
           {...whenMotionEnabled(motionEnabled, {
             animate: {
               scale: isHovered ? 1.8 : 1,
@@ -177,7 +177,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
           })}
           className="h-6 w-6 xl:h-8 xl:w-8 rounded-full bg-background border-2 border-primary flex items-center justify-center cursor-pointer shadow-[0_0_20px_rgba(var(--primary),0.3)] transition-all group"
         >
-          <motion.div
+          <m.div
             {...whenMotionEnabled(motionEnabled, {
               animate: {
                 scale: isHovered ? 0.5 : 1,
@@ -189,19 +189,19 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
 
           {/* Pulse effect when hovered */}
           {isHovered && motionEnabled && (
-            <motion.div
+            <m.div
               initial={{ scale: 1, opacity: 0.5 }}
               animate={{ scale: 2.5, opacity: 0 }}
               transition={{ repeat: Infinity, duration: 1 }}
               className="absolute inset-0 rounded-full bg-primary/30"
             />
           )}
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Date/Period Section */}
       <div className={`hidden md:flex w-1/2 ${isEven ? "justify-start" : "justify-end"} px-12 xl:px-20`}>
-        <motion.div
+        <m.div
           {...whenMotionEnabled(motionEnabled, {
             animate: {
               opacity: isHovered ? 1 : 0.3,
@@ -212,7 +212,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
           className="text-sm xl:text-lg font-black uppercase tracking-[0.3em] transition-colors"
         >
           {exp.period}
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Mobile Date - only visible if not desktop */}
@@ -238,7 +238,7 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
   return (
     <section id="experience" className="py-24 w-full px-4 sm:px-10 lg:px-20 xl:px-24 2xl:px-32 overflow-hidden">
       <div className="">
-        <motion.h2
+        <m.h2
           {...whenMotionEnabled(motionEnabled, {
             initial: { opacity: 0, y: 20 },
             whileInView: { opacity: 1, y: 0 },
@@ -247,7 +247,7 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
           className="text-4xl md:text-5xl xl:text-6xl font-black mb-20 text-center bg-clip-text text-transparent bg-linear-to-r from-primary via-primary/80 to-primary/60"
         >
           {dict.title}
-        </motion.h2>
+        </m.h2>
 
         <div className="relative">
           {/* Vertical Line - Center Positioned */}
@@ -274,7 +274,7 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
             if (e.target === e.currentTarget) setSelectedId(null);
           }}
         >
-          <motion.div
+          <m.div
             {...whenMotionEnabled(motionEnabled, {
               initial: { opacity: 0, scale: 0.95 },
               animate: { opacity: 1, scale: 1 },
@@ -339,7 +339,7 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       )}
     </section>

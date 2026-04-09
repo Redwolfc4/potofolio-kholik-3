@@ -18,7 +18,19 @@ export interface HeroDict {
     fallbackSrc: string;
   };
   buttons: {
-    contact: string;
+    cv: {
+      label: string;
+      image: {
+        label: string;
+        id: string;
+        en: string;
+      };
+      plain: {
+        label: string;
+        id: string;
+        en: string;
+      };
+    };
     projects: string;
   };
 }
