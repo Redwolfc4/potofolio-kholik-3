@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useHasMounted } from "@/hooks/use-has-mounted";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { whenMotionEnabled } from "@/lib/motion";
@@ -42,7 +42,7 @@ export default function ScrollToTop() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <m.div
           {...whenMotionEnabled(motionEnabled, {
             initial: { opacity: 0, scale: 0.5 },
             animate: { opacity: 1, scale: 1 },
@@ -66,7 +66,7 @@ export default function ScrollToTop() {
           title="Scroll to Top"
         >
           <ArrowUp className="h-6 w-6 md:h-8 md:w-8" />
-          <motion.div
+          <m.div
             className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-accent"
             {...whenMotionEnabled(motionEnabled, {
               animate: {
@@ -79,7 +79,7 @@ export default function ScrollToTop() {
               },
             })}
           />
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

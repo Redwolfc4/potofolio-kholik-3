@@ -20,7 +20,19 @@
       "fallbackSrc": "/placeholders/avatar-fallback.svg"
     },
     "buttons": {
-      "contact": "Hubungi Saya",
+      "cv": {
+        "label": "Cek CV",
+        "image": {
+          "label": "CV Bergambar",
+          "id": "Indonesia",
+          "en": "Inggris"
+        },
+        "plain": {
+          "label": "CV Non Gambar",
+          "id": "Indonesia",
+          "en": "Inggris"
+        }
+      },
       "projects": "Lihat Proyek"
     }
   },

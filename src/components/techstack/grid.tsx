@@ -69,7 +69,7 @@ function TechStackItem({ tech, itemKey }: TechStackItemProps) {
 export default function TechStack({ dict }: { dict: TechStackDict }) {
   const isMobile = useIsMobile();
   const rawItems = dict.items || [];
-  const items = isMobile ? rawItems : [...rawItems, ...rawItems];
+  const items = rawItems;
 
   return (
     <section id="techstack" className="w-full py-20">

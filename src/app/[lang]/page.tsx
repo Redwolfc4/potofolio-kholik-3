@@ -1,13 +1,16 @@
+import dynamic from "next/dynamic";
 import Hero from "@/components/hero/hero";
-import About from "@/components/about/about";
-import TechStack from "@/components/techstack/grid";
-import ExperienceJourney from "@/components/experience/journey";
-import Projects from "@/components/projects/projects";
-import Education from "@/components/education/education";
-import CertGrid from "@/components/certifications/cert-grid";
-import LanguageSection from "@/components/languages/languages";
-import Marquee from "@/components/companies/marquee";
-import ContactForm from "@/components/contact/contact-form";
+
+// Dynamically import components below the fold
+const About = dynamic(() => import("@/components/about/about"));
+const TechStack = dynamic(() => import("@/components/techstack/grid"));
+const ExperienceJourney = dynamic(() => import("@/components/experience/journey"));
+const Projects = dynamic(() => import("@/components/projects/projects"));
+const Education = dynamic(() => import("@/components/education/education"));
+const CertGrid = dynamic(() => import("@/components/certifications/cert-grid"));
+const LanguageSection = dynamic(() => import("@/components/languages/languages"));
+const Marquee = dynamic(() => import("@/components/companies/marquee"));
+const ContactForm = dynamic(() => import("@/components/contact/contact-form"));
 import { Locale } from "@/types/i18n";
 import { getDictionary } from "@/lib/i18n";
 

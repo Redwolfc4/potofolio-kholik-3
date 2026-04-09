@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Languages, Globe, JapaneseYen, LucideIcon } from "lucide-react";
 import { LanguagesDict } from "@/types/i18n";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
@@ -23,7 +23,7 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
   return (
     <section className="py-20 w-full flex flex-col items-center justify-center bg-background/50 backdrop-blur-sm border-y border-border/50">
       <div className="container px-4 md:px-6">
-        <motion.div
+        <m.div
           {...whenMotionEnabled(motionEnabled, {
             initial: { opacity: 0, y: 20 },
             whileInView: { opacity: 1, y: 0 },
@@ -35,7 +35,7 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
             {dict.title}
           </h2>
           <div className="w-20 h-1.5 bg-primary rounded-full" />
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {dict.items.map((item, index) => {
@@ -43,7 +43,7 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
             const levelWidth = getLevelWidth(item.level);
 
             return (
-              <motion.div
+              <m.div
                 key={item.name}
                 {...whenMotionEnabled(motionEnabled, {
                   initial: { opacity: 0, y: 20 },
@@ -80,7 +80,7 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
                   </p>
 
                   <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
-                    <motion.div
+                    <m.div
                       {...whenMotionEnabled(motionEnabled, {
                         initial: { width: 0 },
                         whileInView: { width: levelWidth },
@@ -91,7 +91,7 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
                     />
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

@@ -1,28 +1,75 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import Link from "next/link";
-
-import { HeroDict } from "@/types/i18n";
-import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { whenMotionEnabled } from "@/lib/motion";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
+import { HeroDict } from "@/types/i18n";
+import { m } from "framer-motion";
+import { ChevronDown, ChevronRight, FileImage, FileText } from "lucide-react";
+import Link from "next/link";
+
+const cvMenuConfig = {
+  image: {
+    Icon: FileImage,
+    items: [
+      {
+        key: "id",
+        href: "/docs/portofolio/indonesia/salahudin-kholik-prasetyono-cvgambar_id_1.pdf",
+      },
+      {
+        key: "en",
+        href: "/docs/portofolio/inggris/salahudin-kholik-prasetyono-cvgambar_en_1.pdf",
+      },
+    ],
+  },
+  plain: {
+    Icon: FileText,
+    items: [
+      {
+        key: "id",
+        href: "/docs/portofolio/indonesia/salahudin-kholik-prasetyono-cv_id_1.pdf",
+      },
+      {
+        key: "en",
+        href: "/docs/portofolio/inggris/salahudin-kholik-prasetyono-cv_en_1.pdf",
+      },
+    ],
+  },
+} as const;
 
 export default function Hero({ dict }: { dict: HeroDict }) {
   const motionEnabled = useMotionEnabled();
+  const cvMenuItems = [
+    {
+      label: dict.buttons.cv.image.label,
+      Icon: cvMenuConfig.image.Icon,
+      options: cvMenuConfig.image.items.map((item) => ({
+        href: item.href,
+        label: dict.buttons.cv.image[item.key],
+      })),
+    },
+    {
+      label: dict.buttons.cv.plain.label,
+      Icon: cvMenuConfig.plain.Icon,
+      options: cvMenuConfig.plain.items.map((item) => ({
+        href: item.href,
+        label: dict.buttons.cv.plain[item.key],
+      })),
+    },
+  ];
 
   return (
     <section id="home" className="relative isolate w-full overflow-hidden py-24 lg:py-28">
       <div className="absolute inset-0 -z-10">
-        <motion.div
+        <m.div
           className="absolute -top-24 -left-20 h-80 w-80 rounded-full bg-primary/25 blur-3xl"
           {...whenMotionEnabled(motionEnabled, {
             animate: { y: [0, 30, 0] },
             transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
           })}
         />
-        <motion.div
+        <m.div
           className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-accent/25 blur-3xl"
           {...whenMotionEnabled(motionEnabled, {
             animate: { y: [0, -40, 0] },
@@ -31,14 +78,14 @@ export default function Hero({ dict }: { dict: HeroDict }) {
         />
         <div className="absolute inset-x-8 top-10 h-72 rounded-[3rem] border border-border/40 bg-card/35 blur-3xl" />
       </div>
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-[22.5rem_1fr] gap-12 items-center">
-        <motion.div
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 md:grid-cols-[22.5rem_1fr]">
+        <m.div
           {...whenMotionEnabled(motionEnabled, {
             initial: { opacity: 0, y: 20 },
             animate: { opacity: 1, y: 0 },
             transition: { duration: 0.8 },
           })}
-          className="max-w-100 mx-auto mt-8 h-105 w-full overflow-hidden rounded-3xl border border-border/60 bg-muted shadow-[0_24px_60px_rgba(95,58,34,0.18)] ring-1 ring-background/60 md:mt-0 md:h-105 dark:shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
+          className="mx-auto mt-8 h-105 max-w-100 w-full overflow-hidden rounded-3xl border border-border/60 bg-muted shadow-[0_24px_60px_rgba(95,58,34,0.18)] ring-1 ring-background/60 md:mt-0 md:h-105 dark:shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
         >
           <ImageWithFallback
             src={dict.image.src}
@@ -47,13 +94,14 @@ export default function Hero({ dict }: { dict: HeroDict }) {
             width={900}
             height={1200}
             sizes="(max-width: 768px) 100vw, 360px"
-            className="w-full h-full object-cover object-top"
+            className="h-full w-full object-cover object-top"
             priority
+            fetchPriority="high"
           />
-        </motion.div>
+        </m.div>
         <div className="text-center md:text-left">
           <div className="space-y-6 rounded-[2rem] border border-border/60 bg-card/70 p-8 shadow-[0_24px_60px_rgba(95,58,34,0.12)] backdrop-blur-sm dark:shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
-            <motion.span
+            <m.span
               {...whenMotionEnabled(motionEnabled, {
                 initial: { opacity: 0, y: 16 },
                 animate: { opacity: 1, y: 0 },
@@ -62,8 +110,8 @@ export default function Hero({ dict }: { dict: HeroDict }) {
               className="inline-flex items-center rounded-full border border-primary/20 bg-secondary/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-primary"
             >
               {dict.tagline}
-            </motion.span>
-            <motion.h1
+            </m.span>
+            <m.h1
               {...whenMotionEnabled(motionEnabled, {
                 initial: { opacity: 0, y: 20 },
                 animate: { opacity: 1, y: 0 },
@@ -72,8 +120,8 @@ export default function Hero({ dict }: { dict: HeroDict }) {
               className="[text-align:start] bg-linear-to-r from-foreground via-primary to-foreground bg-clip-text text-4xl font-bold tracking-tight text-transparent lg:text-6xl"
             >
               {dict.name}
-            </motion.h1>
-            <motion.p
+            </m.h1>
+            <m.p
               {...whenMotionEnabled(motionEnabled, {
                 initial: { opacity: 0, y: 20 },
                 animate: { opacity: 1, y: 0 },
@@ -82,21 +130,54 @@ export default function Hero({ dict }: { dict: HeroDict }) {
               className="max-w-2xl text-lg text-muted-foreground"
             >
               {dict.description}
-            </motion.p>
-            <motion.div
+            </m.p>
+            <m.div
               {...whenMotionEnabled(motionEnabled, {
                 initial: { opacity: 0, y: 20 },
                 animate: { opacity: 1, y: 0 },
                 transition: { delay: 0.3, duration: 0.8 },
               })}
-              className="flex flex-col gap-4 justify-center sm:flex-row md:justify-start"
+              className="flex flex-col justify-center gap-4 sm:flex-row sm:items-start md:justify-start"
             >
-              <Button
-                asChild
-                className="shadow-[0_18px_40px_rgba(138,90,60,0.24)] transition-all hover:shadow-[0_22px_46px_rgba(138,90,60,0.3)]"
-              >
-                <Link href="#contact">{dict.buttons.contact}</Link>
-              </Button>
+              <div className="group/cv relative w-full sm:w-auto">
+                <Button
+                  className="w-full shadow-[0_18px_40px_rgba(138,90,60,0.24)] transition-all hover:shadow-[0_22px_46px_rgba(138,90,60,0.3)] sm:w-auto"
+                  aria-haspopup="menu"
+                >
+                  {dict.buttons.cv.label}
+                  <ChevronDown className="size-4 transition-transform duration-200 group-hover/cv:rotate-180 group-focus-within/cv:rotate-180" />
+                </Button>
+                <div className="pointer-events-none absolute left-0 top-full z-20 mt-3 w-full min-w-60 opacity-0 transition-all duration-200 group-hover/cv:pointer-events-auto group-hover/cv:translate-x-4 group-hover/cv:translate-y-2 group-hover/cv:opacity-100 group-focus-within/cv:pointer-events-auto group-focus-within/cv:translate-x-4 group-focus-within/cv:translate-y-2 group-focus-within/cv:opacity-100 sm:w-64">
+                  <div className="rounded-2xl border border-border/70 bg-card/95 p-2 shadow-[0_24px_80px_rgba(53,33,16,0.22)] backdrop-blur-xl">
+                    {cvMenuItems.map((item) => (
+                      <div key={item.label} className="group/submenu relative">
+                        <div className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 group-hover/submenu:bg-secondary/70 group-focus-within/submenu:bg-secondary/70">
+                          <span className="flex items-center gap-3">
+                            <item.Icon className="size-4 text-primary" />
+                            {item.label}
+                          </span>
+                          <ChevronRight className="size-4 text-muted-foreground" />
+                        </div>
+                        <div className="pointer-events-none absolute left-full top-0 z-30 ml-2 w-48 opacity-0 transition-all duration-200 group-hover/submenu:pointer-events-auto group-hover/submenu:translate-x-3 group-hover/submenu:translate-y-2 group-hover/submenu:opacity-100 group-focus-within/submenu:pointer-events-auto group-focus-within/submenu:translate-x-3 group-focus-within/submenu:translate-y-2 group-focus-within/submenu:opacity-100">
+                          <div className="rounded-2xl border border-border/70 bg-card/95 p-2 shadow-[0_24px_80px_rgba(53,33,16,0.22)] backdrop-blur-xl">
+                            {item.options.map((option) => (
+                              <Link
+                                key={option.href}
+                                href={option.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 focus:bg-secondary/70 focus:outline-none"
+                              >
+                                {option.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
               <Button
                 variant="outline"
                 asChild
@@ -104,7 +185,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
               >
                 <Link href="#projects">{dict.buttons.projects}</Link>
               </Button>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

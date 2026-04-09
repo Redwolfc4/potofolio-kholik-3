@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useSyncExternalStore, useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -42,7 +42,7 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
   }, [project.description, isExpanded, isActive]);
 
   return (
-    <motion.div
+    <m.div
       key={project.id}
       initial={{ opacity: 0, scale: 0.96 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -129,7 +129,7 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
           )}
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 

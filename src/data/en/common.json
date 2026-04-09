@@ -20,7 +20,19 @@
       "fallbackSrc": "/placeholders/avatar-fallback.svg"
     },
     "buttons": {
-      "contact": "Contact Me",
+      "cv": {
+        "label": "Check CV",
+        "image": {
+          "label": "Image CV",
+          "id": "Indonesian",
+          "en": "English"
+        },
+        "plain": {
+          "label": "Plain CV",
+          "id": "Indonesian",
+          "en": "English"
+        }
+      },
       "projects": "View Projects"
     }
   },
