@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://salahudinkholiq.com/sitemap.xml

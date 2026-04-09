@@ -27,22 +27,50 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     ? "Salahudin Kholiq — Frontend Developer" 
     : "Salahudin Kholiq — Pengembang Frontend";
   const description = dict.hero.description;
+  const baseUrl = "https://salahudinkholiq.com";
 
   return {
     title,
     description,
-    metadataBase: new URL("https://example.com"),
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: `/${lang}`,
+      languages: {
+        "en-US": "/en",
+        "id-ID": "/id",
+      },
+    },
     openGraph: {
       title,
       description,
-      url: "https://example.com",
+      url: `${baseUrl}/${lang}`,
       siteName: "Salahudin Kholiq Portfolio",
+      images: [
+        {
+          url: "/imgPortofolio/og-image.png", // Recommended to add this file
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: ["/imgPortofolio/og-image.png"],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
   };
 }
