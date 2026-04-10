@@ -9,7 +9,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "prod": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-netlify.ps1"
+    "prod": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-netlify.ps1",
+    "docker:dev": "docker compose -f docker-compose.dev.yml up --build",
+    "docker:prod": "docker compose -f docker-compose.prod.yml up --build -d"
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.3.5",

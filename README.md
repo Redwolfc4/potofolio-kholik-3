@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio App
 
-## Getting Started
+Next.js portfolio with locale routing, contact API, hardened CSP, and Docker dev/prod setup.
 
-First, run the development server:
+## Env Files
+
+Tracked templates:
+
+- `.env.example`: shared reference
+- `.env.dev`: Docker/local development template
+- `.env.prod`: production template
+
+Local-only file:
+
+- `.env`: fill this only on your laptop with real secrets
+
+Important:
+
+- Do not put real secrets into tracked env files
+- Rotate any SMTP or Netlify secret that was ever committed before this change
+- Never expose server secrets with `NEXT_PUBLIC_*`
+
+## Local Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Docker
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Development:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm docker:dev
+```
 
-## Learn More
+Production:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm docker:prod
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Direct compose commands:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+docker compose -f docker-compose.dev.yml up --build
+docker compose -f docker-compose.prod.yml up --build -d
+```
 
-## Deploy on Vercel
+## Security Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Production image uses Next.js standalone output
+- Container runtime runs as non-root
+- Production compose enables `no-new-privileges`
+- `.dockerignore` excludes `.env*` from build context
+- Contact API reads secrets only on the server through `src/lib/server-env.ts`
+- Contact API returns only generic operational errors, not secret/config values
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Netlify Deploy
+
+The deploy script now prefers `.env.prod` and falls back to `.env`.
+
+```bash
+pnpm prod
+```

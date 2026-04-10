@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isDevelopment = process.env.NODE_ENV === "development";
+
 const remoteImageHosts = [
   "cdn.jsdelivr.net",
   "dicoding-web-img.sgp1.cdn.digitaloceanspaces.com",
@@ -31,7 +33,7 @@ const securityHeaders = [
       "form-action 'self'",
       "frame-ancestors 'none'",
       "object-src 'none'",
-      "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
+      `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${isDevelopment ? " 'unsafe-eval'" : ""}`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https:",
       "font-src 'self' data:",
@@ -61,6 +63,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  output: "standalone",
+  poweredByHeader: false,
   images: {
     remotePatterns: remoteImageHosts.map((hostname) => ({
       protocol: "https",
