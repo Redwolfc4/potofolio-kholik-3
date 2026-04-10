@@ -7,7 +7,10 @@ import { TechStackDict } from "./techstack";
 import { EducationDict } from "./education";
 import { LanguagesDict } from "./languages";
 
-export type Locale = "en" | "id";
+export const locales = ["en", "id"] as const;
+export const defaultLocale = "en" as const;
+
+export type Locale = (typeof locales)[number];
 
 export interface Dictionary {
   common: CommonDict;

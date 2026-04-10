@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { getContactEnv } from "@/lib/server-env";
 
 type ContactApiResponse = {
   success: boolean;
@@ -39,33 +40,27 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
     const { name, email, subject, message } = data ?? {};
-    const contactEmail = process.env.CONTACT_EMAIL;
-
     if (!name || !email || !subject || !message) {
       return buildResponse(req, requestId, 400, "Contact form validation failed", {
-        error: "Missing required fields",
+        error: "Invalid contact payload",
       });
     }
 
-    if (!contactEmail) {
-      return buildResponse(req, requestId, 500, "Contact service is not configured", {
-        error: "Missing contact configuration",
-      });
-    }
+    const contactEnv = getContactEnv();
 
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT ?? 587),
-      secure: false,
+      host: contactEnv.SMTP_HOST,
+      port: contactEnv.SMTP_PORT,
+      secure: contactEnv.SMTP_PORT === 465,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: contactEnv.SMTP_USER,
+        pass: contactEnv.SMTP_PASS,
       },
     });
 
     await transporter.sendMail({
-      from: `"Portfolio Contact" <${process.env.SMTP_USER}>`,
-      to: contactEmail,
+      from: `"Portfolio Contact" <${contactEnv.SMTP_USER}>`,
+      to: contactEnv.CONTACT_EMAIL,
       replyTo: email,
       subject: `[Portfolio] ${subject}`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
@@ -73,9 +68,10 @@ export async function POST(req: Request) {
 
     return buildResponse(req, requestId, 200, "Email sent successfully");
   } catch (error) {
-    console.error("Contact API error:", { requestId, error });
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    console.error("Contact API error:", { requestId, error: errorMessage });
     return buildResponse(req, requestId, 500, "Failed to send email", {
-      error: "Internal server error",
+      error: "Contact service unavailable",
     });
   }
 }

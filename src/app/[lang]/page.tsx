@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
 import Hero from "@/components/hero/hero";
 
 // Dynamically import components below the fold
@@ -11,35 +12,47 @@ const CertGrid = dynamic(() => import("@/components/certifications/cert-grid"));
 const LanguageSection = dynamic(() => import("@/components/languages/languages"));
 const Marquee = dynamic(() => import("@/components/companies/marquee"));
 const ContactForm = dynamic(() => import("@/components/contact/contact-form"));
-import { Locale } from "@/types/i18n";
-import { getDictionary } from "@/lib/i18n";
+import { getDictionary, isValidLocale } from "@/lib/i18n";
 
-export default async function Home({ params }: { params: Promise<{ lang: Locale }> }) {
+export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+
+  if (!isValidLocale(lang)) {
+    notFound();
+  }
   
-  const dict = {
-    common: await getDictionary(lang, "common"),
-    about: await getDictionary(lang, "about"),
-    experience: await getDictionary(lang, "experience"),
-    projects: await getDictionary(lang, "projects"),
-    certifications: await getDictionary(lang, "certifications"),
-    techstack: await getDictionary(lang, "techstack"),
-    education: await getDictionary(lang, "education"),
-    languages: await getDictionary(lang, "languages"),
-  };
+  const [
+    common,
+    about,
+    experience,
+    projects,
+    certifications,
+    techstack,
+    education,
+    languages,
+  ] = await Promise.all([
+    getDictionary(lang, "common"),
+    getDictionary(lang, "about"),
+    getDictionary(lang, "experience"),
+    getDictionary(lang, "projects"),
+    getDictionary(lang, "certifications"),
+    getDictionary(lang, "techstack"),
+    getDictionary(lang, "education"),
+    getDictionary(lang, "languages"),
+  ]);
 
   return (
     <main className="flex flex-col items-center w-full relative">
-      <Hero dict={dict.common.hero} />
-      <About dict={dict.about} />
-      <TechStack dict={dict.techstack} />
-      <Marquee dict={dict.common} />
-      <ExperienceJourney dict={dict.experience} />
-      <Projects dict={dict.projects} />
-      <Education dict={dict.education} />
-      <LanguageSection dict={dict.languages} />
-      <CertGrid dict={dict.certifications} />
-      <ContactForm dict={dict.common.contact} />
+      <Hero dict={common.hero} />
+      <About dict={about} />
+      <TechStack dict={techstack} />
+      <Marquee dict={common} />
+      <ExperienceJourney dict={experience} />
+      <Projects dict={projects} />
+      <Education dict={education} />
+      <LanguageSection dict={languages} />
+      <CertGrid dict={certifications} />
+      <ContactForm dict={common.contact} />
     </main>
   );
 }

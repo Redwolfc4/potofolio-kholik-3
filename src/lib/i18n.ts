@@ -1,5 +1,5 @@
 import "server-only";
-import { Locale, Dictionary } from "@/types/i18n";
+import { Locale, Dictionary, defaultLocale, locales } from "@/types/i18n";
 
 const dictionaries = {
   en: {
@@ -30,6 +30,12 @@ export const getDictionary = async <K extends keyof Dictionary>(
 ): Promise<Dictionary[K]> => {
   return dictionaries[locale][key]() as unknown as Promise<Dictionary[K]>;
 };
+
+export const isValidLocale = (value: string): value is Locale => {
+  return locales.includes(value as Locale);
+};
+
+export { defaultLocale, locales };
 
 export type { Locale, Dictionary };
 export * from "@/types/i18n";
