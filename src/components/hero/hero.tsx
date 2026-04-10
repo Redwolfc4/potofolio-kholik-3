@@ -92,10 +92,8 @@ export default function Hero({ dict }: { dict: HeroDict }) {
     clearCloseMenuTimeout();
     clearCloseSubmenuTimeout();
     setIsCvMenuOpen(true);
-    setActiveSubmenu((current) => {
-      if (current) return current;
-      return isMobile ? null : (cvMenuItems[0]?.label ?? null);
-    });
+    // Don't auto-select a submenu on open, let user hover explicitly
+    setActiveSubmenu(null);
   };
 
   const scheduleCloseCvMenu = () => {
@@ -109,7 +107,8 @@ export default function Hero({ dict }: { dict: HeroDict }) {
     clearCloseSubmenuTimeout();
     closeSubmenuTimeoutRef.current = setTimeout(() => {
       if (!isMobile) {
-        setActiveSubmenu(cvMenuItems[0]?.label ?? null);
+        // Reset to nothing selected instead of the first item
+        setActiveSubmenu(null);
       }
     }, 350);
   };
@@ -234,7 +233,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
               >
                 <Button
                   type="button"
-                  className="w-full shadow-[0_18px_40px_rgba(138,90,60,0.24)] transition-all hover:shadow-[0_22px_46px_rgba(138,90,60,0.3)] sm:w-auto"
+                  className="w-full cursor-pointer shadow-[0_18px_40px_rgba(138,90,60,0.24)] transition-all hover:shadow-[0_22px_46px_rgba(138,90,60,0.3)] sm:w-auto"
                   aria-haspopup="menu"
                   aria-expanded={isCvMenuOpen}
                   onClick={() => {
@@ -286,7 +285,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
                       >
                         <button
                           type="button"
-                          className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 ${activeSubmenu === item.label ? "bg-secondary/70" : ""}`}
+                          className={`flex w-full cursor-pointer items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 ${activeSubmenu === item.label ? "bg-secondary/70" : ""}`}
                           onClick={() => {
                             clearCloseMenuTimeout();
                             clearCloseSubmenuTimeout();
@@ -328,7 +327,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
                                 href={option.href}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 focus:bg-secondary/70 focus:outline-none"
+                                className="block cursor-pointer rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 focus:bg-secondary/70 focus:outline-none"
                                 onClick={() => {
                                   closeCvMenu();
                                 }}
