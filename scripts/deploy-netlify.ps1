@@ -3,7 +3,8 @@ $ErrorActionPreference = "Stop"
 # Define project root and env paths
 $root = Split-Path -Parent $PSScriptRoot
 if ([string]::IsNullOrWhiteSpace($root)) { $root = $PWD }
-$envFile = Join-Path $root ".env"
+$primaryEnvFile = Join-Path $root ".env.prod"
+$fallbackEnvFile = Join-Path $root ".env"
 
 # Function to load .env variables into Process scope
 function Import-EnvFile {
@@ -13,7 +14,7 @@ function Import-EnvFile {
         return 
     }
     
-    Write-Host "Loading environment variables from .env..." -ForegroundColor Cyan
+    Write-Host "Loading environment variables from $Path..." -ForegroundColor Cyan
     Get-Content $Path | ForEach-Object {
         $line = $_.Trim()
         if (-not $line -or $line.StartsWith("#")) { return }
@@ -31,7 +32,11 @@ function Import-EnvFile {
     }
 }
 
-Import-EnvFile -Path $envFile
+if (Test-Path $primaryEnvFile) {
+    Import-EnvFile -Path $primaryEnvFile
+} else {
+    Import-EnvFile -Path $fallbackEnvFile
+}
 
 # Configuration Check
 $token = [Environment]::GetEnvironmentVariable("NETLIFY_AUTH_TOKEN", "Process")

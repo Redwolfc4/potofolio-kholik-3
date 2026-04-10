@@ -2,12 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 import { whenMotionEnabled } from "@/lib/motion";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { HeroDict } from "@/types/i18n";
 import { m } from "framer-motion";
 import { ChevronDown, ChevronRight, FileImage, FileText } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const cvMenuConfig = {
   image: {
@@ -40,6 +42,12 @@ const cvMenuConfig = {
 
 export default function Hero({ dict }: { dict: HeroDict }) {
   const motionEnabled = useMotionEnabled();
+  const isMobile = useIsMobile();
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const closeMenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const closeSubmenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isCvMenuOpen, setIsCvMenuOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const cvMenuItems = [
     {
       label: dict.buttons.cv.image.label,
@@ -58,6 +66,77 @@ export default function Hero({ dict }: { dict: HeroDict }) {
       })),
     },
   ];
+
+  const clearCloseMenuTimeout = () => {
+    if (closeMenuTimeoutRef.current) {
+      clearTimeout(closeMenuTimeoutRef.current);
+      closeMenuTimeoutRef.current = null;
+    }
+  };
+
+  const clearCloseSubmenuTimeout = () => {
+    if (closeSubmenuTimeoutRef.current) {
+      clearTimeout(closeSubmenuTimeoutRef.current);
+      closeSubmenuTimeoutRef.current = null;
+    }
+  };
+
+  const closeCvMenu = () => {
+    clearCloseMenuTimeout();
+    clearCloseSubmenuTimeout();
+    setIsCvMenuOpen(false);
+    setActiveSubmenu(null);
+  };
+
+  const openCvMenu = () => {
+    clearCloseMenuTimeout();
+    clearCloseSubmenuTimeout();
+    setIsCvMenuOpen(true);
+    setActiveSubmenu((current) => {
+      if (current) return current;
+      return isMobile ? null : (cvMenuItems[0]?.label ?? null);
+    });
+  };
+
+  const scheduleCloseCvMenu = () => {
+    clearCloseMenuTimeout();
+    closeMenuTimeoutRef.current = setTimeout(() => {
+      closeCvMenu();
+    }, 400);
+  };
+
+  const scheduleSubmenuReset = () => {
+    clearCloseSubmenuTimeout();
+    closeSubmenuTimeoutRef.current = setTimeout(() => {
+      if (!isMobile) {
+        setActiveSubmenu(cvMenuItems[0]?.label ?? null);
+      }
+    }, 350);
+  };
+
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) {
+        closeCvMenu();
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeCvMenu();
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+      clearCloseMenuTimeout();
+      clearCloseSubmenuTimeout();
+    };
+  }, []);
 
   return (
     <section id="home" className="relative isolate w-full overflow-hidden py-24 lg:py-28">
@@ -139,27 +218,110 @@ export default function Hero({ dict }: { dict: HeroDict }) {
               })}
               className="flex flex-col justify-center gap-4 sm:flex-row sm:items-start md:justify-start"
             >
-              <div className="group/cv relative w-full sm:w-auto">
+              <div
+                ref={rootRef}
+                className="relative w-full sm:w-auto"
+                onMouseEnter={() => {
+                  if (!isMobile) {
+                    openCvMenu();
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (!isMobile) {
+                    scheduleCloseCvMenu();
+                  }
+                }}
+              >
                 <Button
+                  type="button"
                   className="w-full shadow-[0_18px_40px_rgba(138,90,60,0.24)] transition-all hover:shadow-[0_22px_46px_rgba(138,90,60,0.3)] sm:w-auto"
                   aria-haspopup="menu"
+                  aria-expanded={isCvMenuOpen}
+                  onClick={() => {
+                    if (isCvMenuOpen) {
+                      closeCvMenu();
+                    } else {
+                      openCvMenu();
+                    }
+                  }}
+                  onFocus={() => {
+                    if (!isMobile) {
+                      openCvMenu();
+                    }
+                  }}
                 >
                   {dict.buttons.cv.label}
-                  <ChevronDown className="size-4 transition-transform duration-200 group-hover/cv:rotate-180 group-focus-within/cv:rotate-180" />
+                  <ChevronDown
+                    className={`size-4 transition-transform duration-200 ${isCvMenuOpen ? "rotate-180" : ""}`}
+                  />
                 </Button>
-                <div className="pointer-events-none absolute left-0 top-full z-20 mt-3 w-full min-w-60 opacity-0 transition-all duration-200 group-hover/cv:pointer-events-auto group-hover/cv:translate-x-4 group-hover/cv:translate-y-2 group-hover/cv:opacity-100 group-focus-within/cv:pointer-events-auto group-focus-within/cv:translate-x-4 group-focus-within/cv:translate-y-2 group-focus-within/cv:opacity-100 sm:w-64">
+                <div
+                  className={`absolute left-0 top-full z-20 mt-3 w-full min-w-60 transition-all duration-200 sm:w-64 ${isCvMenuOpen ? "pointer-events-auto translate-y-2 opacity-100 sm:translate-x-4" : "pointer-events-none opacity-0"}`}
+                  onMouseEnter={() => {
+                    clearCloseMenuTimeout();
+                  }}
+                  onMouseLeave={() => {
+                    if (!isMobile) {
+                      scheduleCloseCvMenu();
+                    }
+                  }}
+                >
                   <div className="rounded-2xl border border-border/70 bg-card/95 p-2 shadow-[0_24px_80px_rgba(53,33,16,0.22)] backdrop-blur-xl">
                     {cvMenuItems.map((item) => (
-                      <div key={item.label} className="group/submenu relative">
-                        <div className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 group-hover/submenu:bg-secondary/70 group-focus-within/submenu:bg-secondary/70">
+                      <div
+                        key={item.label}
+                        className="relative"
+                        onMouseEnter={() => {
+                          if (!isMobile) {
+                            clearCloseMenuTimeout();
+                            clearCloseSubmenuTimeout();
+                            setActiveSubmenu(item.label);
+                          }
+                        }}
+                        onMouseLeave={() => {
+                          if (!isMobile) {
+                            scheduleSubmenuReset();
+                          }
+                        }}
+                      >
+                        <button
+                          type="button"
+                          className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 ${activeSubmenu === item.label ? "bg-secondary/70" : ""}`}
+                          onClick={() => {
+                            clearCloseMenuTimeout();
+                            clearCloseSubmenuTimeout();
+                            setIsCvMenuOpen(true);
+                            setActiveSubmenu(item.label);
+                          }}
+                          onFocus={() => {
+                            clearCloseMenuTimeout();
+                            clearCloseSubmenuTimeout();
+                            setActiveSubmenu(item.label);
+                          }}
+                        >
                           <span className="flex items-center gap-3">
                             <item.Icon className="size-4 text-primary" />
                             {item.label}
                           </span>
-                          <ChevronRight className="size-4 text-muted-foreground" />
-                        </div>
-                        <div className="pointer-events-none absolute left-full top-0 z-30 ml-2 w-48 opacity-0 transition-all duration-200 group-hover/submenu:pointer-events-auto group-hover/submenu:translate-x-3 group-hover/submenu:translate-y-2 group-hover/submenu:opacity-100 group-focus-within/submenu:pointer-events-auto group-focus-within/submenu:translate-x-3 group-focus-within/submenu:translate-y-2 group-focus-within/submenu:opacity-100">
-                          <div className="rounded-2xl border border-border/70 bg-card/95 p-2 shadow-[0_24px_80px_rgba(53,33,16,0.22)] backdrop-blur-xl">
+                          <ChevronRight
+                            className={`size-4 text-muted-foreground transition-transform duration-200 ${activeSubmenu === item.label ? "rotate-90 sm:rotate-0" : ""}`}
+                          />
+                        </button>
+                        <div
+                          className={`${activeSubmenu === item.label ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"} relative mt-2 overflow-hidden transition-all duration-200 sm:absolute sm:left-full sm:top-0 sm:mt-0 sm:ml-0 sm:w-48 ${activeSubmenu === item.label ? "sm:translate-x-3 sm:translate-y-2" : ""}`}
+                          onMouseEnter={() => {
+                            clearCloseMenuTimeout();
+                            clearCloseSubmenuTimeout();
+                            setActiveSubmenu(item.label);
+                          }}
+                          onMouseLeave={() => {
+                            if (!isMobile) {
+                              scheduleCloseCvMenu();
+                              scheduleSubmenuReset();
+                            }
+                          }}
+                        >
+                          <div className="rounded-2xl border border-border/70 bg-card/95 p-2 shadow-[0_24px_80px_rgba(53,33,16,0.22)] backdrop-blur-xl sm:before:absolute sm:before:-left-4 sm:before:top-0 sm:before:h-full sm:before:w-4 sm:before:content-['']">
                             {item.options.map((option) => (
                               <Link
                                 key={option.href}
@@ -167,6 +329,9 @@ export default function Hero({ dict }: { dict: HeroDict }) {
                                 target="_blank"
                                 rel="noreferrer"
                                 className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 focus:bg-secondary/70 focus:outline-none"
+                                onClick={() => {
+                                  closeCvMenu();
+                                }}
                               >
                                 {option.label}
                               </Link>

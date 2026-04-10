@@ -1,31 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
 import "@/styles/globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import SiteHeader from "@/components/header/site-header";
 import SiteFooter from "@/components/footer/site-footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
-import { Locale } from "@/types/i18n";
-import { getDictionary } from "@/lib/i18n";
-import MotionProvider from "@/components/motion-provider";
+import { getDictionary, isValidLocale, locales } from "@/lib/i18n";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-  const { lang } = (await params) as { lang: Locale };
+  const { lang } = await params;
+
+  if (!isValidLocale(lang)) {
+    notFound();
+  }
+
   const dict = await getDictionary(lang, "common");
   
-  const title = lang === "en" 
-    ? "Salahudin Kholiq — Frontend Developer" 
-    : "Salahudin Kholiq — Pengembang Frontend";
+  const title = dict.metadata.title;
   const description = dict.hero.description;
   const baseUrl = "https://salahudinkholiq.com";
 
@@ -82,47 +76,38 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }>) {
-  const { lang } = (await params) as { lang: Locale };
+  const { lang } = await params;
+
+  if (!isValidLocale(lang)) {
+    notFound();
+  }
+
   const dict = await getDictionary(lang, "common");
   const baseUrl = "https://salahudinkholiq.com";
 
   return (
-    <html lang={lang} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning
-      >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Salahudin Kholiq",
-              jobTitle: "Frontend Developer",
-              email: "salahudinkoliq10@gmail.com",
-              url: baseUrl,
-              sameAs: [
-                "https://github.com/kholik-3",
-                "https://www.linkedin.com/in/salahudin-kholik-prasetyono",
-              ],
-            }),
-          }}
-        />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <MotionProvider>
-            <SiteHeader lang={lang} dict={dict.header} />
-            {children}
-            <SiteFooter dict={dict.footer} />
-            <ScrollToTop />
-          </MotionProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Salahudin Kholiq",
+            jobTitle: "Frontend Developer",
+            email: "salahudinkoliq10@gmail.com",
+            url: baseUrl,
+            sameAs: [
+              "https://github.com/kholik-3",
+              "https://www.linkedin.com/in/salahudin-kholik-prasetyono",
+            ],
+          }),
+        }}
+      />
+      <SiteHeader lang={lang} dict={dict.header} />
+      {children}
+      <SiteFooter dict={dict.footer} />
+      <ScrollToTop />
+    </>
   );
 }

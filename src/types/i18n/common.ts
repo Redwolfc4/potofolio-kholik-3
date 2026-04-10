@@ -58,6 +58,9 @@ export interface FooterDict {
 }
 
 export interface CommonDict {
+  metadata: {
+    title: string;
+  };
   header: HeaderDict;
   hero: HeroDict;
   titles: {
