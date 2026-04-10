@@ -322,7 +322,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
                         >
                           <div className="rounded-2xl border border-border/70 bg-card/95 p-2 shadow-[0_24px_80px_rgba(53,33,16,0.22)] backdrop-blur-xl sm:before:absolute sm:before:-left-4 sm:before:top-0 sm:before:h-full sm:before:w-4 sm:before:content-['']">
                             {item.options.map((option) => (
-                              <Link
+                              <a
                                 key={option.href}
                                 href={option.href}
                                 target="_blank"
@@ -333,7 +333,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
                                 }}
                               >
                                 {option.label}
-                              </Link>
+                              </a>
                             ))}
                           </div>
                         </div>
