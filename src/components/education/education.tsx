@@ -2,7 +2,7 @@
 
 import { m } from "framer-motion";
 
-import { EducationDict } from "@/types/i18n";
+import { EducationDict, EducationItem, EducationMedia } from "@/types/i18n";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { whenMotionEnabled } from "@/lib/motion";
@@ -14,7 +14,7 @@ export default function Education({ dict }: { dict: EducationDict }) {
     <section id="education" className="py-20 px-10 w-full">
       <h2 className="text-3xl font-bold mb-10 text-center text-foreground">{dict.title}</h2>
       <div className="space-y-8">
-        {education?.map((edu, index) => (
+        {education?.map((edu: EducationItem, index: number) => (
           <m.div
             key={`${edu.institution}-${edu.period}`}
             {...whenMotionEnabled(motionEnabled, {
@@ -25,8 +25,8 @@ export default function Education({ dict }: { dict: EducationDict }) {
             })}
             className="p-8 bg-card border rounded-2xl shadow-sm cursor-pointer hover:shadow-md transition-shadow  w-full"
           >
-            <div className="grid grid-cols-1 md:grid-cols-[28rem_1fr] gap-10 lg:gap-15 items-center px-4 md:px-6">
-              <a href={edu.websiteUrl} target="_blank" rel="noopener noreferrer" className="w-full h-48 md:h-full rounded-2xl overflow-hidden bg-muted block group">
+            <div className="flex flex-col md:grid md:grid-cols-[28rem_1fr] gap-6 md:gap-10 lg:gap-15 items-center px-4 md:px-6">
+              <a href={edu.websiteUrl} target="_blank" rel="noopener noreferrer" className="w-full aspect-video md:h-full rounded-2xl overflow-hidden bg-muted block group shrink-0">
                 <ImageWithFallback
                   src={edu.imageUrl}
                   alt={edu.institution}
@@ -38,7 +38,7 @@ export default function Education({ dict }: { dict: EducationDict }) {
                 />
               </a>
               <div>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 md:gap-0 mb-3">
                   <h3 className="text-2xl font-bold text-primary">{edu.degree}</h3>
                   <p className="text-sm font-medium text-muted-foreground shrink-0">{edu.period}</p>
                 </div>
@@ -72,7 +72,7 @@ export default function Education({ dict }: { dict: EducationDict }) {
 
                 {edu.media && edu.media.length > 0 && (
                   <div className="flex flex-wrap gap-4 mt-2">
-                    {edu.media.map((item, i) => (
+                    {edu.media.map((item: EducationMedia, i: number) => (
                       <a href={item.linkUrl} target="_blank" rel="noopener noreferrer" key={i} className="block relative h-20 w-32 rounded-lg overflow-hidden border border-border hover:border-primary transition-colors group">
                         <ImageWithFallback
                           src={item.thumbnailUrl}

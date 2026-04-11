@@ -2,23 +2,24 @@
 
 import React, { useCallback, useSyncExternalStore, useEffect, useState, useRef } from "react";
 import { m } from "framer-motion";
-import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 
-import { ProjectsDict } from "@/types/i18n";
+import type { ProjectsDict, ProjectItem } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
 import { useHasMounted } from "@/hooks/use-has-mounted";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { useIsMobile } from "@/hooks/use-is-mobile";
+import { EmblaNavButtons } from "@/components/ui/embla-nav-buttons";
 
-interface ProjectItemProps {
-  project: NonNullable<ProjectsDict["items"]>[number];
+interface ProjectCardProps {
+  project: ProjectItem;
   index: number;
   dict: ProjectsDict;
 }
 
-function ProjectItem({ project, index, dict }: ProjectItemProps) {
+function ProjectCard({ project, index, dict }: ProjectCardProps) {
   const { isActive, handlers } = useLongPress("projects", project.id, "lp-project");
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
@@ -97,7 +98,7 @@ function ProjectItem({ project, index, dict }: ProjectItemProps) {
           </button>
         )}
         <div className="flex flex-wrap gap-2 xl:gap-3 mb-6 xl:mb-8">
-          {project.techStack.map((tech) => (
+          {project.techStack.map((tech: string) => (
             <span
               key={tech}
               className="px-2 py-1 xl:px-3 xl:py-1.5 2xl:px-4 2xl:py-2 bg-secondary text-secondary-foreground rounded-md text-[0.625rem] xl:text-xs 2xl:text-sm uppercase font-bold tracking-wider"
@@ -219,35 +220,26 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20 xl:py-24 2xl:py-32">
           <div className="relative overscroll-x-none touch-pan-y">
-            {mounted && (
-              <button
-                type="button"
-                onClick={() => emblaApi?.scrollPrev()}
-                disabled={prevBtnDisabled}
-                aria-label="Previous project"
-                className="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 z-10 p-2 xl:p-3 2xl:p-4 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
-              >
-                <ChevronLeft className="w-4 h-4 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8" />
-              </button>
-            )}
-            {mounted && (
-              <button
-                type="button"
-                onClick={() => emblaApi?.scrollNext()}
-                disabled={nextBtnDisabled}
-                aria-label="Next project"
-                className="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 z-10 p-2 xl:p-3 2xl:p-4 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
-              >
-                <ChevronRight className="w-4 h-4 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8" />
-              </button>
-            )}
+            <EmblaNavButtons
+              mounted={mounted}
+              prevDisabled={prevBtnDisabled}
+              nextDisabled={nextBtnDisabled}
+              onPrev={() => emblaApi?.scrollPrev()}
+              onNext={() => emblaApi?.scrollNext()}
+              prevLabel="Previous project"
+              nextLabel="Next project"
+              prevClassName="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 z-10 p-2 xl:p-3 2xl:p-4 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+              nextClassName="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 z-10 p-2 xl:p-3 2xl:p-4 rounded-full border bg-card hover:bg-accent transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-card"
+              iconClassName="w-4 h-4 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8"
+            />
+
             <div 
               ref={emblaRef} 
               className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
             >
               <div className="flex gap-6 pb-4">
-                {projects?.map((project, index) => (
-                  <ProjectItem key={project.id} project={project} index={index} dict={dict} />
+                {projects?.map((project: ProjectItem, index: number) => (
+                  <ProjectCard key={project.id} project={project} index={index} dict={dict} />
                 ))}
               </div>
             </div>

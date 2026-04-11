@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import "@/styles/globals.css";
 import SiteHeader from "@/components/header/site-header";
 import SiteFooter from "@/components/footer/site-footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
@@ -41,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       siteName: "Salahudin Kholiq Portfolio",
       images: [
         {
-          url: "/imgPortofolio/og-image.png", // Recommended to add this file
+          url: "/imgPortofolio/og-image.png",
           width: 1200,
           height: 630,
           alt: title,

@@ -7,9 +7,10 @@ import { whenMotionEnabled } from "@/lib/motion";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { HeroDict } from "@/types/i18n";
 import { m } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 import { ChevronDown, ChevronRight, FileImage, FileText } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const cvMenuConfig = {
   image: {
@@ -40,6 +41,17 @@ const cvMenuConfig = {
   },
 } as const;
 
+type CvMenuOption = {
+  href: string;
+  label: string;
+};
+
+type CvMenuItem = {
+  label: string;
+  Icon: LucideIcon;
+  options: CvMenuOption[];
+};
+
 export default function Hero({ dict }: { dict: HeroDict }) {
   const motionEnabled = useMotionEnabled();
   const isMobile = useIsMobile();
@@ -48,7 +60,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
   const closeSubmenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isCvMenuOpen, setIsCvMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
-  const cvMenuItems = [
+  const cvMenuItems: CvMenuItem[] = [
     {
       label: dict.buttons.cv.image.label,
       Icon: cvMenuConfig.image.Icon,
@@ -67,43 +79,43 @@ export default function Hero({ dict }: { dict: HeroDict }) {
     },
   ];
 
-  const clearCloseMenuTimeout = () => {
+  const clearCloseMenuTimeout = useCallback(() => {
     if (closeMenuTimeoutRef.current) {
       clearTimeout(closeMenuTimeoutRef.current);
       closeMenuTimeoutRef.current = null;
     }
-  };
+  }, []);
 
-  const clearCloseSubmenuTimeout = () => {
+  const clearCloseSubmenuTimeout = useCallback(() => {
     if (closeSubmenuTimeoutRef.current) {
       clearTimeout(closeSubmenuTimeoutRef.current);
       closeSubmenuTimeoutRef.current = null;
     }
-  };
+  }, []);
 
-  const closeCvMenu = () => {
+  const closeCvMenu = useCallback(() => {
     clearCloseMenuTimeout();
     clearCloseSubmenuTimeout();
     setIsCvMenuOpen(false);
     setActiveSubmenu(null);
-  };
+  }, [clearCloseMenuTimeout, clearCloseSubmenuTimeout]);
 
-  const openCvMenu = () => {
+  const openCvMenu = useCallback(() => {
     clearCloseMenuTimeout();
     clearCloseSubmenuTimeout();
     setIsCvMenuOpen(true);
     // Don't auto-select a submenu on open, let user hover explicitly
     setActiveSubmenu(null);
-  };
+  }, [clearCloseMenuTimeout, clearCloseSubmenuTimeout]);
 
-  const scheduleCloseCvMenu = () => {
+  const scheduleCloseCvMenu = useCallback(() => {
     clearCloseMenuTimeout();
     closeMenuTimeoutRef.current = setTimeout(() => {
       closeCvMenu();
     }, 400);
-  };
+  }, [clearCloseMenuTimeout, closeCvMenu]);
 
-  const scheduleSubmenuReset = () => {
+  const scheduleSubmenuReset = useCallback(() => {
     clearCloseSubmenuTimeout();
     closeSubmenuTimeoutRef.current = setTimeout(() => {
       if (!isMobile) {
@@ -111,7 +123,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
         setActiveSubmenu(null);
       }
     }, 350);
-  };
+  }, [clearCloseSubmenuTimeout, isMobile]);
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -135,7 +147,7 @@ export default function Hero({ dict }: { dict: HeroDict }) {
       clearCloseMenuTimeout();
       clearCloseSubmenuTimeout();
     };
-  }, []);
+  }, [clearCloseMenuTimeout, clearCloseSubmenuTimeout, closeCvMenu]);
 
   return (
     <section id="home" className="relative isolate w-full overflow-hidden py-24 lg:py-28">
