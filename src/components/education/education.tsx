@@ -11,8 +11,22 @@ export default function Education({ dict }: { dict: EducationDict }) {
   const motionEnabled = useMotionEnabled();
   const education = dict.items;
   return (
-    <section id="education" className="py-20 px-10 w-full">
-      <h2 className="text-3xl font-bold mb-10 text-center text-foreground">{dict.title}</h2>
+    <section id="education" className="py-20 px-10 w-full relative overflow-hidden">
+      {/* Floating decorative background orbs */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute -top-8 right-12 w-52 h-52 bg-primary/6 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute bottom-8 -left-8 w-60 h-60 bg-accent/7 rounded-full blur-3xl animate-float-reverse anim-delay-800" />
+      </div>
+      <m.h2
+        {...whenMotionEnabled(motionEnabled, {
+          initial: { opacity: 0, y: 20 },
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true },
+        })}
+        className="text-3xl font-bold mb-10 text-center text-foreground"
+      >
+        {dict.title}
+      </m.h2>
       <div className="space-y-8">
         {education?.map((edu: EducationItem, index: number) => (
           <m.div

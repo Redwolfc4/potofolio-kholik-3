@@ -11,6 +11,8 @@ import { useLongPressStore } from "@/stores/use-longpress-store";
 import { useHasMounted } from "@/hooks/use-has-mounted";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { useIsMobile } from "@/hooks/use-is-mobile";
+import { useMotionEnabled } from "@/hooks/use-motion-enabled";
+import { whenMotionEnabled } from "@/lib/motion";
 import { EmblaNavButtons } from "@/components/ui/embla-nav-buttons";
 
 interface ProjectCardProps {
@@ -78,7 +80,7 @@ function ProjectCard({ project, index, dict }: ProjectCardProps) {
       </div>
       <div className="p-6 xl:p-8 2xl:p-10">
         <h3 className="text-xl xl:text-2xl 2xl:text-3xl font-bold mb-2 xl:mb-4">{project.title}</h3>
-        <p 
+        <p
           ref={descriptionRef}
           className={`text-start text-muted-foreground text-sm xl:text-base 2xl:text-lg transition-all duration-300 ${isExpanded ? "" : "line-clamp-3"} ${isExpanded ? "mb-2" : "mb-4 xl:mb-6"}`}
         >
@@ -136,6 +138,7 @@ function ProjectCard({ project, index, dict }: ProjectCardProps) {
 
 export default function Projects({ dict }: { dict: ProjectsDict }) {
   const isMobile = useIsMobile();
+  const motionEnabled = useMotionEnabled();
   const projects = dict.items;
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
@@ -213,9 +216,23 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
   }, [emblaApi, isMobile]);
 
   return (
-    <section id="projects" className="w-full">
+    <section id="projects" className="w-full relative overflow-hidden">
+      {/* Floating decorative orbs */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute -top-12 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute top-1/3 right-0 w-56 h-56 bg-accent/6 rounded-full blur-3xl animate-float-reverse anim-delay-400" />
+      </div>
       <div className="mx-auto px-10 py-10 md:py-12 xl:py-16 2xl:py-24">
-        <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-center">{dict.title}</h2>
+        <m.h2
+          {...whenMotionEnabled(motionEnabled, {
+            initial: { opacity: 0, y: 20 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true },
+          })}
+          className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-center"
+        >
+          {dict.title}
+        </m.h2>
       </div>
       <div className="bg-muted/50">
         <div className="px-10 py-16 md:py-20 xl:py-24 2xl:py-32">
@@ -233,8 +250,8 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
               iconClassName="w-4 h-4 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8"
             />
 
-            <div 
-              ref={emblaRef} 
+            <div
+              ref={emblaRef}
               className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y overscroll-x-none"
             >
               <div className="flex gap-6 pb-4">

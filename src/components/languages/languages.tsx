@@ -21,7 +21,12 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
   };
 
   return (
-    <section className="py-20 w-full flex flex-col items-center justify-center bg-background/50 backdrop-blur-sm border-y border-border/50">
+    <section className="py-20 w-full flex flex-col items-center justify-center bg-background/50 backdrop-blur-sm border-y border-border/50 relative overflow-hidden">
+      {/* Floating orbs */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute -top-10 left-1/4 w-48 h-48 bg-primary/6 rounded-full blur-3xl animate-float anim-delay-200" />
+        <div className="absolute bottom-0 right-1/4 w-56 h-56 bg-accent/7 rounded-full blur-3xl animate-float-reverse anim-delay-600" />
+      </div>
       <div className="container px-4 md:px-6">
         <m.div
           {...whenMotionEnabled(motionEnabled, {

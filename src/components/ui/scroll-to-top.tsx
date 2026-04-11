@@ -9,7 +9,6 @@ import { whenMotionEnabled } from "@/lib/motion";
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
-  const isDragging = React.useRef(false);
   const motionEnabled = useMotionEnabled();
 
   const mounted = useHasMounted();
@@ -28,9 +27,6 @@ export default function ScrollToTop() {
   }, []);
 
   const scrollToTop = () => {
-    // Only scroll if we weren't just dragging
-    if (isDragging.current) return;
-    
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -47,20 +43,9 @@ export default function ScrollToTop() {
             initial: { opacity: 0, scale: 0.5 },
             animate: { opacity: 1, scale: 1 },
             exit: { opacity: 0, scale: 0.5 },
-            drag: true,
-            dragMomentum: false,
             whileHover: { scale: 1.1 },
             whileTap: { scale: 0.9 },
           })}
-          onDragStart={() => {
-            isDragging.current = true;
-          }}
-          onDragEnd={() => {
-            // Short delay to prevent the click event from firing immediately after drag
-            setTimeout(() => {
-              isDragging.current = false;
-            }, 50);
-          }}
           onClick={scrollToTop}
           className="fixed bottom-8 right-8 z-50 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg backdrop-blur-sm transition-colors hover:bg-primary/90 md:h-16 md:w-16"
           title="Scroll to Top"

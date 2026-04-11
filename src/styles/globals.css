@@ -75,7 +75,7 @@ html {
   --secondary: #e7d3bf;
   --secondary-foreground: #4c2f1d;
   --muted: #efe2d3;
-  --muted-foreground: #7b5c45;
+  --muted-foreground: #654a33;
   --accent: #d9b79a;
   --accent-foreground: #432715;
   --destructive: #b54835;
@@ -113,7 +113,7 @@ html {
   --secondary: #3a291f;
   --secondary-foreground: #f6e6d4;
   --muted: #30211a;
-  --muted-foreground: #c7a991;
+  --muted-foreground: #d4b9a3;
   --accent: #4c3427;
   --accent-foreground: #fbebdb;
   --destructive: #d6705b;
@@ -140,10 +140,12 @@ html {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
     min-height: 100vh;
     background-image:
       radial-gradient(
@@ -166,7 +168,8 @@ html {
     background-attachment: fixed;
   }
   html {
-    @apply bg-background font-sans;
+    background-color: var(--background);
+    font-family: var(--font-sans);
   }
 
   /* Automatically scale up the entire website gracefully on ultra-wide screens */
@@ -213,6 +216,17 @@ html {
 
   .marquee-track,
   .tech-marquee-track {
+    animation: none;
+  }
+
+  /* Disable floating / bounce animations on mobile – only active on md+ */
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-fast,
+  .animate-float-reverse,
+  .animate-float-scale,
+  .animate-float-rotate,
+  .animate-pulse-glow {
     animation: none;
   }
 }
@@ -304,4 +318,92 @@ html {
 
 .tech-marquee:hover .tech-marquee-track {
   animation-play-state: paused;
+}
+
+/* =============================================
+   FLOATING / BOUNCE ANIMATIONS
+   ============================================= */
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes float-y-slow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes float-y-fast {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes float-y-reverse {
+  0%, 100% { transform: translateY(-14px); }
+  50%       { transform: translateY(0px); }
+}
+
+@keyframes float-scale {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-14px) scale(1.04); }
+}
+
+@keyframes float-rotate {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-10px) rotate(3deg); }
+  66%       { transform: translateY(-6px) rotate(-2deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50%       { opacity: 0.45; transform: scale(1.08); }
+}
+
+.animate-float {
+  animation: float-y 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-y-slow 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-y-fast 2.8s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-y-reverse 5s ease-in-out infinite;
+}
+
+.animate-float-scale {
+  animation: float-scale 5s ease-in-out infinite;
+}
+
+.animate-float-rotate {
+  animation: float-rotate 7s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Stagger delay helpers */
+.anim-delay-200 { animation-delay: 0.2s; }
+.anim-delay-400 { animation-delay: 0.4s; }
+.anim-delay-600 { animation-delay: 0.6s; }
+.anim-delay-800 { animation-delay: 0.8s; }
+.anim-delay-1000 { animation-delay: 1s; }
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-fast,
+  .animate-float-reverse,
+  .animate-float-scale,
+  .animate-float-rotate,
+  .animate-pulse-glow {
+    animation: none;
+  }
 }

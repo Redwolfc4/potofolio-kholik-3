@@ -16,7 +16,7 @@ export default function SiteHeader({ lang, dict }: { lang: string; dict: HeaderD
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/70 shadow-[0_10px_32px_rgba(95,58,34,0.08)] backdrop-blur-xl dark:shadow-[0_14px_40px_rgba(0,0,0,0.32)]">
       <div className="mx-auto flex items-center justify-between px-10 py-4">
-        <Link href="#home" className="text-lg font-bold tracking-[0.22em] text-primary uppercase">
+        <Link href="#home" className="text-lg font-bold tracking-[0.22em] text-primary uppercase" aria-label="Kholik — Back to top">
           {dict.logo}
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">

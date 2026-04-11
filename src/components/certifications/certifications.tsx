@@ -166,9 +166,21 @@ export default function CertGrid({ dict }: { dict: CertificationsDict }) {
   }, [emblaApi, isMobile]);
 
   return (
-    <section id="certifications" className="w-full">
+    <section id="certifications" className="w-full relative overflow-hidden">
+      {/* Floating orbs */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute -top-12 -right-12 w-60 h-60 bg-primary/5 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute bottom-10 left-10 w-48 h-48 bg-accent/6 rounded-full blur-3xl animate-float anim-delay-400" />
+      </div>
       <div className="mx-auto px-10 py-10 md:py-12">
-        <h2 className="text-3xl font-bold text-center">{dict.title}</h2>
+        <m.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-center"
+        >
+          {dict.title}
+        </m.h2>
       </div>
 
       <div className="bg-muted/50">

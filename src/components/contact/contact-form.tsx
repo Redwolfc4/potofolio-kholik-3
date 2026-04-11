@@ -95,8 +95,23 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
   };
 
   return (
-    <section id="contact" className="py-20 w-full px-10">
-      <h2 className="text-3xl font-bold mb-10 text-center">{dict.title}</h2>
+    <section id="contact" className="py-20 w-full px-10 relative overflow-hidden">
+      {/* Floating orbs */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute -top-10 right-10 w-56 h-56 bg-primary/5 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute bottom-0 left-10 w-48 h-48 bg-accent/6 rounded-full blur-3xl animate-float-reverse anim-delay-600" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/4 rounded-full blur-2xl animate-float anim-delay-1000" />
+      </div>
+      <m.h2
+        {...whenMotionEnabled(motionEnabled, {
+          initial: { opacity: 0, y: 20 },
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true },
+        })}
+        className="text-3xl font-bold mb-10 text-center"
+      >
+        {dict.title}
+      </m.h2>
       <m.div
         {...whenMotionEnabled(motionEnabled, {
           initial: { opacity: 0, y: 20 },

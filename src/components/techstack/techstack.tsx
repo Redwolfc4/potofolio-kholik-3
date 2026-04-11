@@ -1,10 +1,13 @@
 "use client";
 
+import { m } from "framer-motion";
 import { TechStackDict, TechItem } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
 import { useLongPressStore } from "@/stores/use-longpress-store";
 import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { useIsMobile } from "@/hooks/use-is-mobile";
+import { useMotionEnabled } from "@/hooks/use-motion-enabled";
+import { whenMotionEnabled } from "@/lib/motion";
 interface TechStackItemProps {
   tech: TechItem;
   itemKey: string;
@@ -68,15 +71,28 @@ function TechStackItem({ tech, itemKey }: TechStackItemProps) {
 
 export default function TechStack({ dict }: { dict: TechStackDict }) {
   const isMobile = useIsMobile();
+  const motionEnabled = useMotionEnabled();
   const rawItems = dict.items || [];
   const items = rawItems;
 
   return (
-    <section id="techstack" className="w-full py-20">
+    <section id="techstack" className="w-full py-20 relative overflow-hidden">
+      {/* Floating decorative orbs */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute -top-10 right-10 w-56 h-56 bg-primary/6 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute bottom-0 left-8 w-48 h-48 bg-accent/8 rounded-full blur-3xl animate-float-reverse anim-delay-600" />
+      </div>
       <div className="px-4">
-        <h2 className="text-3xl font-bold tracking-tight text-center mb-12">
+        <m.h2
+          {...whenMotionEnabled(motionEnabled, {
+            initial: { opacity: 0, y: 20 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true },
+          })}
+          className="text-3xl font-bold tracking-tight text-center mb-12"
+        >
           {dict?.title || "Technological Arsenal"}
-        </h2>
+        </m.h2>
       </div>
       {isMobile ? (
         <div className="px-4">

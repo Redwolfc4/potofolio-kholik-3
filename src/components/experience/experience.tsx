@@ -236,7 +236,13 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
   }, [isMobile]);
 
   return (
-    <section id="experience" className="py-24 w-full px-4 sm:px-10 lg:px-20 xl:px-24 2xl:px-32 overflow-hidden">
+    <section id="experience" className="py-24 w-full px-4 sm:px-10 lg:px-20 xl:px-24 2xl:px-32 overflow-hidden relative">
+      {/* Floating decorative orbs */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute -top-16 -left-16 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute top-1/2 right-0 w-64 h-64 bg-accent/6 rounded-full blur-3xl animate-float anim-delay-600" />
+        <div className="absolute bottom-10 left-1/3 w-40 h-40 bg-primary/5 rounded-full blur-2xl animate-float-reverse anim-delay-400" />
+      </div>
       <div className="">
         <m.h2
           {...whenMotionEnabled(motionEnabled, {

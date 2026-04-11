@@ -31,10 +31,11 @@ export default function About({ dict }: { dict: AboutDict }) {
 
   return (
     <section id="about" className="w-full py-24 relative overflow-hidden">
-      {/* Background Decorative Elements */}
+      {/* Background Decorative Elements – floating orbs */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10">
-        <div className="absolute top-1/4 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute bottom-1/4 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float-reverse anim-delay-800" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-accent/8 rounded-full blur-2xl animate-float anim-delay-400" />
       </div>
 
       <div className="container mx-auto px-6 max-w-6xl">

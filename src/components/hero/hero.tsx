@@ -167,6 +167,9 @@ export default function Hero({ dict }: { dict: HeroDict }) {
           })}
         />
         <div className="absolute inset-x-8 top-10 h-72 rounded-[3rem] border border-border/40 bg-card/35 blur-3xl" />
+        {/* CSS-only floating orbs */}
+        <div className="absolute top-1/3 right-1/4 w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-float anim-delay-600" />
+        <div className="absolute bottom-1/4 left-1/3 w-16 h-16 rounded-full bg-accent/15 blur-xl animate-float-reverse anim-delay-200" />
       </div>
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 md:grid-cols-[22.5rem_1fr]">
         <m.div

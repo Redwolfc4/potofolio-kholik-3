@@ -25,6 +25,12 @@ const remoteImageHosts = [
 ] as const;
 
 const securityHeaders = [
+  /*
+   * CSP is now set dynamically in middleware.ts with per-request nonces.
+   * This allows us to drop 'unsafe-inline' from script-src while keeping
+   * Next.js inline scripts working.  The static fallback below is kept for
+   * paths that middleware cannot reach (e.g. _next/static, public assets).
+   */
   {
     key: "Content-Security-Policy",
     value: [
@@ -41,7 +47,9 @@ const securityHeaders = [
       "media-src 'self' data: blob: https:",
       "worker-src 'self' blob:",
       "manifest-src 'self'",
-      "upgrade-insecure-requests",
+      "require-trusted-types-for 'script'",
+      "trusted-types nextjs nextjs#app-pages-dev default",
+      ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
     ].join("; "),
   },
   {
@@ -60,11 +68,32 @@ const securityHeaders = [
     key: "X-Content-Type-Options",
     value: "nosniff",
   },
+  // Strong HSTS policy: 2 years, include subdomains, allow preload submission
+  {
+    key: "Strict-Transport-Security",
+    value: "max-age=63072000; includeSubDomains; preload",
+  },
+  // Permissions-Policy — disable unused browser features
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+  },
+  // Cross-Origin Embedder Policy — enable cross-origin isolation
+  {
+    key: "Cross-Origin-Embedder-Policy",
+    value: "credentialless",
+  },
+  // Cross-Origin Resource Policy
+  {
+    key: "Cross-Origin-Resource-Policy",
+    value: "same-origin",
+  },
 ];
 
 const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false,
+  productionBrowserSourceMaps: true,
   images: {
     remotePatterns: remoteImageHosts.map((hostname) => ({
       protocol: "https",
