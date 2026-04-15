@@ -8,7 +8,6 @@ section {
   content-visibility: auto;
   contain-intrinsic-size: 0 500px;
 }
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @variant dark (&:is(.dark *));

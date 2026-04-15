@@ -180,9 +180,9 @@ export default function Hero({ dict }: { dict: HeroDict }) {
             src={dict.image.src}
             alt={dict.image.alt}
             fallbackSrc={dict.image.fallbackSrc}
-            width={900}
-            height={1200}
-            sizes="(max-width: 768px) 100vw, 360px"
+            width={400}
+            height={600}
+            sizes="(max-width: 768px) 90vw, 378px"
             className="h-full w-full object-cover object-top"
             priority
             fetchPriority="high"
