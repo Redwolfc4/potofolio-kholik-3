@@ -95,7 +95,7 @@ export default function About({ dict }: { dict: AboutDict }) {
           <m.div {...whenMotionEnabled(motionEnabled, { variants: itemVariants } as never)} className="lg:col-span-5 space-y-6 flex flex-col">
             {/* Education Highlight Card */}
             <div className="bg-primary text-primary-foreground rounded-3xl p-8 relative overflow-hidden flex-1 group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 -mr-8 -mt-8 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/15 -mr-8 -mt-8 rounded-full blur-2xl group-hover:bg-white/25 transition-colors duration-500" />
               <div className="relative z-10">
                 <div className="inline-flex py-1.5 px-3 rounded-lg bg-white/20 backdrop-blur-md mb-6 items-center gap-2">
                   <GraduationCap className="w-4 h-4" />
@@ -104,11 +104,11 @@ export default function About({ dict }: { dict: AboutDict }) {
                 <h4 className="text-2xl font-extrabold mb-1">Universitas Bina Sarana Informatika</h4>
                 <p className="text-primary-foreground/80 mb-6 font-medium">Bach. of Informatics</p>
 
-                <div className="flex items-center gap-4 bg-white/10 backdrop-blur p-4 rounded-2xl border border-white/20">
+                <div className="flex items-center gap-4 bg-white/20 backdrop-blur p-4 rounded-2xl border border-white/30">
                   <Trophy className="w-10 h-10 text-yellow-300" />
                   <div>
                     <div className="text-3xl font-black tabular-nums tracking-tighter">4.00</div>
-                    <div className="text-xs font-bold uppercase tracking-widest text-primary-foreground/60">Cumulative GPA</div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-primary-foreground/90">Cumulative GPA</div>
                   </div>
                 </div>
               </div>

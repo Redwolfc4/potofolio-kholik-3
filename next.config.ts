@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-const isDevelopment = process.env.NODE_ENV === "development";
-
 const remoteImageHosts = [
   "cdn.jsdelivr.net",
   "dicoding-web-img.sgp1.cdn.digitaloceanspaces.com",
@@ -24,38 +22,20 @@ const remoteImageHosts = [
   "www.dicoding.com",
 ] as const;
 
+/*
+ * Security headers applied to ALL responses (including static assets).
+ *
+ * CSP is intentionally NOT set here — it is handled dynamically in
+ * middleware.ts with per-request nonces for document requests.
+ * Having two competing CSP headers (one from config, one from middleware)
+ * causes the browser to enforce the intersection of both policies,
+ * which blocks Lighthouse's profiling scripts and causes NO_NAVSTART.
+ *
+ * Cross-Origin-Opener-Policy is also omitted because it triggers a
+ * browsing-context-group switch during the "/" → "/en" redirect, which
+ * makes Lighthouse lose its performance trace.
+ */
 const securityHeaders = [
-  /*
-   * CSP is now set dynamically in middleware.ts with per-request nonces.
-   * This allows us to drop 'unsafe-inline' from script-src while keeping
-   * Next.js inline scripts working.  The static fallback below is kept for
-   * paths that middleware cannot reach (e.g. _next/static, public assets).
-   */
-  {
-    key: "Content-Security-Policy",
-    value: [
-      "default-src 'self'",
-      "base-uri 'self'",
-      "form-action 'self'",
-      "frame-ancestors 'none'",
-      "object-src 'none'",
-      `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${isDevelopment ? " 'unsafe-eval'" : ""}`,
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https:",
-      "font-src 'self' data:",
-      "connect-src 'self' https:",
-      "media-src 'self' data: blob: https:",
-      "worker-src 'self' blob:",
-      "manifest-src 'self'",
-      "require-trusted-types-for 'script'",
-      "trusted-types nextjs nextjs#app-pages-dev nextjs#bundler dompurify default",
-      ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
-    ].join("; "),
-  },
-  {
-    key: "Cross-Origin-Opener-Policy",
-    value: "same-origin",
-  },
   {
     key: "X-Frame-Options",
     value: "DENY",
@@ -78,11 +58,6 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
   },
-  // Cross-Origin Embedder Policy — enable cross-origin isolation
-  {
-    key: "Cross-Origin-Embedder-Policy",
-    value: "credentialless",
-  },
   // Cross-Origin Resource Policy
   {
     key: "Cross-Origin-Resource-Policy",
@@ -93,7 +68,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false,
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   images: {
     remotePatterns: remoteImageHosts.map((hostname) => ({
       protocol: "https",
