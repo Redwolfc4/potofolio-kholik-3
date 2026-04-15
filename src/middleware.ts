@@ -34,7 +34,7 @@ function buildCsp(nonce: string): string {
     "worker-src 'self' blob:",
     "manifest-src 'self'",
     "require-trusted-types-for 'script'",
-    "trusted-types nextjs nextjs#app-pages-dev default",
+    "trusted-types nextjs nextjs#app-pages-dev nextjs#bundler dompurify default",
     ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
   ];
 

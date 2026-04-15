@@ -12,11 +12,8 @@ export default function Education({ dict }: { dict: EducationDict }) {
   const education = dict.items;
   return (
     <section id="education" className="py-20 px-10 w-full relative overflow-hidden">
-      {/* Floating decorative background orbs */}
-      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute -top-8 right-12 w-52 h-52 bg-primary/6 rounded-full blur-3xl animate-float-slow" />
-        <div className="absolute bottom-8 -left-8 w-60 h-60 bg-accent/7 rounded-full blur-3xl animate-float-reverse anim-delay-800" />
-      </div>
+      {/* Simplified background for performance */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10" />
       <m.h2
         {...whenMotionEnabled(motionEnabled, {
           initial: { opacity: 0, y: 20 },
