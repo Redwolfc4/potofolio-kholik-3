@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import MotionProvider from "@/components/motion-provider";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: {
@@ -19,11 +20,13 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const nonce = (await headers()).get("x-nonce") || undefined;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
@@ -32,6 +35,7 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
+          nonce={nonce}
         >
           <MotionProvider>
             {children}

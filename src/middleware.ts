@@ -33,7 +33,6 @@ function buildCsp(nonce: string): string {
     "media-src 'self' data: blob: https:",
     "worker-src 'self' blob:",
     "manifest-src 'self'",
-    "require-trusted-types-for 'script'",
     "trusted-types nextjs nextjs#app-pages-dev nextjs#bundler dompurify default",
     ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
   ];
