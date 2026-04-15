@@ -3,6 +3,11 @@
 html {
   scroll-behavior: smooth;
 }
+
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
@@ -325,67 +330,74 @@ html {
    ============================================= */
 
 @keyframes float-y {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-18px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%       { transform: translate3d(0, -18px, 0); }
 }
 
 @keyframes float-y-slow {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-12px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%       { transform: translate3d(0, -12px, 0); }
 }
 
 @keyframes float-y-fast {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-8px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%       { transform: translate3d(0, -8px, 0); }
 }
 
 @keyframes float-y-reverse {
-  0%, 100% { transform: translateY(-14px); }
-  50%       { transform: translateY(0px); }
+  0%, 100% { transform: translate3d(0, -14px, 0); }
+  50%       { transform: translate3d(0, 0, 0); }
 }
 
 @keyframes float-scale {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50%       { transform: translateY(-14px) scale(1.04); }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%       { transform: translate3d(0, -14px, 0) scale(1.04); }
 }
 
 @keyframes float-rotate {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33%       { transform: translateY(-10px) rotate(3deg); }
-  66%       { transform: translateY(-6px) rotate(-2deg); }
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  33%       { transform: translate3d(0, -10px, 0) rotate(3deg); }
+  66%       { transform: translate3d(0, -6px, 0) rotate(-2deg); }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.25; transform: scale(1); }
-  50%       { opacity: 0.45; transform: scale(1.08); }
+  0%, 100% { opacity: 0.25; transform: translate3d(0, 0, 0) scale(1); }
+  50%       { opacity: 0.45; transform: translate3d(0, 0, 0) scale(1.08); }
 }
 
 .animate-float {
   animation: float-y 4s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-float-slow {
   animation: float-y-slow 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-float-fast {
   animation: float-y-fast 2.8s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-float-reverse {
   animation: float-y-reverse 5s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-float-scale {
   animation: float-scale 5s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-float-rotate {
   animation: float-rotate 7s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 4s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 /* Stagger delay helpers */

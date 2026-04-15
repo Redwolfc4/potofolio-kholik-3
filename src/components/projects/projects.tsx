@@ -217,10 +217,9 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
 
   return (
     <section id="projects" className="w-full relative overflow-hidden">
-      {/* Floating decorative orbs */}
+      {/* Background Decorative Element – simplified for performance */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute -top-12 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float-slow" />
-        <div className="absolute top-1/3 right-0 w-56 h-56 bg-accent/6 rounded-full blur-3xl animate-float-reverse anim-delay-400" />
+        <div className="absolute -top-12 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
       </div>
       <div className="mx-auto px-10 py-10 md:py-12 xl:py-16 2xl:py-24">
         <m.h2

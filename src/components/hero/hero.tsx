@@ -153,23 +153,19 @@ export default function Hero({ dict }: { dict: HeroDict }) {
     <section id="home" className="relative isolate w-full overflow-hidden py-24 lg:py-28">
       <div className="absolute inset-0 -z-10">
         <m.div
-          className="absolute -top-24 -left-20 h-80 w-80 rounded-full bg-primary/25 blur-3xl"
+          className="absolute -top-24 -left-20 h-80 w-80 rounded-full bg-primary/20 blur-3xl"
           {...whenMotionEnabled(motionEnabled, {
-            animate: { y: [0, 30, 0] },
-            transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-          })}
-        />
-        <m.div
-          className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-accent/25 blur-3xl"
-          {...whenMotionEnabled(motionEnabled, {
-            animate: { y: [0, -40, 0] },
+            animate: { y: [0, 20, 0] },
             transition: { duration: 8, repeat: Infinity, ease: "easeInOut" },
           })}
         />
-        <div className="absolute inset-x-8 top-10 h-72 rounded-[3rem] border border-border/40 bg-card/35 blur-3xl" />
-        {/* CSS-only floating orbs */}
-        <div className="absolute top-1/3 right-1/4 w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-float anim-delay-600" />
-        <div className="absolute bottom-1/4 left-1/3 w-16 h-16 rounded-full bg-accent/15 blur-xl animate-float-reverse anim-delay-200" />
+        <m.div
+          className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-accent/20 blur-3xl"
+          {...whenMotionEnabled(motionEnabled, {
+            animate: { y: [0, -25, 0] },
+            transition: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+          })}
+        />
       </div>
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 md:grid-cols-[22.5rem_1fr]">
         <m.div

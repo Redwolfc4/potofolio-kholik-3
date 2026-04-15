@@ -33,9 +33,6 @@ function buildCsp(nonce: string): string {
     "media-src 'self' data: blob: https:",
     "worker-src 'self' blob:",
     "manifest-src 'self'",
-    "require-trusted-types-for 'script'",
-    "trusted-types nextjs nextjs#app-pages-dev default",
-    ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
   ];
 
   return directives.join("; ");
@@ -44,11 +41,15 @@ function buildCsp(nonce: string): string {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // --- Locale redirect ---
+  // --- Locale redirect: use rewrite instead of redirect ---
+  // A redirect (307) causes the browser to perform a second navigation.
+  // Combined with security headers, this triggers a browsing-context-group
+  // switch that makes Lighthouse lose its performance trace (NO_NAVSTART).
+  // A rewrite serves the /en content at "/" without a client-side redirect.
   if (pathname === "/") {
     const url = request.nextUrl.clone();
     url.pathname = `/${defaultLocale}`;
-    return NextResponse.redirect(url);
+    return NextResponse.rewrite(url);
   }
 
   const pathnameHasLocale = locales.some(
