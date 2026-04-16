@@ -32,12 +32,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-
-  if (!isValidLocale(lang)) {
-    notFound();
-  }
-
-  const dict = await getDictionary(lang, "common");
+  
+  const safeLocale = isValidLocale(lang) ? lang : defaultLocale;
+  const dict = await getDictionary(safeLocale, "common");
 
   const title = dict.metadata.title;
   const description = dict.metadata.description || dict.hero.description;
