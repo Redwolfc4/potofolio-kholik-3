@@ -1,4 +1,12 @@
+import "@/styles/globals.css";
+import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 export const metadata: Metadata = {
   title: "Salahudin Kholiq — Frontend Developer",
@@ -10,5 +18,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
+        {children}
+      </body>
+    </html>
+  );
 }
