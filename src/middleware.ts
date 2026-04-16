@@ -70,7 +70,20 @@ export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
 
-  // 2. Determine response type (rewrite for root, or next for others)
+  // 2. Security Block: Explicitly prevent access to sensitive files
+  // and redirect them to a path that will trigger our custom 404
+  const sensitivePatterns = [/\.env/, /\.git/, /\.yml/, /\.config/];
+  if (sensitivePatterns.some((pattern) => pattern.test(pathname))) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/404"; 
+    const response = NextResponse.rewrite(url, {
+      request: { headers: requestHeaders },
+    });
+    response.headers.set("Content-Security-Policy", csp);
+    return response;
+  }
+
+  // 3. Determine response type (rewrite for root, or next for others)
   let response: NextResponse;
 
   if (pathname === "/") {
@@ -86,7 +99,7 @@ export function middleware(request: NextRequest) {
     });
   }
 
-  // 3. Inject CSP header into the response
+  // 4. Inject CSP header into the response
   response.headers.set("Content-Security-Policy", csp);
 
   return response;
@@ -94,7 +107,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Skip all internal paths (_next), API routes, and static files
-    "/((?!api|_next/static|_next/image|favicon.ico|imgPortofolio|.*\\..*).*)",
+    // Skip internal paths and specific allowed static files
+    "/((?!api|_next/static|_next/image|favicon.ico|imgPortofolio|sitemap.xml|robots.txt).*)",
   ],
 };
