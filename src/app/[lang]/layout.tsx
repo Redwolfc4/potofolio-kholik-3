@@ -8,7 +8,7 @@ import MotionProvider from "@/components/motion-provider";
 import SiteHeader from "@/components/header/site-header";
 import SiteFooter from "@/components/footer/site-footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
-import { getDictionary, isValidLocale, locales } from "@/lib/i18n";
+import { getDictionary, isValidLocale, locales, defaultLocale } from "@/lib/i18n";
 
 const poppins = Poppins({
   variable: "--font-poppins",
