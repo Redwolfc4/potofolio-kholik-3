@@ -63,32 +63,30 @@ function buildCsp(nonce: string): string {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // --- Locale redirect: use rewrite instead of redirect ---
-  // A redirect (307) causes the browser to perform a second navigation.
-  // Combined with security headers, this triggers a browsing-context-group
-  // switch that makes Lighthouse lose its performance trace (NO_NAVSTART).
-  // A rewrite serves the /en content at "/" without a client-side redirect.
-  if (pathname === "/") {
-    const url = request.nextUrl.clone();
-    url.pathname = `/${defaultLocale}`;
-    return NextResponse.rewrite(url);
-  }
-
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
-
-  // --- CSP nonce injection ---
+  // 1. Generate security context always
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const csp = buildCsp(nonce);
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
 
-  const response = pathnameHasLocale
-    ? NextResponse.next({ request: { headers: requestHeaders } })
-    : NextResponse.next({ request: { headers: requestHeaders } });
+  // 2. Determine response type (rewrite for root, or next for others)
+  let response: NextResponse;
 
+  if (pathname === "/") {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${defaultLocale}`;
+    response = NextResponse.rewrite(url, {
+      request: { headers: requestHeaders },
+    });
+  } else {
+    // For other paths (already have locale or static files)
+    response = NextResponse.next({
+      request: { headers: requestHeaders },
+    });
+  }
+
+  // 3. Inject CSP header into the response
   response.headers.set("Content-Security-Policy", csp);
 
   return response;
