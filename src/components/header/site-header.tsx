@@ -70,6 +70,20 @@ export default function SiteHeader({ lang, dict }: { lang: string; dict: HeaderD
                 {item.label}
               </Link>
             ))}
+            <div className="mt-2 flex items-center justify-between border-t border-border/50 pt-4">
+              <div className="flex items-center gap-3">
+                <ThemeToggle />
+                <span className="text-sm font-medium text-muted-foreground">Theme</span>
+              </div>
+              <Link
+                href={`/${toggleLang}`}
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 rounded-md border border-border/70 px-3 py-1.5 text-xs font-bold uppercase transition-colors hover:bg-accent/70"
+              >
+                {toggleLang}
+                <span className="text-[10px] font-normal lowercase text-muted-foreground">Language</span>
+              </Link>
+            </div>
           </div>
         </div>
       )}

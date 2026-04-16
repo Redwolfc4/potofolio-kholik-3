@@ -34,7 +34,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
-      className="cursor-pointer border border-border/70 bg-card/70 shadow-sm transition-colors hover:bg-accent/60"
+      className="cursor-pointer border border-border/70 bg-card/70 shadow-sm transition-colors hover:bg-accent/60 size-10"
     >
       {currentTheme === "dark" ? (
         <m.span
@@ -44,13 +44,13 @@ export function ThemeToggle() {
             transition: { duration: 6, repeat: Infinity, ease: "linear" },
           })}
         >
-          <Sun className="h-5 w-5 text-amber-300 drop-shadow-[0_0_12px_rgba(212,161,115,0.8)]" />
+          <Sun className="h-6 w-6 text-amber-300 drop-shadow-[0_0_12px_rgba(212,161,115,0.8)]" />
         </m.span>
       ) : (
         <span className="relative flex items-center justify-center">
-          <Moon className="h-5 w-5 text-primary" />
+          <Moon className="h-6 w-6 text-primary" />
           <m.span
-            className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-accent"
+            className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-accent"
             {...whenMotionEnabled(motionEnabled, {
               animate: { opacity: [0.2, 1, 0.2], scale: [0.6, 1.1, 0.6] },
               transition: { duration: 1.6, repeat: Infinity, ease: "easeInOut" },
