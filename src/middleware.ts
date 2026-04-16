@@ -15,11 +15,7 @@ const isDevelopment = process.env.NODE_ENV === "development";
  * carry nonces.
  */
 function buildCsp(nonce: string): string {
-  const scriptSrc = isDevelopment
-    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"
-    : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'wasm-unsafe-eval'`;
-
-  const remoteHosts = [
+  const remoteHostsValue = [
     "cdn.jsdelivr.net",
     "dicoding-web-img.sgp1.cdn.digitaloceanspaces.com",
     "i.ibb.co.com",
@@ -41,6 +37,10 @@ function buildCsp(nonce: string): string {
     "www.dicoding.com",
   ].join(" ");
 
+  const scriptSrc = isDevelopment
+    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"
+    : `script-src 'self' 'nonce-${nonce}' 'wasm-unsafe-eval' ${remoteHostsValue}`;
+
   const directives = [
     "default-src 'self'",
     "base-uri 'self'",
@@ -49,10 +49,10 @@ function buildCsp(nonce: string): string {
     "object-src 'none'",
     scriptSrc,
     "style-src 'self' 'unsafe-inline'",
-    `img-src 'self' data: blob: ${remoteHosts}`,
+    `img-src 'self' data: blob: ${remoteHostsValue}`,
     "font-src 'self' data:",
-    `connect-src 'self' ${remoteHosts} https:${isDevelopment ? " ws:" : ""}`,
-    `media-src 'self' data: blob: ${remoteHosts}`,
+    `connect-src 'self' ${remoteHostsValue} https:${isDevelopment ? " ws:" : ""}`,
+    `media-src 'self' data: blob: ${remoteHostsValue}`,
     "worker-src 'self' blob:",
     "manifest-src 'self'",
   ];
