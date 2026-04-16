@@ -210,7 +210,7 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
             >
               {status === "loading" ? dict.sending : dict.send}
               <Send className="w-4 h-4" />
