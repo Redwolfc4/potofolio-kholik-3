@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import Hero from "@/components/hero/hero";
@@ -44,15 +45,42 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   return (
     <main className="flex flex-col items-center w-full relative">
       <Hero dict={common.hero} />
-      <About dict={about} />
-      <TechStack dict={techstack} />
-      <Marquee dict={common} />
-      <ExperienceJourney dict={experience} />
-      <Projects dict={projects} />
-      <Education dict={education} />
-      <LanguageSection dict={languages} />
-      <CertGrid dict={certifications} />
-      <ContactForm dict={common.contact} />
+      
+      <Suspense fallback={<div className="h-96" />}>
+        <About dict={about} />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-96" />}>
+        <TechStack dict={techstack} />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-32" />}>
+        <Marquee dict={common} />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-96" />}>
+        <ExperienceJourney dict={experience} />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-96" />}>
+        <Projects dict={projects} />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-96" />}>
+        <Education dict={education} />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-64" />}>
+        <LanguageSection dict={languages} />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-96" />}>
+        <CertGrid dict={certifications} />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-96" />}>
+        <ContactForm dict={common.contact} />
+      </Suspense>
     </main>
   );
 }

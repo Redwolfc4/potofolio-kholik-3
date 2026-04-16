@@ -32,16 +32,13 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-
-  if (!isValidLocale(lang)) {
-    notFound();
-  }
-
-  const dict = await getDictionary(lang, "common");
   
+  const safeLocale = isValidLocale(lang) ? lang : defaultLocale;
+  const dict = await getDictionary(safeLocale, "common");
+
   const title = dict.metadata.title;
   const description = dict.metadata.description || dict.hero.description;
-  const baseUrl = "https://salahudinkholiq.com";
+  const baseUrl = "https://salahudinkholikprasetyono.netlify.app";
 
   return {
     title,
@@ -108,7 +105,7 @@ export default async function RootLayout({
   }
 
   const dict = await getDictionary(lang, "common");
-  const baseUrl = "https://salahudinkholiq.com";
+  const baseUrl = "https://salahudinkholikprasetyono.netlify.app";
   const nonce = (await headers()).get("x-nonce") || undefined;
 
   return (
@@ -124,11 +121,12 @@ export default async function RootLayout({
           <MotionProvider>
             <script
               type="application/ld+json"
+              nonce={nonce}
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify({
                   "@context": "https://schema.org",
                   "@type": "Person",
-                  name: "Salahudin Kholiq",
+                  name: "Salahudin Kholik Prasetyono",
                   jobTitle: "Frontend Developer",
                   email: "salahudinkoliq10@gmail.com",
                   url: baseUrl,

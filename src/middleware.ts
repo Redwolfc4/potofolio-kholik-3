@@ -19,6 +19,28 @@ function buildCsp(nonce: string): string {
     ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"
     : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'wasm-unsafe-eval'`;
 
+  const remoteHosts = [
+    "cdn.jsdelivr.net",
+    "dicoding-web-img.sgp1.cdn.digitaloceanspaces.com",
+    "i.ibb.co.com",
+    "images.ctfassets.net",
+    "images.glints.com",
+    "images.unsplash.com",
+    "img-prod-cms-rt-microsoft-com.akamaized.net",
+    "img.alicdn.com",
+    "img2.lokercepat.id",
+    "media.licdn.com",
+    "mikrotik.com",
+    "nusantarago.netlify.app",
+    "parfume-website-6zvr2a2ldv.edgeone.dev",
+    "raw.githubusercontent.com",
+    "s6.imgcdn.dev",
+    "static.cdnlogo.com",
+    "upload.wikimedia.org",
+    "www.codepolitan.com",
+    "www.dicoding.com",
+  ].join(" ");
+
   const directives = [
     "default-src 'self'",
     "base-uri 'self'",
@@ -27,10 +49,10 @@ function buildCsp(nonce: string): string {
     "object-src 'none'",
     scriptSrc,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https:",
+    `img-src 'self' data: blob: ${remoteHosts}`,
     "font-src 'self' data:",
-    `connect-src 'self' https:${isDevelopment ? " ws:" : ""}`,
-    "media-src 'self' data: blob: https:",
+    `connect-src 'self' ${remoteHosts} https:${isDevelopment ? " ws:" : ""}`,
+    `media-src 'self' data: blob: ${remoteHosts}`,
     "worker-src 'self' blob:",
     "manifest-src 'self'",
   ];
