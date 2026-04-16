@@ -79,7 +79,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       </Suspense>
 
       <Suspense fallback={<div className="h-96" />}>
-        <ContactForm dict={common.contact} />
+        <ContactForm dict={common.contact} lang={lang} />
       </Suspense>
     </main>
   );

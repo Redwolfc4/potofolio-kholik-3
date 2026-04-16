@@ -12,34 +12,35 @@ import { ContactDict } from "@/types/i18n";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { whenMotionEnabled } from "@/lib/motion";
 
-const contactSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, "Name is required")
-    .min(2, "Name must be at least 2 characters"),
-  email: z
-    .string()
-    .trim()
-    .min(1, "Email is required")
-    .email("Please enter a valid email address"),
-  subject: z
-    .string()
-    .trim()
-    .min(1, "Subject is required")
-    .min(5, "Subject must be at least 5 characters"),
-  message: z
-    .string()
-    .trim()
-    .min(1, "Message is required")
-    .min(10, "Message must be at least 10 characters"),
-});
 
-type ContactFormData = z.infer<typeof contactSchema>;
-
-export default function ContactForm({ dict }: { dict: ContactDict }) {
+export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: string }) {
   const motionEnabled = useMotionEnabled();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const contactSchema = z.object({
+    name: z
+      .string()
+      .trim()
+      .min(1, dict.validation?.name || "Name is required")
+      .min(2, dict.validation?.name_min || "Name must be at least 2 characters"),
+    email: z
+      .string()
+      .trim()
+      .min(1, dict.validation?.email || "Email is required")
+      .email(dict.validation?.email || "Please enter a valid email address"),
+    subject: z
+      .string()
+      .trim()
+      .min(1, dict.validation?.subject || "Subject is required")
+      .min(5, dict.validation?.subject_min || "Subject must be at least 5 characters"),
+    message: z
+      .string()
+      .trim()
+      .min(1, dict.validation?.message || "Message is required")
+      .min(10, dict.validation?.message_min || "Message must be at least 10 characters"),
+  });
+
+  type ContactFormData = z.infer<typeof contactSchema>;
 
   const {
     register,
@@ -62,7 +63,7 @@ export default function ContactForm({ dict }: { dict: ContactDict }) {
   const onSubmit = async (data: ContactFormData) => {
     setStatus("loading");
     try {
-      const response = await emailService.sendEmail(data);
+      const response = await emailService.sendEmail(data, lang);
       if (response.success) {
         setStatus("success");
         reset();

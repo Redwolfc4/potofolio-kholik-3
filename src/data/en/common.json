@@ -56,7 +56,31 @@
       "message": "Thank you for reaching out. I will get back to you as soon as possible.",
       "button": "Send Another Message"
     },
-    "error": "Something went wrong. Please try again later."
+    "error": "Something went wrong. Please try again later.",
+    "validation": {
+      "name": "Please let me know your name",
+      "name_min": "Name should be at least 2 characters",
+      "email": "I need a valid email to reply to you",
+      "subject": "What's the subject of our talk?",
+      "subject_min": "Subject is a bit too short",
+      "message": "Don't forget to write your message!",
+      "message_min": "Message should be at least 10 characters"
+    }
+  },
+  "notFound": {
+    "title": "Lost in the Digital Brew?",
+    "subtitle": "This page must have evaporated. It's either missing or moved to a secret location.",
+    "buttonHome": "Back to Home",
+    "buttonSwitch": "Try Indonesian Version",
+    "infoUrl": "Valid URL",
+    "infoUrlDesc": "Use /en or /id as the main entry portfolio.",
+    "infoNav": "Need Direction?",
+    "infoNavDesc": "Go back to the homepage to explore projects, experience, and my CV."
+  },
+  "errors": {
+    "server": "Waduh! Our server is having a little nap. Please try again in a moment.",
+    "validation": "Oops! Looks like some fields are missing or incorrect.",
+    "general": "Something unexpected happened. Let's try that again?"
   },
   "footer": {
     "logo": "Kholik",

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { getContactEnv } from "@/lib/server-env";
+import { getDictionary } from "@/lib/i18n";
+import { Locale } from "@/types/i18n";
 
 type ContactApiResponse = {
   success: boolean;
@@ -36,12 +38,15 @@ function buildResponse(
 
 export async function POST(req: Request) {
   const requestId = crypto.randomUUID();
-
+  const locale = (req.headers.get("x-locale") as Locale) || "en";
+  
   try {
+    const common = await getDictionary(locale, "common");
     const data = await req.json();
     const { name, email, subject, message } = data ?? {};
+    
     if (!name || !email || !subject || !message) {
-      return buildResponse(req, requestId, 400, "Contact form validation failed", {
+      return buildResponse(req, requestId, 400, common.errors.validation, {
         error: "Invalid contact payload",
       });
     }
@@ -66,11 +71,16 @@ export async function POST(req: Request) {
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
     });
 
-    return buildResponse(req, requestId, 200, "Email sent successfully");
+    return buildResponse(req, requestId, 200, common.contact.success.title);
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     console.error("Contact API error:", { requestId, error: errorMessage });
-    return buildResponse(req, requestId, 500, "Failed to send email", {
+    
+    // Attempt to get dictionary for error response
+    const common = await getDictionary(locale, "common").catch(() => null);
+    const fallbackMessage = common?.errors?.server || "Contact service unavailable";
+
+    return buildResponse(req, requestId, 500, fallbackMessage, {
       error: "Contact service unavailable",
     });
   }
