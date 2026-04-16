@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://salahudinkholiq.com/sitemap.xml
+Sitemap: https://salahudinkholikprasetyono.netlify.app/sitemap.xml
