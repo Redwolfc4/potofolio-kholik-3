@@ -83,6 +83,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         "max-snippet": -1,
       },
     },
+    verification: {
+      google: "GRTxNX5Zmi-2N_JKPBkQ_D1LHgrkbts4s-6j8Zv6vN0",
+    },
     icons: {
       icon: "/favicon.ico",
       apple: "/favicon.ico",
