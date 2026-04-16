@@ -49,6 +49,15 @@ export interface ContactDict {
     button: string;
   };
   error: string;
+  validation?: {
+    name: string;
+    name_min: string;
+    email: string;
+    subject: string;
+    subject_min: string;
+    message: string;
+    message_min: string;
+  };
 }
 
 export interface FooterDict {
@@ -65,8 +74,23 @@ export interface CommonDict {
   header: HeaderDict;
   hero: HeroDict;
   titles: {
-    marquee: string;
+     marquee: string;
   };
   contact: ContactDict;
+  notFound: {
+    title: string;
+    subtitle: string;
+    buttonHome: string;
+    buttonSwitch: string;
+    infoUrl: string;
+    infoUrlDesc: string;
+    infoNav: string;
+    infoNavDesc: string;
+  };
+  errors: {
+    server: string;
+    validation: string;
+    general: string;
+  };
   footer: FooterDict;
 }

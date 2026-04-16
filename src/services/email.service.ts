@@ -15,10 +15,13 @@ export const emailService = {
     email: string;
     subject: string;
     message: string;
-  }): Promise<ContactApiResponse> => {
+  }, locale: string = "en"): Promise<ContactApiResponse> => {
     const response = await fetch("/api/contact", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "x-locale": locale
+      },
       body: JSON.stringify(data),
     });
 

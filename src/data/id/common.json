@@ -56,7 +56,31 @@
       "message": "Terima kasih telah menghubungi. Saya akan membalas Anda sesegera mungkin.",
       "button": "Kirim Pesan Lain"
     },
-    "error": "Terjadi kesalahan. Silakan coba lagi nanti."
+    "error": "Terjadi kesalahan. Silakan coba lagi nanti.",
+    "validation": {
+      "name": "Boleh tahu siapa nama Anda?",
+      "name_min": "Nama minimal 2 karakter ya",
+      "email": "Masukkan email yang valid supaya saya bisa balas",
+      "subject": "Apa nih subjek pembicaraan kita?",
+      "subject_min": "Subjeknya kependekan, tambah dikit lagi ya",
+      "message": "Jangan lupa tulis pesannya!",
+      "message_min": "Pesan minimal 10 karakter ya"
+    }
+  },
+  "notFound": {
+    "title": "Waduh, Kesasar Ya?",
+    "subtitle": "Halaman yang kamu cari sepertinya sudah menguap atau pindah ke tempat rahasia.",
+    "buttonHome": "Kembali ke Beranda",
+    "buttonSwitch": "Coba Versi Inggris",
+    "infoUrl": "URL Tervalidasi",
+    "infoUrlDesc": "Gunakan /en atau /id sebagai entry utama portfolio.",
+    "infoNav": "Butuh Arah?",
+    "infoNavDesc": "Kembali ke halaman utama untuk cek proyek, pengalaman, dan CV."
+  },
+  "errors": {
+    "server": "Waduh! Server kami lagi istirahat sebentar. Coba lagi nanti ya.",
+    "validation": "Oops! Sepertinya ada data yang kurang atau salah.",
+    "general": "Terjadi sesuatu yang tidak terduga. Coba kirim lagi?"
   },
   "footer": {
     "logo": "Kholik",

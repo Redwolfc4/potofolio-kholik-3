@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { defaultLocale, locales } from "@/lib/i18n";
+import { defaultLocale, locales, type Locale } from "@/lib/i18n";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -15,11 +15,7 @@ const isDevelopment = process.env.NODE_ENV === "development";
  * carry nonces.
  */
 function buildCsp(nonce: string): string {
-  const scriptSrc = isDevelopment
-    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"
-    : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'wasm-unsafe-eval'`;
-
-  const remoteHosts = [
+  const remoteHostsValue = [
     "cdn.jsdelivr.net",
     "dicoding-web-img.sgp1.cdn.digitaloceanspaces.com",
     "i.ibb.co.com",
@@ -41,6 +37,10 @@ function buildCsp(nonce: string): string {
     "www.dicoding.com",
   ].join(" ");
 
+  const scriptSrc = isDevelopment
+    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"
+    : `script-src 'self' 'nonce-${nonce}' 'wasm-unsafe-eval' ${remoteHostsValue}`;
+
   const directives = [
     "default-src 'self'",
     "base-uri 'self'",
@@ -49,10 +49,10 @@ function buildCsp(nonce: string): string {
     "object-src 'none'",
     scriptSrc,
     "style-src 'self' 'unsafe-inline'",
-    `img-src 'self' data: blob: ${remoteHosts}`,
+    `img-src 'self' data: blob: ${remoteHostsValue}`,
     "font-src 'self' data:",
-    `connect-src 'self' ${remoteHosts} https:${isDevelopment ? " ws:" : ""}`,
-    `media-src 'self' data: blob: ${remoteHosts}`,
+    `connect-src 'self' ${remoteHostsValue} https:${isDevelopment ? " ws:" : ""}`,
+    `media-src 'self' data: blob: ${remoteHostsValue}`,
     "worker-src 'self' blob:",
     "manifest-src 'self'",
   ];
@@ -67,15 +67,23 @@ export function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const csp = buildCsp(nonce);
 
+  // 2. Detect locale for header injection
+  let locale: Locale = defaultLocale;
+  const segments = pathname.split("/");
+  if (segments.length > 1 && locales.includes(segments[1] as any)) {
+    locale = segments[1] as Locale;
+  }
+
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
+  requestHeaders.set("x-locale", locale);
 
-  // 2. Security Block: Explicitly prevent access to sensitive files
+  // 3. Security Block: Explicitly prevent access to sensitive files
   // and redirect them to a path that will trigger our custom 404
   const sensitivePatterns = [/\.env/, /\.git/, /\.yml/, /\.config/];
   if (sensitivePatterns.some((pattern) => pattern.test(pathname))) {
     const url = request.nextUrl.clone();
-    url.pathname = "/404"; 
+    url.pathname = `/${locale}/404`; 
     const response = NextResponse.rewrite(url, {
       request: { headers: requestHeaders },
     });
@@ -83,7 +91,7 @@ export function middleware(request: NextRequest) {
     return response;
   }
 
-  // 3. Determine response type (rewrite for root, or next for others)
+  // 4. Determine response type (rewrite for root, or next for others)
   let response: NextResponse;
 
   if (pathname === "/") {
