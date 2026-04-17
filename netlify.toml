@@ -15,7 +15,7 @@
 # appear in Dockerfiles, config files, and UI code.
 
 [build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "APP_PORT,NODE_ENV,CONTACT_EMAIL,SMTP_HOST,SMTP_PORT"
+  SECRETS_SCAN_OMIT_KEYS = "APP_PORT,NODE_ENV,CONTACT_EMAIL,SMTP_HOST,SMTP_PORT,SMTP_USER"
   SECRETS_SCAN_OMIT_PATHS = ".env.example,Dockerfile,Dockerfile.dev,docker-compose.dev.yml,docker-compose.prod.yml,pnpm-lock.yaml,README.md,.gitignore"
 
 # ─────────────────────────────────────────────────
