@@ -87,10 +87,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       google: "GRTxNX5Zmi-2N_JKPBkQ_D1LHgrkbts4s-6j8Zv6vN0",
     },
     icons: {
-      icon: "/favicon.ico",
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+      ],
       apple: "/favicon.ico",
     },
-    manifest: "/sitemap.xml", // fallback or specific manifest if exists
+    manifest: "/manifest.json",
   };
 }
 
