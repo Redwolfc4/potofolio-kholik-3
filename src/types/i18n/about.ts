@@ -1,5 +1,6 @@
 export interface AboutDict {
   title: string;
+  quote: string;
   summary: {
     title: string;
     content: string;
@@ -11,5 +12,11 @@ export interface AboutDict {
   highlights: {
     title: string;
     items: string[];
+  };
+  education: {
+    label: string;
+    degree: string;
+    gpaLabel: string;
+    gpaValue: string;
   };
 }

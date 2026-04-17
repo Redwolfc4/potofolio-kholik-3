@@ -82,7 +82,13 @@ function ProjectCard({ project, index, dict }: ProjectCardProps) {
         <h3 className="text-xl xl:text-2xl 2xl:text-3xl font-bold mb-2 xl:mb-4">{project.title}</h3>
         <p
           ref={descriptionRef}
-          className={`text-start text-muted-foreground text-sm xl:text-base 2xl:text-lg transition-all duration-300 ${isExpanded ? "" : "line-clamp-3"} ${isExpanded ? "mb-2" : "mb-4 xl:mb-6"}`}
+          className={`text-start text-muted-foreground text-sm xl:text-base 2xl:text-lg transition-all duration-300 cursor-pointer ${isExpanded ? "" : "line-clamp-3"} ${isExpanded ? "mb-2" : "mb-4 xl:mb-6"}`}
+          onClick={(e) => {
+            if (isTruncated) {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
+            }
+          }}
         >
           {project.description}
         </p>
@@ -94,7 +100,7 @@ function ProjectCard({ project, index, dict }: ProjectCardProps) {
               e.stopPropagation();
               setIsExpanded(!isExpanded);
             }}
-            className="text-[0.625rem] xl:text-xs font-bold text-primary/60 hover:text-primary transition-colors mb-4 focus:outline-hidden block"
+            className="text-[0.625rem] xl:text-xs font-bold text-primary/60 hover:text-primary transition-colors mb-4 focus:outline-hidden block cursor-pointer"
           >
             {isExpanded ? dict.showLess : dict.showMore}
           </button>

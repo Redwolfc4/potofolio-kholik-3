@@ -16,6 +16,13 @@
       "DevOps: Docker, Git, Modern CI/CD Tools",
       "Quality Assurance: API Testing & Test Case Design"
     ]
+  },
+  "quote": "\"First, solve the problem. Then, write the code.\"",
+  "education": {
+    "label": "Education",
+    "degree": "Bach. of Informatics",
+    "gpaLabel": "Cumulative GPA",
+    "gpaValue": "4.00"
   }
 }
 

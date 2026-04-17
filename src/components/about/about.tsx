@@ -50,7 +50,7 @@ export default function About({ dict }: { dict: AboutDict }) {
             {dict.title}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/60 max-w-4xl leading-tight">
-            &quot;First, solve the problem. Then, write the code.&quot;
+            {dict.quote}
           </h2>
           <div className="h-1.5 w-20 bg-primary rounded-full mb-8" />
         </m.div>
@@ -99,16 +99,16 @@ export default function About({ dict }: { dict: AboutDict }) {
               <div className="relative z-10">
                 <div className="inline-flex py-1.5 px-3 rounded-lg bg-black/10 dark:bg-white/20 backdrop-blur-md mb-6 items-center gap-2">
                   <GraduationCap className="w-4 h-4" />
-                  <span className="text-sm font-bold tracking-wide uppercase">Education</span>
+                  <span className="text-sm font-bold tracking-wide uppercase">{dict.education.label}</span>
                 </div>
                 <h4 className="text-2xl font-extrabold mb-1">Universitas Bina Sarana Informatika</h4>
-                <p className="text-primary-foreground mb-6 font-medium">Bach. of Informatics</p>
+                <p className="text-primary-foreground mb-6 font-medium">{dict.education.degree}</p>
 
                 <div className="flex items-center gap-4 bg-black/10 dark:bg-white/20 backdrop-blur p-4 rounded-2xl border border-black/10 dark:border-white/40">
                   <Trophy className="w-10 h-10 text-yellow-300" />
                   <div>
-                    <div className="text-3xl font-black tabular-nums tracking-tighter">4.00</div>
-                    <div className="text-xs font-bold uppercase tracking-widest text-primary-foreground">Cumulative GPA</div>
+                    <div className="text-3xl font-black tabular-nums tracking-tighter">{dict.education.gpaValue}</div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-primary-foreground">{dict.education.gpaLabel}</div>
                   </div>
                 </div>
               </div>

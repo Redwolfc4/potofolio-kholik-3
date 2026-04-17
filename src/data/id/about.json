@@ -16,6 +16,13 @@
       "DevOps: Docker, Git, Modern CI/CD Tools",
       "Quality Assurance: API Testing & Test Case Design"
     ]
+  },
+  "quote": "\"Selesaikan masalahnya dulu. Baru tulis kodenya.\"",
+  "education": {
+    "label": "Pendidikan",
+    "degree": "S1 Informatika",
+    "gpaLabel": "IPK Kumulatif",
+    "gpaValue": "4,00"
   }
 }
 
