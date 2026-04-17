@@ -47,6 +47,7 @@ export interface ContactDict {
     title: string;
     message: string;
     button: string;
+    countdown: string;
   };
   error: string;
   validation?: {

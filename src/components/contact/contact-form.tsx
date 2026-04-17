@@ -1,21 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { emailService } from "@/services/email.service";
-import { m } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 
 import { ContactDict } from "@/types/i18n";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { whenMotionEnabled } from "@/lib/motion";
 
-
 export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: string }) {
   const motionEnabled = useMotionEnabled();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [countdown, setCountdown] = useState(3);
 
   const contactSchema = z.object({
     name: z
@@ -59,6 +59,24 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
       message: "",
     },
   });
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (status === "success") {
+      setCountdown(3);
+      timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            setStatus("idle");
+            clearInterval(timer);
+            return 3;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [status]);
 
   const onSubmit = async (data: ContactFormData) => {
     setStatus("loading");
@@ -115,113 +133,139 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
           whileInView: { opacity: 1, y: 0 },
           viewport: { once: true, amount: 0.2 },
         })}
-        className="mx-auto rounded-xl border border-border/80 bg-card/85 p-8 shadow-[0_24px_60px_rgba(95,58,34,0.14)] backdrop-blur-sm dark:shadow-[0_24px_60px_rgba(0,0,0,0.32)]"
+        className="mx-auto rounded-xl border border-border/80 bg-card/85 p-8 shadow-[0_24px_60px_rgba(95,58,34,0.14)] backdrop-blur-sm dark:shadow-[0_24px_60px_rgba(0,0,0,0.32)] min-h-[400px]"
       >
-        {status === "success" ? (
-          <div className="flex flex-col items-center justify-center space-y-4 py-10">
-            <CheckCircle className="w-16 h-16 text-green-500" />
-            <h3 className="text-xl font-bold">{dict.success.title}</h3>
-            <p className="text-muted-foreground text-center">
-              {dict.success.message}
-            </p>
-            <button
-              onClick={() => setStatus("idle")}
-              className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+        <AnimatePresence mode="wait">
+          {status === "success" ? (
+            <m.div
+              key="success"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+              className="flex flex-col items-center justify-center space-y-4 py-10"
             >
-              {dict.success.button}
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium">{dict.name}</label>
-              <input
-                id="name"
-                {...register("name")}
-                required
-                aria-invalid={errors.name ? "true" : "false"}
-                onKeyDown={handleEnterSubmit}
-                className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${errors.name ? "border-red-500 focus:ring-red-500" : "border-border/80"
-                  }`}
-              />
-              {errors.name && (
-                <p className="text-xs text-red-500 flex items-center gap-1">
-                  <AlertCircle className="w-3 h-3" /> {errors.name.message}
+              <CheckCircle className="w-16 h-16 text-green-500" />
+              <h3 className="text-xl font-bold">{dict.success.title}</h3>
+              <div className="text-center space-y-2">
+                <p className="text-muted-foreground max-w-md">
+                  {dict.success.message}
                 </p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium">{dict.email}</label>
-              <input
-                id="email"
-                type="email"
-                {...register("email")}
-                required
-                aria-invalid={errors.email ? "true" : "false"}
-                onKeyDown={handleEnterSubmit}
-                className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${errors.email ? "border-red-500 focus:ring-red-500" : "border-border/80"
-                  }`}
-              />
-              {errors.email && (
-                <p className="text-xs text-red-500 flex items-center gap-1">
-                  <AlertCircle className="w-3 h-3" /> {errors.email.message}
+                <p className="text-xs text-muted-foreground italic">
+                  {dict.success.countdown?.replace("{seconds}", countdown.toString()) || 
+                   `Returning to form in ${countdown}s...`}
                 </p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="subject" className="text-sm font-medium">{dict.subject}</label>
-              <input
-                id="subject"
-                {...register("subject")}
-                required
-                aria-invalid={errors.subject ? "true" : "false"}
-                onKeyDown={handleEnterSubmit}
-                className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${errors.subject ? "border-red-500 focus:ring-red-500" : "border-border/80"
-                  }`}
-              />
-              {errors.subject && (
-                <p className="text-xs text-red-500 flex items-center gap-1">
-                  <AlertCircle className="w-3 h-3" /> {errors.subject.message}
-                </p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium">{dict.message}</label>
-              <textarea
-                id="message"
-                rows={5}
-                {...register("message")}
-                required
-                aria-invalid={errors.message ? "true" : "false"}
-                onKeyDown={handleEnterSubmit}
-                className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${errors.message ? "border-red-500 focus:ring-red-500" : "border-border/80"
-                  }`}
-              />
-              {errors.message && (
-                <p className="text-xs text-red-500 flex items-center gap-1">
-                  <AlertCircle className="w-3 h-3" /> {errors.message.message}
-                </p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
+              </div>
+              <button
+                onClick={() => setStatus("idle")}
+                className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors cursor-pointer"
+              >
+                {dict.success.button}
+              </button>
+            </m.div>
+          ) : (
+            <m.form
+              key="form"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              className="space-y-6"
             >
-              {status === "loading" ? dict.sending : dict.send}
-              <Send className="w-4 h-4" />
-            </button>
-            {status === "error" && (
-              <p className="text-sm text-red-500 text-center">
-                {dict.error}
-              </p>
-            )}
-          </form>
-        )}
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-sm font-medium">{dict.name}</label>
+                <input
+                  id="name"
+                  {...register("name")}
+                  required
+                  aria-invalid={errors.name ? "true" : "false"}
+                  onKeyDown={handleEnterSubmit}
+                  className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${
+                    errors.name ? "border-red-500 focus:ring-red-500" : "border-border/80"
+                  }`}
+                />
+                {errors.name && (
+                  <p className="text-xs text-red-500 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" /> {errors.name.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium">{dict.email}</label>
+                <input
+                  id="email"
+                  type="email"
+                  {...register("email")}
+                  required
+                  aria-invalid={errors.email ? "true" : "false"}
+                  onKeyDown={handleEnterSubmit}
+                  className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${
+                    errors.email ? "border-red-500 focus:ring-red-500" : "border-border/80"
+                  }`}
+                />
+                {errors.email && (
+                  <p className="text-xs text-red-500 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" /> {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="subject" className="text-sm font-medium">{dict.subject}</label>
+                <input
+                  id="subject"
+                  {...register("subject")}
+                  required
+                  aria-invalid={errors.subject ? "true" : "false"}
+                  onKeyDown={handleEnterSubmit}
+                  className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${
+                    errors.subject ? "border-red-500 focus:ring-red-500" : "border-border/80"
+                  }`}
+                />
+                {errors.subject && (
+                  <p className="text-xs text-red-500 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" /> {errors.subject.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-medium">{dict.message}</label>
+                <textarea
+                  id="message"
+                  rows={5}
+                  {...register("message")}
+                  required
+                  aria-invalid={errors.message ? "true" : "false"}
+                  onKeyDown={handleEnterSubmit}
+                  className={`w-full rounded-lg border bg-background/70 px-4 py-3 shadow-inner transition-all focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary ${
+                    errors.message ? "border-red-500 focus:ring-red-500" : "border-border/80"
+                  }`}
+                />
+                {errors.message && (
+                  <p className="text-xs text-red-500 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" /> {errors.message.message}
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
+              >
+                {status === "loading" ? dict.sending : dict.send}
+                <Send className="w-4 h-4" />
+              </button>
+              {status === "error" && (
+                <p className="text-sm text-red-500 text-center">
+                  {dict.error}
+                </p>
+              )}
+            </m.form>
+          )}
+        </AnimatePresence>
       </m.div>
     </section>
   );

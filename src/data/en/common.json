@@ -54,7 +54,8 @@
     "success": {
       "title": "Message Sent!",
       "message": "Thank you for reaching out. I will get back to you as soon as possible.",
-      "button": "Send Another Message"
+      "button": "Send Another Message",
+      "countdown": "Returning to form in {seconds}s..."
     },
     "error": "Something went wrong. Please try again later.",
     "validation": {

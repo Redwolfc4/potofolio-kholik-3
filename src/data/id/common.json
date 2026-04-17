@@ -54,7 +54,8 @@
     "success": {
       "title": "Pesan Terkirim!",
       "message": "Terima kasih telah menghubungi. Saya akan membalas Anda sesegera mungkin.",
-      "button": "Kirim Pesan Lain"
+      "button": "Kirim Pesan Lain",
+      "countdown": "Kembali ke form dalam {seconds}s..."
     },
     "error": "Terjadi kesalahan. Silakan coba lagi nanti.",
     "validation": {
