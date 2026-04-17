@@ -4,22 +4,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://salahudinkholikprasetyono.netlify.app";
   const locales = ["en", "id"];
 
-  const routes = locales.flatMap((lang) => [
-    {
-      url: `${baseUrl}/${lang}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 1,
+  // Homepage with localized alternates
+  const homepage: MetadataRoute.Sitemap[number] = {
+    url: baseUrl,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 1,
+    alternates: {
+      languages: {
+        en: `${baseUrl}/en`,
+        id: `${baseUrl}/id`,
+      },
     },
-  ]);
+  };
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 1,
+  // Localized routes
+  const routes = locales.map((lang) => ({
+    url: `${baseUrl}/${lang}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+    alternates: {
+      languages: {
+        en: `${baseUrl}/en`,
+        id: `${baseUrl}/id`,
+      },
     },
-    ...routes,
-  ];
+  }));
+
+  return [homepage, ...routes];
 }
