@@ -1,0 +1,32 @@
+# ─────────────────────────────────────────────────
+# Netlify Configuration for Portfolio Site
+# ─────────────────────────────────────────────────
+
+[build]
+  command   = "pnpm build"
+  publish   = ".next"
+
+# ─────────────────────────────────────────────────
+# Secrets Scanning
+# ─────────────────────────────────────────────────
+# Netlify scans the repo for env var VALUES appearing in source code.
+# The keys below are NOT real secrets — they are common config values
+# like "3000", "production", or a public contact email that naturally
+# appear in Dockerfiles, config files, and UI code.
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "APP_PORT,NODE_ENV,CONTACT_EMAIL,SMTP_HOST,SMTP_PORT"
+  SECRETS_SCAN_OMIT_PATHS = ".env.example,Dockerfile,Dockerfile.dev,docker-compose.dev.yml,docker-compose.prod.yml,pnpm-lock.yaml,README.md,.gitignore"
+
+# ─────────────────────────────────────────────────
+# Caching headers for static assets
+# ─────────────────────────────────────────────────
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/imgPortofolio/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, immutable"
