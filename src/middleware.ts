@@ -39,7 +39,7 @@ function buildCsp(nonce: string): string {
 
   const scriptSrc = isDevelopment
     ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"
-    : `script-src 'self' 'nonce-${nonce}' 'wasm-unsafe-eval' ${remoteHostsValue}`;
+    : `script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' ${remoteHostsValue}`;
 
   const directives = [
     "default-src 'self'",

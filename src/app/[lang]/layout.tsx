@@ -112,15 +112,13 @@ export default async function RootLayout({
   const nonce = (await headers()).get("x-nonce") || undefined;
 
   return (
-    <html lang={lang} suppressHydrationWarning>
-      <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          nonce={nonce}
-        >
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+      nonce={nonce}
+    >
           <MotionProvider>
             <script
               type="application/ld+json"
@@ -146,7 +144,5 @@ export default async function RootLayout({
             <ScrollToTop />
           </MotionProvider>
         </ThemeProvider>
-      </body>
-    </html>
   );
 }

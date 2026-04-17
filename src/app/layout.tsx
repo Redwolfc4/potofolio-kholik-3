@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import { Poppins } from "next/font/google";
+import { headers } from "next/headers";
 import type { Metadata } from "next";
 
 const poppins = Poppins({
@@ -13,13 +14,15 @@ export const metadata: Metadata = {
   description: "Portfolio of Salahudin Kholiq Prasetyono — A frontend developer focused on building modern, animated, and accessible web experiences using Next.js and Tailwind CSS.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = (await headers()).get("x-locale") || "en";
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
         {children}
       </body>
