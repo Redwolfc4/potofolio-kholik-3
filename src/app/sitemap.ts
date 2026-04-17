@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const homepage: MetadataRoute.Sitemap[number] = {
     url: baseUrl,
     lastModified: new Date(),
-    changeFrequency: "monthly",
+    changeFrequency: "monthly" as const,
     priority: 1,
     alternates: {
       languages: {
@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = locales.map((lang) => ({
     url: `${baseUrl}/${lang}`,
     lastModified: new Date(),
-    changeFrequency: "monthly",
+    changeFrequency: "monthly" as const,
     priority: 0.8,
     alternates: {
       languages: {
