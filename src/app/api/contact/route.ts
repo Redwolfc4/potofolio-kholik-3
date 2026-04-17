@@ -3,6 +3,10 @@ import nodemailer from "nodemailer";
 import { getContactEnv } from "@/lib/server-env";
 import { getDictionary } from "@/lib/i18n";
 import { Locale } from "@/types/i18n";
+import {
+  buildContactEmailHtml,
+  buildContactEmailText,
+} from "@/lib/email-template";
 
 type ContactApiResponse = {
   success: boolean;
@@ -39,7 +43,8 @@ function buildResponse(
 export async function POST(req: Request) {
   const requestId = crypto.randomUUID();
   const locale = (req.headers.get("x-locale") as Locale) || "en";
-  
+  const timestamp = new Date().toISOString();
+
   try {
     const common = await getDictionary(locale, "common");
     const data = await req.json();
@@ -63,12 +68,15 @@ export async function POST(req: Request) {
       },
     });
 
+    const emailParams = { name, email, subject, message, timestamp, requestId };
+
     await transporter.sendMail({
       from: `"Portfolio Contact" <${contactEnv.SMTP_USER}>`,
       to: contactEnv.CONTACT_EMAIL,
       replyTo: email,
       subject: `[Portfolio] ${subject}`,
-      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      text: buildContactEmailText(emailParams),
+      html: buildContactEmailHtml(emailParams),
     });
 
     return buildResponse(req, requestId, 200, common.contact.success.title);
