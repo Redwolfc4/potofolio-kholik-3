@@ -3,8 +3,9 @@ import NotFoundHeader from "./not-found/header";
 import NotFoundActions from "./not-found/actions";
 import NotFoundInfoCards from "./not-found/info-cards";
 import NotFoundIllustration from "./not-found/illustration";
+import { CommonDict } from "@/types/i18n";
 
-export default function NotFoundPage({ dict }: { dict: any }) {
+export default function NotFoundPage({ dict }: { dict: CommonDict }) {
   const { notFound } = dict;
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { CommonDict } from "@/types/i18n";
-import NativeImageWithFallback from "@/components/ui/native-image-with-fallback";
+import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { companies } from "@/lib/companies";
 
@@ -35,16 +35,15 @@ export default function Marquee({ dict }: { dict: CommonDict }) {
                   >
                     {company.logo ? (
                       <div className="relative h-20 w-40 md:h-28 md:w-48">
-                        <NativeImageWithFallback
+                        <ImageWithFallback
                           src={company.logo}
                           alt={company.name}
                           fallbackSrc="/placeholders/logo-fallback.svg"
                           className="object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 hover:scale-110"
-                          loading="lazy"
-                          decoding="async"
+                          fill
+                          unoptimized
                           draggable="false"
                           referrerPolicy="no-referrer"
-                          style={{ width: "100%", height: "100%" }}
                         />
                       </div>
                     ) : (
