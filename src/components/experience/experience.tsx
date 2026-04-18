@@ -120,7 +120,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
 
               <p 
                 ref={descriptionRef}
-                className={`text-start text-xs xl:text-sm text-muted-foreground/70 leading-relaxed transition-all duration-300 cursor-pointer ${isExpanded ? "" : "line-clamp-2 md:line-clamp-3"} ${isExpanded ? "mb-2" : "mb-0"}`}
+                className={`text-start text-xs xl:text-sm text-muted-foreground leading-relaxed transition-all duration-300 cursor-pointer ${isExpanded ? "" : "line-clamp-2 md:line-clamp-3"} ${isExpanded ? "mb-2" : "mb-0"}`}
                 onClick={(e) => {
                   if (isTruncated) {
                     e.stopPropagation();
@@ -138,7 +138,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
                     e.stopPropagation();
                     setIsExpanded(!isExpanded);
                   }}
-                  className="text-[0.625rem] xl:text-xs font-bold text-primary/60 hover:text-primary transition-colors mb-4 focus:outline-hidden block cursor-pointer"
+                  className="text-[0.625rem] xl:text-xs font-bold text-primary hover:text-primary/80 transition-colors mb-4 focus:outline-hidden block cursor-pointer"
                 >
                   {isExpanded ? dict.showLess : dict.showMore}
                 </button>
@@ -223,7 +223,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
 
       {/* Mobile Date - only visible if not desktop */}
       <div className="md:hidden ml-12 mt-2 mb-4">
-        <span className="text-[0.625rem] font-black text-muted-foreground/50 tracking-widest">{exp.period}</span>
+        <span className="text-[0.625rem] font-black text-muted-foreground tracking-widest">{exp.period}</span>
       </div>
     </div>
   );
