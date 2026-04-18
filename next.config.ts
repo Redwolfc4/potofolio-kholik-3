@@ -63,11 +63,6 @@ const securityHeaders = [
     key: "Cross-Origin-Resource-Policy",
     value: "same-origin",
   },
-  // CROSS-ORIGIN-OPENER-POLICY — Helps Lighthouse maintain trace on redirects/navs
-  {
-    key: "Cross-Origin-Opener-Policy",
-    value: "same-origin-allow-popups",
-  },
 ];
 
 const nextConfig: NextConfig = {

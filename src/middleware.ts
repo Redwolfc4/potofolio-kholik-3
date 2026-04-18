@@ -91,15 +91,15 @@ export function middleware(request: NextRequest) {
     return response;
   }
 
-  // 4. Determine response type (rewrite for root, or next for others)
+  // 4. Determine response type (redirect root, or next for others)
   let response: NextResponse;
 
   if (pathname === "/") {
     const url = request.nextUrl.clone();
     url.pathname = `/${defaultLocale}`;
-    response = NextResponse.rewrite(url, {
-      request: { headers: requestHeaders },
-    });
+    response = NextResponse.redirect(url, 308);
+    response.headers.set("x-nonce", nonce);
+    response.headers.set("x-locale", defaultLocale);
   } else {
     // For other paths (already have locale or static files)
     response = NextResponse.next({

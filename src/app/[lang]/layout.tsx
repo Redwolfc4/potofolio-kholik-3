@@ -32,7 +32,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  
+
   const safeLocale = isValidLocale(lang) ? lang : defaultLocale;
   const dict = await getDictionary(safeLocale, "common");
 
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description,
     metadataBase: new URL(baseUrl),
     alternates: {
-      canonical: `/${lang}`,
+      canonical: `/${safeLocale}`,
       languages: {
         "en-US": "/en",
         "id-ID": "/id",
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${lang}`,
+      url: `${baseUrl}/${safeLocale}`,
       siteName: "Salahudin Kholiq Portfolio",
       images: [
         {
@@ -116,9 +116,10 @@ export default async function RootLayout({
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="system"
-      enableSystem
+      defaultTheme="light"
+      enableSystem={false}
       disableTransitionOnChange
+      enableColorScheme
       nonce={nonce}
     >
           <MotionProvider>

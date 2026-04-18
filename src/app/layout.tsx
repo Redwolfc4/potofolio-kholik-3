@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import { Poppins } from "next/font/google";
-import { headers } from "next/headers";
 import type { Metadata } from "next";
+import { defaultLocale } from "@/lib/i18n";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -34,10 +34,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = (await headers()).get("x-locale") || "en";
-
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={defaultLocale} suppressHydrationWarning>
       <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
         {children}
       </body>
