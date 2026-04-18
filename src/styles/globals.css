@@ -4,10 +4,9 @@ html {
   scroll-behavior: smooth;
 }
 
-section {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 500px;
-}
+/* content-visibility removed — it breaks Lighthouse paint-timing metrics
+   (LCP / CLS not measurable) especially in dark-mode where the theme
+   injection script delays initial render slightly. */
 @import "shadcn/tailwind.css";
 
 @variant dark (&:is(.dark *));

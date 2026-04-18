@@ -100,7 +100,7 @@ function ProjectCard({ project, index, dict }: ProjectCardProps) {
               e.stopPropagation();
               setIsExpanded(!isExpanded);
             }}
-            className="text-[0.625rem] xl:text-xs font-bold text-primary/60 hover:text-primary transition-colors mb-4 focus:outline-hidden block cursor-pointer"
+            className="text-[0.625rem] xl:text-xs font-bold text-primary hover:text-primary/80 transition-colors mb-4 focus:outline-hidden block cursor-pointer"
           >
             {isExpanded ? dict.showLess : dict.showMore}
           </button>
