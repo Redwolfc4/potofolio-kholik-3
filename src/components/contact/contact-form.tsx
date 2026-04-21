@@ -7,6 +7,7 @@ import * as z from "zod";
 import { emailService } from "@/services/email.service";
 import { m, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { toast } from "sonner";
 
 import { ContactDict } from "@/types/i18n";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
@@ -84,13 +85,23 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
       const response = await emailService.sendEmail(data, lang);
       if (response.success) {
         setStatus("success");
+        toast.success(dict.success.title, {
+          description: dict.success.message || "Your message has been sent successfully!"
+        });
         reset();
       } else {
         setStatus("error");
+        const errorDetail = response.error || response.message;
+        toast.error("Failed to send message", {
+          description: errorDetail ? `Server says: ${errorDetail}` : dict.error || "Please try again later."
+        });
       }
     } catch (error) {
       console.error("Error sending email:", error);
       setStatus("error");
+      toast.error("Connection Error", {
+        description: error instanceof Error ? error.message : "Unable to reach the server. Please check your internet connection."
+      });
     }
   };
 

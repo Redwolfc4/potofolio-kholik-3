@@ -8,6 +8,7 @@ import MotionProvider from "@/components/motion-provider";
 import SiteHeader from "@/components/header/site-header";
 import SiteFooter from "@/components/footer/site-footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
+import { Toaster } from "sonner";
 import { getDictionary, isValidLocale, locales, defaultLocale } from "@/lib/i18n";
 
 const poppins = Poppins({
@@ -143,6 +144,7 @@ export default async function RootLayout({
             />
             <SiteHeader lang={lang} dict={dict.header} />
             {children}
+            <Toaster position="bottom-right" richColors theme="system" />
             <SiteFooter dict={dict.footer} />
             <ScrollToTop />
           </MotionProvider>
