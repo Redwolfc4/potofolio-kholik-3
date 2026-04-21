@@ -66,6 +66,12 @@
       "subject_min": "Subject is a bit too short",
       "message": "Don't forget to write your message!",
       "message_min": "Message should be at least 10 characters"
+    },
+    "toastErrors": {
+      "failedTitle": "Failed to send message",
+      "serverSays": "Server says:",
+      "connectionTitle": "Connection Error",
+      "connectionFallback": "Unable to reach the server. Please check your internet connection."
     }
   },
   "notFound": {
