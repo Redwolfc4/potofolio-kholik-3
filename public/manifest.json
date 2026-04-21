@@ -2,10 +2,13 @@
   "name": "Salahudin Kholiq Portfolio",
   "short_name": "SK Portfolio",
   "description": "Portfolio of Salahudin Kholiq Prasetyono — Frontend Developer",
+  "id": "/",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f5ede3",
   "theme_color": "#19110d",
+  "orientation": "portrait",
+  "scope": "/",
   "icons": [
     {
       "src": "/favicon.ico",
