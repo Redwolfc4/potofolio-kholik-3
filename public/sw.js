@@ -2,7 +2,8 @@ const CACHE_NAME = 'sk-portfolio-v1';
 const ASSETS_TO_CACHE = [
   '/',
   '/manifest.json',
-  '/favicon.ico'
+  '/favicon.ico',
+  '/icon-512x512.png'
 ];
 
 self.addEventListener('install', (event) => {

@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "SK Portfolio",
   },
+  manifest: "/manifest.json",
   formatDetection: {
     telephone: false,
   },
