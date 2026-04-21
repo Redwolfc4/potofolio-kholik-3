@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Poppins } from "next/font/google";
 import { headers } from "next/headers";
 import { ThemeProvider } from "@/components/theme-provider";
 import MotionProvider from "@/components/motion-provider";
@@ -10,12 +9,6 @@ import SiteFooter from "@/components/footer/site-footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import { Toaster } from "sonner";
 import { getDictionary, isValidLocale, locales, defaultLocale } from "@/lib/i18n";
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 export const viewport: Viewport = {
   themeColor: [
