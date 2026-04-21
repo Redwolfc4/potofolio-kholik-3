@@ -243,11 +243,7 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
 
   return (
     <section id="experience" className="py-24 w-full px-4 sm:px-10 lg:px-20 xl:px-24 2xl:px-32 overflow-hidden relative">
-      {/* Background Decorative Element – simplified for performance */}
-      <div className="absolute inset-x-0 top-0 h-64 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute -top-16 -left-16 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-      </div>
-      <div className="">
+      <div className="mx-auto">
         <m.h2
           {...whenMotionEnabled(motionEnabled, {
             initial: { opacity: 0, y: 20 },

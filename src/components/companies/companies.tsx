@@ -11,8 +11,6 @@ export default function Marquee({ dict }: { dict: CommonDict }) {
 
   return (
     <section id="companies" className="py-24 w-full overflow-hidden flex flex-col items-center gap-12 relative">
-      {/* Removed orbs for marquee performance */}
-      <div className="absolute inset-0 pointer-events-none -z-10 bg-linear-to-b from-transparent via-primary/5 to-transparent" />
       <div className="mx-auto px-8 w-full">
         <h2 className="text-3xl font-bold text-center tracking-tight">
           {dict.titles.marquee}

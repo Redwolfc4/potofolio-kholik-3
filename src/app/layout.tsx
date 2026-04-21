@@ -36,6 +36,10 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang={defaultLocale} suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://media.licdn.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://media.licdn.com" />
+      </head>
       <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
         {children}
       </body>
