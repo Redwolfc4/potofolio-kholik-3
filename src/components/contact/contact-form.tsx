@@ -269,11 +269,7 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
                 {status === "loading" ? dict.sending : dict.send}
                 <Send className="w-4 h-4" />
               </button>
-              {status === "error" && (
-                <p className="text-sm text-red-500 text-center">
-                  {dict.error}
-                </p>
-              )}
+
             </m.form>
           )}
         </AnimatePresence>

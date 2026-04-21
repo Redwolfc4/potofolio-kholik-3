@@ -144,7 +144,15 @@ export default async function RootLayout({
             />
             <SiteHeader lang={lang} dict={dict.header} />
             {children}
-            <Toaster position="bottom-right" richColors theme="system" />
+            <Toaster 
+              position="bottom-right" 
+              richColors 
+              theme="system"
+              toastOptions={{
+                className: "sm:min-w-[400px] sm:min-h-[80px] sm:text-base p-5",
+                descriptionClassName: "sm:text-sm",
+              }} 
+            />
             <SiteFooter dict={dict.footer} />
             <ScrollToTop />
           </MotionProvider>
