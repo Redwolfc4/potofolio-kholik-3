@@ -89,7 +89,11 @@ export async function POST(req: Request) {
     return buildResponse(req, requestId, 200, common.contact.success.title);
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
-    console.error("Contact API error:", { requestId, error: errorMessage });
+    console.error("Contact API error [FULL]:", { 
+      requestId, 
+      error: errorMessage,
+      stack: error instanceof Error ? error.stack : undefined 
+    });
     
     // Attempt to get dictionary for error response
     const common = await getDictionary(locale, "common").catch(() => null);
