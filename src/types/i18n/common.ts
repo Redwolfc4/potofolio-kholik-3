@@ -59,6 +59,12 @@ export interface ContactDict {
     message: string;
     message_min: string;
   };
+  toastErrors: {
+    failedTitle: string;
+    serverSays: string;
+    connectionTitle: string;
+    connectionFallback: string;
+  };
 }
 
 export interface FooterDict {
