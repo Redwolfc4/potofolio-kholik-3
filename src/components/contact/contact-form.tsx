@@ -86,21 +86,21 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
       if (response.success) {
         setStatus("success");
         toast.success(dict.success.title, {
-          description: dict.success.message || "Your message has been sent successfully!"
+          description: dict.success.message
         });
         reset();
       } else {
         setStatus("error");
         const errorDetail = response.error || response.message;
-        toast.error("Failed to send message", {
-          description: errorDetail ? `Server says: ${errorDetail}` : dict.error || "Please try again later."
+        toast.error(dict.toastErrors?.failedTitle || "Failed to send message", {
+          description: errorDetail ? `${dict.toastErrors?.serverSays || "Server says:"} ${errorDetail}` : dict.error
         });
       }
     } catch (error) {
       console.error("Error sending email:", error);
       setStatus("error");
-      toast.error("Connection Error", {
-        description: error instanceof Error ? error.message : "Unable to reach the server. Please check your internet connection."
+      toast.error(dict.toastErrors?.connectionTitle || "Connection Error", {
+        description: error instanceof Error ? error.message : dict.toastErrors?.connectionFallback || "Unable to reach the server. Please check your internet connection."
       });
     }
   };

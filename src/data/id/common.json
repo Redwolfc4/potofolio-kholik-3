@@ -66,6 +66,12 @@
       "subject_min": "Subjeknya kependekan, tambah dikit lagi ya",
       "message": "Jangan lupa tulis pesannya!",
       "message_min": "Pesan minimal 10 karakter ya"
+    },
+    "toastErrors": {
+      "failedTitle": "Gagal Mengirim Pesan",
+      "serverSays": "Pesan dari server:",
+      "connectionTitle": "Kesalahan Koneksi",
+      "connectionFallback": "Tidak dapat terhubung ke server. Silakan periksa koneksi internet Anda."
     }
   },
   "notFound": {
