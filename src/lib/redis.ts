@@ -11,7 +11,7 @@ export const redis =
   new Redis({
     host: redisHost,
     port: redisPort,
-    maxRetriesPerRequest: null,
+    maxRetriesPerRequest: 5,
   });
 
 if (process.env.NODE_ENV !== "production") globalForRedis.redis = redis;
