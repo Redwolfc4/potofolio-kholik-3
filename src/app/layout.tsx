@@ -2,6 +2,8 @@ import "@/styles/globals.css";
 import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
 import { defaultLocale } from "@/lib/i18n";
+import PWARegister from "@/components/pwa-register";
+import QueryProvider from "@/components/providers/query-provider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -27,6 +29,14 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "SK Portfolio",
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default async function RootLayout({
@@ -41,7 +51,10 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://media.licdn.com" />
       </head>
       <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
-        {children}
+        <QueryProvider>
+          <PWARegister />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
