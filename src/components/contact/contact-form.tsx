@@ -8,6 +8,7 @@ import { emailService } from "@/services/email.service";
 import { m, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query";
 
 import { ContactDict } from "@/types/i18n";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
@@ -15,8 +16,35 @@ import { whenMotionEnabled } from "@/lib/motion";
 
 export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: string }) {
   const motionEnabled = useMotionEnabled();
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [countdown, setCountdown] = useState(3);
+
+  const contactMutation = useMutation({
+    mutationFn: (data: ContactFormData) => emailService.sendEmail(data, lang),
+    onSuccess: (response) => {
+      if (response.success) {
+        toast.success(dict.success.title, {
+          description: dict.success.message
+        });
+        reset();
+      } else {
+        const errorDetail = response.error || response.message;
+        toast.error(dict.toastErrors?.failedTitle || "Failed to send message", {
+          description: errorDetail ? `${dict.toastErrors?.serverSays || "Server says:"} ${errorDetail}` : dict.error
+        });
+        throw new Error(errorDetail || "Failed to send");
+      }
+    },
+    onError: (error) => {
+      console.error("Error sending email:", error);
+      toast.error(dict.toastErrors?.connectionTitle || "Connection Error", {
+        description: error instanceof Error ? error.message : dict.toastErrors?.connectionFallback || "Unable to reach the server. Please check your internet connection."
+      });
+    }
+  });
+
+  const status = contactMutation.isPending ? "loading" : 
+                 contactMutation.isSuccess ? "success" : 
+                 contactMutation.isError ? "error" : "idle";
 
   const contactSchema = z.object({
     name: z
@@ -63,12 +91,12 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (status === "success") {
+    if (contactMutation.isSuccess) {
       setCountdown(3);
       timer = setInterval(() => {
         setCountdown((prev) => {
           if (prev <= 1) {
-            setStatus("idle");
+            contactMutation.reset();
             clearInterval(timer);
             return 3;
           }
@@ -80,29 +108,7 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
   }, [status]);
 
   const onSubmit = async (data: ContactFormData) => {
-    setStatus("loading");
-    try {
-      const response = await emailService.sendEmail(data, lang);
-      if (response.success) {
-        setStatus("success");
-        toast.success(dict.success.title, {
-          description: dict.success.message
-        });
-        reset();
-      } else {
-        setStatus("error");
-        const errorDetail = response.error || response.message;
-        toast.error(dict.toastErrors?.failedTitle || "Failed to send message", {
-          description: errorDetail ? `${dict.toastErrors?.serverSays || "Server says:"} ${errorDetail}` : dict.error
-        });
-      }
-    } catch (error) {
-      console.error("Error sending email:", error);
-      setStatus("error");
-      toast.error(dict.toastErrors?.connectionTitle || "Connection Error", {
-        description: error instanceof Error ? error.message : dict.toastErrors?.connectionFallback || "Unable to reach the server. Please check your internet connection."
-      });
-    }
+    contactMutation.mutate(data);
   };
 
   const handleEnterSubmit = async (
@@ -167,7 +173,7 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
                 </p>
               </div>
               <button
-                onClick={() => setStatus("idle")}
+                onClick={() => contactMutation.reset()}
                 className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors cursor-pointer"
               >
                 {dict.success.button}
