@@ -100,7 +100,7 @@ export async function POST(req: Request) {
     const fallbackMessage = common?.errors?.server || "Contact service unavailable";
 
     return buildResponse(req, requestId, 500, fallbackMessage, {
-      error: "Contact service unavailable",
+      error: errorMessage,
     });
   }
 }
