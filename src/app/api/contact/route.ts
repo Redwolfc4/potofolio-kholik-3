@@ -3,7 +3,8 @@ import { getContactEnv } from "@/lib/server-env";
 import { getDictionary } from "@/lib/i18n";
 import { Locale } from "@/types/i18n";
 import { rateLimit } from "@/lib/rate-limit";
-import { emailQueue } from "@/lib/queue/email-queue";
+import nodemailer from "nodemailer";
+import { buildContactEmailHtml, buildContactEmailText } from "@/lib/email-template";
 
 type ContactApiResponse = {
   success: boolean;
@@ -64,7 +65,26 @@ export async function POST(req: Request) {
 
     const emailParams = { name, email, subject, message, timestamp, requestId, locale };
 
-    await emailQueue.add(`email-${requestId}`, emailParams);
+    // Direct email sending for Serverless compatibility (Netlify/Vercel)
+    const contactEnv = getContactEnv();
+    const transporter = nodemailer.createTransport({
+      host: contactEnv.SMTP_HOST,
+      port: contactEnv.SMTP_PORT,
+      secure: contactEnv.SMTP_PORT === 465,
+      auth: {
+        user: contactEnv.SMTP_USER,
+        pass: contactEnv.SMTP_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"Portfolio Contact" <${contactEnv.SMTP_USER}>`,
+      to: contactEnv.CONTACT_EMAIL,
+      replyTo: email,
+      subject: `[Portfolio] ${subject}`,
+      text: buildContactEmailText(emailParams),
+      html: buildContactEmailHtml(emailParams),
+    });
 
     return buildResponse(req, requestId, 200, common.contact.success.title);
   } catch (error) {
