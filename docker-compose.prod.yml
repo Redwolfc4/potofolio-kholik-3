@@ -1,4 +1,12 @@
 services:
+  redis:
+    image: redis:alpine
+    container_name: redis-prod
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
   portfolio:
     container_name: portfolio-prod
     build:
@@ -8,9 +16,14 @@ services:
       - .env.prod
     ports:
       - "${APP_PORT:-3000}:3000"
+    depends_on:
+      - redis
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
     read_only: true
     tmpfs:
       - /tmp
+
+volumes:
+  redis_data:

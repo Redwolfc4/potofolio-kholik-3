@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 import { getContactEnv } from "@/lib/server-env";
 import { getDictionary } from "@/lib/i18n";
 import { Locale } from "@/types/i18n";
-import {
-  buildContactEmailHtml,
-  buildContactEmailText,
-} from "@/lib/email-template";
+import { rateLimit } from "@/lib/rate-limit";
+import { emailQueue } from "@/lib/queue/email-queue";
 
 type ContactApiResponse = {
   success: boolean;
@@ -56,28 +53,18 @@ export async function POST(req: Request) {
       });
     }
 
-    const contactEnv = getContactEnv();
+    const ip = req.headers.get("x-forwarded-for") || "127.0.0.1";
+    const rateLimitResult = await rateLimit(ip, { limit: 10, windowMs: 60 * 1000 });
+    
+    if (!rateLimitResult.success) {
+      return buildResponse(req, requestId, 429, "Too Many Requests", {
+        error: "Rate limit exceeded. Please try again later.",
+      });
+    }
 
-    const transporter = nodemailer.createTransport({
-      host: contactEnv.SMTP_HOST,
-      port: contactEnv.SMTP_PORT,
-      secure: contactEnv.SMTP_PORT === 465,
-      auth: {
-        user: contactEnv.SMTP_USER,
-        pass: contactEnv.SMTP_PASS,
-      },
-    });
+    const emailParams = { name, email, subject, message, timestamp, requestId, locale };
 
-    const emailParams = { name, email, subject, message, timestamp, requestId };
-
-    await transporter.sendMail({
-      from: `"Portfolio Contact" <${contactEnv.SMTP_USER}>`,
-      to: contactEnv.CONTACT_EMAIL,
-      replyTo: email,
-      subject: `[Portfolio] ${subject}`,
-      text: buildContactEmailText(emailParams),
-      html: buildContactEmailHtml(emailParams),
-    });
+    await emailQueue.add(`email-${requestId}`, emailParams);
 
     return buildResponse(req, requestId, 200, common.contact.success.title);
   } catch (error) {
