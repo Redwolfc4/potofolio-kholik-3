@@ -11,15 +11,25 @@ import { check, sleep } from 'k6';
  */
 
 export const options = {
-    vus: __ENV.VUS || 10,
-    duration: __ENV.DURATION || '30s',
+    stages: [
+        { duration: '1m', target: 10 },    // Warm up
+        { duration: '1m', target: 50 },
+        { duration: '1m', target: 100 },
+        { duration: '2m', target: 1000 },
+        { duration: '2m', target: 1500 },
+        { duration: '5m', target: 10000 }, // Peak load
+        { duration: '2m', target: 1500 },
+        { duration: '2m', target: 1000 },
+        { duration: '1m', target: 100 },
+        { duration: '1m', target: 0 },    // Gradual ramp down
+    ],
     thresholds: {
-        http_req_failed: ['rate<0.01'], // http errors should be less than 1%
-        http_req_duration: ['p(95)<500', 'p(99)<1500'], // 95% of requests < 500ms, 99% < 1.5s
+        http_req_failed: ['rate<0.05'], // Allow up to 5% errors during extreme stress
+        http_req_duration: ['p(95)<1000', 'p(99)<3000'], // Relaxed durations for high load
     },
     tags: {
         project: 'potofolio-kholik-3',
-        test_type: 'load-test',
+        test_type: 'ramping-load-test',
     },
 };
 
@@ -31,9 +41,12 @@ export default function () {
         ['GET', `${baseUrl}/`, null, { tags: { name: 'Homepage' } }],
     ]);
     
-    check(responses[0], {
-        'homepage status is 200': (r) => r.status === 200,
-        'homepage body size > 0': (r) => r.body.length > 0,
+    const res = responses[0];
+
+    check(res, {
+        'homepage status is 200': (r) => r && r.status === 200,
+        'homepage body exists': (r) => r && r.body !== undefined && r.body !== null,
+        'homepage body size > 0': (r) => r && r.body && r.body.length > 0,
     });
 
     sleep(1);
