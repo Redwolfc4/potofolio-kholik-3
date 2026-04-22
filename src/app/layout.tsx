@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
     ],
-    apple: "/favicon.ico",
+    apple: "/imgPortofolio/pwa-icon.png",
   },
   openGraph: {
     title: "Salahudin Kholiq — Frontend Developer",
