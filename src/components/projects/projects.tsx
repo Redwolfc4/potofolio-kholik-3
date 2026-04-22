@@ -198,22 +198,33 @@ export default function Projects({ dict }: { dict: ProjectsDict }) {
     let isScrolling = false;
 
     const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 10) {
-        if (isScrolling) return;
-        isScrolling = true;
+      const isHorizontalScroll = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+      const isShiftScroll = e.shiftKey && Math.abs(e.deltaY) > 0;
 
-        if (e.deltaX > 0) {
-          if (emblaApi.canScrollNext()) emblaApi.scrollNext();
-        } else {
-          if (emblaApi.canScrollPrev()) emblaApi.scrollPrev();
+      if (isHorizontalScroll || isShiftScroll) {
+        if (isScrolling) {
+          e.preventDefault();
+          return;
         }
 
-        setTimeout(() => {
-          isScrolling = false;
-        }, 500);
+        const delta = isShiftScroll ? e.deltaY : e.deltaX;
 
-        e.preventDefault();
-        e.stopPropagation();
+        if (Math.abs(delta) > 5) {
+          isScrolling = true;
+
+          if (delta > 0) {
+            if (emblaApi.canScrollNext()) emblaApi.scrollNext();
+          } else {
+            if (emblaApi.canScrollPrev()) emblaApi.scrollPrev();
+          }
+
+          setTimeout(() => {
+            isScrolling = false;
+          }, 300);
+
+          e.preventDefault();
+          e.stopPropagation();
+        }
       }
     };
 
