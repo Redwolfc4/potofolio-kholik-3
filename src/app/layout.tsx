@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Salahudin Kholiq — Frontend Developer",
-    description: "Portfolio of Salahudin Kholiq Prasetyono — A frontend developer focused on building modern, animated, and accessible web experiences using Next.js and Tailwind CSS.",
+    description: "Portofolio of Salahudin Kholiq Prasetyono — A frontend developer focused on building modern, animated, and accessible web experiences using Next.js and Tailwind CSS.",
     type: "website",
   },
   twitter: {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "SK Portfolio",
+    title: "SK Portofolio",
   },
   manifest: "/manifest.json",
   formatDetection: {

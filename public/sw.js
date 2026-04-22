@@ -1,6 +1,5 @@
-const CACHE_NAME = 'sk-portfolio-v1';
+const CACHE_NAME = 'sk-portfolio-v2';
 const ASSETS_TO_CACHE = [
-  '/',
   '/manifest.json',
   '/favicon.ico',
   '/imgPortofolio/pwa-icon.png'

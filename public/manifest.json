@@ -1,7 +1,7 @@
 {
-  "name": "Salahudin Kholiq Portfolio",
-  "short_name": "SK Portfolio",
-  "description": "Portfolio of Salahudin Kholiq Prasetyono — Frontend Developer",
+  "name": "Salahudin Kholiq Portofolio",
+  "short_name": "SK Portofolio",
+  "description": "Portofolio of Salahudin Kholiq Prasetyono — Frontend Developer",
   "id": "/",
   "start_url": "/",
   "display": "standalone",

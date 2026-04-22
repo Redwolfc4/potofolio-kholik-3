@@ -79,7 +79,7 @@ export default function NotFoundIllustration() {
           </div>
           <div>
             <p className="text-sm font-bold text-foreground">Route guard aktif</p>
-            <p className="text-sm text-muted-foreground">Hanya route portfolio yang tervalidasi akan dirender.</p>
+            <p className="text-sm text-muted-foreground">Hanya route portofolio yang tervalidasi akan dirender.</p>
           </div>
         </div>
       </div>
