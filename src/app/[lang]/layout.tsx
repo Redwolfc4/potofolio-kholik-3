@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       title,
       description,
       url: `${baseUrl}/${safeLocale}`,
-      siteName: "Salahudin Kholiq Portfolio",
+      siteName: "Salahudin Kholik Portofolio",
       images: [
         {
           url: "/imgPortofolio/og-image.png",

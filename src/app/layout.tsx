@@ -13,8 +13,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://salahudinkholikprasetyono.netlify.app"),
-  title: "Salahudin Kholiq — Frontend Developer",
-  description: "Portfolio of Salahudin Kholiq Prasetyono — A frontend developer focused on building modern, animated, and accessible web experiences using Next.js and Tailwind CSS.",
+  title: "Salahudin Kholik — Frontend Developer",
+  description: "Portofolio of Salahudin Kholik Prasetyono — A frontend developer focused on building modern, animated, and accessible web experiences using Next.js and Tailwind CSS.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     apple: "/imgPortofolio/pwa-icon.png",
   },
   openGraph: {
-    title: "Salahudin Kholiq — Frontend Developer",
-    description: "Portfolio of Salahudin Kholiq Prasetyono — A frontend developer focused on building modern, animated, and accessible web experiences using Next.js and Tailwind CSS.",
+    title: "Salahudin Kholik — Frontend Developer",
+    description: "Portofolio of Salahudin Kholik Prasetyono — A frontend developer focused on building modern, animated, and accessible web experiences using Next.js and Tailwind CSS.",
     type: "website",
   },
   twitter: {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "SK Portfolio",
+    title: "SK Portofolio",
   },
   manifest: "/manifest.json",
   formatDetection: {
