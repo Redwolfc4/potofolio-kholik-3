@@ -1,7 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import { Languages, Globe, JapaneseYen, LucideIcon } from "lucide-react";
+import { Languages, Globe, LucideIcon } from "lucide-react";
 import { LanguagesDict } from "@/types/i18n";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { whenMotionEnabled } from "@/lib/motion";
@@ -9,7 +9,6 @@ import { whenMotionEnabled } from "@/lib/motion";
 const iconMap: Record<string, LucideIcon> = {
   Languages,
   Globe,
-  JapaneseYen,
 };
 
 export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
