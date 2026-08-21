@@ -14,7 +14,7 @@ const isDevelopment = process.env.NODE_ENV === "development";
  * Next.js hot-reload / Fast-Refresh client injects scripts that cannot
  * carry nonces.
  */
-function buildCsp(nonce: string): string {
+function buildCsp(): string {
   const remoteHostsValue = [
     "cdn.jsdelivr.net",
     "dicoding-web-img.sgp1.cdn.digitaloceanspaces.com",
@@ -65,12 +65,12 @@ export function middleware(request: NextRequest) {
 
   // 1. Generate security context always
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
-  const csp = buildCsp(nonce);
+  const csp = buildCsp();
 
   // 2. Detect locale for header injection
   let locale: Locale = defaultLocale;
   const segments = pathname.split("/");
-  if (segments.length > 1 && locales.includes(segments[1] as any)) {
+  if (segments.length > 1 && locales.includes(segments[1] as Locale)) {
     locale = segments[1] as Locale;
   }
 

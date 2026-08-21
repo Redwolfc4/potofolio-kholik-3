@@ -33,7 +33,7 @@ export const options = {
     },
 };
 
-export default function () {
+export default function loadTest() {
     const baseUrl = __ENV.BASE_URL || 'http://localhost:3000';
     
     // Scenarios: Hit main pages

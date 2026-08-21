@@ -13,7 +13,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
   const motionEnabled = useMotionEnabled();
-  const getLevelWidth = (level: string) => {
+  const getLevelWidth = (level: string): string => {
     if (level === "Native") return "100%";
     if (level.includes("Working")) return "75%";
     return "30%";

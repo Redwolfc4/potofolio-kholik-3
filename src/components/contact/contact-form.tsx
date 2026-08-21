@@ -105,7 +105,7 @@ export default function ContactForm({ dict, lang }: { dict: ContactDict; lang: s
       }, 1000);
     }
     return () => clearInterval(timer);
-  }, [status]);
+  }, [status, contactMutation]);
 
   const onSubmit = async (data: ContactFormData) => {
     contactMutation.mutate(data);
