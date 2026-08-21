@@ -37,7 +37,7 @@ export default function LanguageSection({ dict }: { dict: LanguagesDict }) {
           <div className="w-20 h-1.5 bg-primary rounded-full" />
         </m.div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 justify-center">
           {dict.items.map((item, index) => {
             const Icon = iconMap[item.icon as string] || Globe;
             const levelWidth = getLevelWidth(item.level);
