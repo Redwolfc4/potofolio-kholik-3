@@ -32,6 +32,11 @@
       "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
     },
     {
+      "name": "MinIO",
+      "category": "Storage",
+      "logoUrl": "/imgPortofolio/minio.svg"
+    },
+    {
       "name": "Docker",
       "category": "DevOps",
       "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
