@@ -19,7 +19,7 @@
     "name": "Salahudin Kholik Prasetyono",
     "description": "Pengembang frontend yang fokus membangun pengalaman web yang modern, beranimasi, dan aksesibel.",
     "image": {
-      "src": "https://i.ibb.co.com/hJPsgZtB/15210343-imgupscaler-ai-Penajam-2-K.webp",
+      "src": "/imgPortofolio/profile.jpg",
       "alt": "Potret Salahudin Kholik Prasetyono",
       "fallbackSrc": "/placeholders/avatar-fallback.svg"
     },
