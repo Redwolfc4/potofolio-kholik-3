@@ -23,8 +23,8 @@ Important:
 ## Local Run
 
 ```bash
-pnpm install
-pnpm dev
+bun install
+bun run dev
 ```
 
 ## Docker
@@ -32,13 +32,13 @@ pnpm dev
 Development:
 
 ```bash
-pnpm docker:dev
+bun run docker:dev
 ```
 
 Production:
 
 ```bash
-pnpm docker:prod
+bun run docker:prod
 ```
 
 Direct compose commands:
@@ -62,5 +62,5 @@ docker compose -f docker-compose.prod.yml up --build -d
 The deploy script now prefers `.env.prod` and falls back to `.env`.
 
 ```bash
-pnpm prod
+bun run build
 ```

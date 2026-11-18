@@ -11,7 +11,7 @@ const publicSrc = resolve(root, "public");
 const publicDest = resolve(root, ".next/standalone/public");
 
 if (!existsSync(resolve(root, ".next/standalone"))) {
-  console.error("❌ No standalone build found. Run 'npm run build' first.");
+  console.error("❌ No standalone build found. Run 'bun run build' first.");
   process.exit(1);
 }
 

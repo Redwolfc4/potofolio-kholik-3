@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────
 
 [build]
-  command   = "pnpm build"
+  command   = "bun run build"
   publish   = ".next"
 
 # ─────────────────────────────────────────────────
@@ -16,7 +16,7 @@
 
 [build.environment]
   SECRETS_SCAN_OMIT_KEYS = "APP_PORT,NODE_ENV,CONTACT_EMAIL,SMTP_HOST,SMTP_PORT,SMTP_USER"
-  SECRETS_SCAN_OMIT_PATHS = ".env.example,Dockerfile,Dockerfile.dev,docker-compose.dev.yml,docker-compose.prod.yml,pnpm-lock.yaml,README.md,.gitignore"
+  SECRETS_SCAN_OMIT_PATHS = ".env.example,Dockerfile,Dockerfile.dev,docker-compose.dev.yml,docker-compose.prod.yml,bun.lock,README.md,.gitignore"
 
 # ─────────────────────────────────────────────────
 # Caching headers for static assets
