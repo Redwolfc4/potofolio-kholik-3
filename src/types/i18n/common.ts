@@ -20,6 +20,8 @@ export interface HeroDict {
   buttons: {
     cv: {
       label: string;
+      viewLabel: string;
+      downloadLabel: string;
       image: {
         label: string;
         id: string;

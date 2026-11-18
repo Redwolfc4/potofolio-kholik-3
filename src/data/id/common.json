@@ -26,6 +26,8 @@
     "buttons": {
       "cv": {
         "label": "Cek CV",
+        "viewLabel": "Lihat PDF",
+        "downloadLabel": "Unduh PDF",
         "image": {
           "label": "CV Bergambar",
           "id": "Indonesia",

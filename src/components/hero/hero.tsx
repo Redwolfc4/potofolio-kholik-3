@@ -8,7 +8,7 @@ import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { HeroDict } from "@/types/i18n";
 import { m } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { ChevronDown, ChevronRight, FileImage, FileText } from "lucide-react";
+import { ChevronDown, ChevronRight, Download, FileImage, FileText } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -19,10 +19,12 @@ const cvMenuConfig = {
       {
         key: "id",
         href: "/docs/portofolio/indonesia/salahudin-kholik-prasetyono-cvgambar_id_1.pdf",
+        previewSrc: "/docs/portofolio/preview/cv-id-image.png",
       },
       {
         key: "en",
         href: "/docs/portofolio/inggris/salahudin-kholik-prasetyono-cvgambar_en_1.pdf",
+        previewSrc: "/docs/portofolio/preview/cv-en-image.png",
       },
     ],
   },
@@ -32,10 +34,12 @@ const cvMenuConfig = {
       {
         key: "id",
         href: "/docs/portofolio/indonesia/salahudin-kholik-prasetyono-cv_id_1.pdf",
+        previewSrc: "/docs/portofolio/preview/cv-id-plain.png",
       },
       {
         key: "en",
         href: "/docs/portofolio/inggris/salahudin-kholik-prasetyono-cv_en_1.pdf",
+        previewSrc: "/docs/portofolio/preview/cv-en-plain.png",
       },
     ],
   },
@@ -44,6 +48,9 @@ const cvMenuConfig = {
 type CvMenuOption = {
   href: string;
   label: string;
+  previewSrc: string;
+  viewLabel: string;
+  downloadLabel: string;
 };
 
 type CvMenuItem = {
@@ -67,6 +74,9 @@ export default function Hero({ dict }: { dict: HeroDict }) {
       options: cvMenuConfig.image.items.map((item) => ({
         href: item.href,
         label: dict.buttons.cv.image[item.key],
+        previewSrc: item.previewSrc,
+        viewLabel: dict.buttons.cv.viewLabel,
+        downloadLabel: dict.buttons.cv.downloadLabel,
       })),
     },
     {
@@ -75,6 +85,9 @@ export default function Hero({ dict }: { dict: HeroDict }) {
       options: cvMenuConfig.plain.items.map((item) => ({
         href: item.href,
         label: dict.buttons.cv.plain[item.key],
+        previewSrc: item.previewSrc,
+        viewLabel: dict.buttons.cv.viewLabel,
+        downloadLabel: dict.buttons.cv.downloadLabel,
       })),
     },
   ];
@@ -333,18 +346,42 @@ export default function Hero({ dict }: { dict: HeroDict }) {
                         >
                           <div className="rounded-2xl border border-border/70 bg-card/95 p-2 shadow-[0_24px_80px_rgba(53,33,16,0.22)] backdrop-blur-xl sm:before:absolute sm:before:-left-4 sm:before:top-0 sm:before:h-full sm:before:w-4 sm:before:content-['']">
                             {item.options.map((option) => (
-                              <a
+                              <div
                                 key={option.href}
-                                href={option.href}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="block cursor-pointer rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70 focus:bg-secondary/70 focus:outline-none"
-                                onClick={() => {
-                                  closeCvMenu();
-                                }}
+                                className="flex gap-3 rounded-xl px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70"
                               >
-                                {option.label}
-                              </a>
+                                <ImageWithFallback
+                                  src={option.previewSrc}
+                                  alt={`${option.label} preview`}
+                                  fallbackSrc="/placeholders/education-fallback.svg"
+                                  width={48}
+                                  height={68}
+                                  className="h-17 w-12 shrink-0 rounded-md border border-border/70 object-cover"
+                                />
+                                <div className="flex min-w-0 flex-1 flex-col justify-center gap-1">
+                                  <span className="truncate">{option.label}</span>
+                                  <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs">
+                                    <a
+                                      href={option.href}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary/50"
+                                      onClick={closeCvMenu}
+                                    >
+                                      {option.viewLabel}
+                                    </a>
+                                    <a
+                                      href={option.href}
+                                      download
+                                      className="inline-flex items-center gap-1 text-muted-foreground hover:text-foreground hover:underline focus:outline-none focus:ring-2 focus:ring-primary/50"
+                                      onClick={closeCvMenu}
+                                    >
+                                      <Download className="size-3" aria-hidden="true" />
+                                      {option.downloadLabel}
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
                             ))}
                           </div>
                         </div>
