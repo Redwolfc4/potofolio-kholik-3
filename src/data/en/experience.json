@@ -10,59 +10,121 @@
   "items": [
     {
       "id": "1",
-      "company": "PT Global Investment Institution",
-      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHiEr3t7vVoTw/company-logo_200_200/company-logo_200_200/0/1698201934811?e=2147483647&v=beta&t=bnR39RREUkRAfBpKxURRKWJawoiAHNxcLMc-C0qvh5c",
-      "position": "Peserta Esential Programming Course- Fullstack Web Development",
-      "location": "Jakarta Selatan (Remote)",
-      "period": "Aug 2023 - Dec 2023",
+      "company": "PT Qualita Indonesia",
+      "position": "Fullstack Developer",
+      "location": "Bekasi, Indonesia",
+      "period": "May 2026 - Nov 2026",
       "description": [
-        "Completed a Fullstack Web Development course focusing on modern web development technologies and software engineering practices.",
-        "Developed backend applications using Python, Flask, REST API, JSON, JWT authentication, cookies, and web scraping techniques.",
-        "Built frontend interfaces using HTML, CSS, JavaScript, jQuery, Bootstrap, and Bulma, focusing on responsive and user-friendly design.",
-        "Designed UI prototypes using Figma and implemented version control workflows using Git.",
-        "Developed and maintained web applications using modern development tools such as Visual Studio Code.",
-        "Implemented MongoDB for database management and data handling.",
-        "Collaborated with UI/UX design concepts to implement client-side and server-side architecture effectively.",
-        "Performed testing and debugging to improve performance and ensure application reliability."
+        "Develop enterprise Field Service Management and Repair Management platforms using Next.js, React.js, and Go, with progress reaching 80% and 70% respectively.",
+        "Build and maintain more than 30 API endpoints using PostgreSQL, Redis, and MinIO.",
+        "Develop responsive interfaces using Tailwind CSS and modern state management tools.",
+        "Utilize ChatGPT, Antigravity, and OpenCode with 9Router to improve development efficiency, validate generated code, and maintain a consistent software architecture.",
+        "Collaborate with the team to solve technical challenges, improve existing systems, and support IT operations, including machine reinstallation and telephone setup."
       ],
       "techStack": [
-        "Python",
-        "Flask",
+        "Next.js",
+        "React.js",
+        "Go (Golang)",
+        "PostgreSQL",
+        "Redis",
+        "MinIO",
+        "Tailwind CSS",
+        "ChatGPT",
+        "Antigravity",
+        "OpenCode",
+        "9Router"
+      ]
+    },
+    {
+      "id": "5",
+      "company": "Lincah - Member of Ordonesia",
+      "logo": "https://media.licdn.com/dms/image/v2/D4D0BAQG1dfM_JU4iZA/company-logo_200_200/company-logo_200_200/0/1708671274468?e=2147483647&v=beta&t=-9_xJ6vRlFQsFzFlmc44uRtKXlgrCxBTzRSkyElMzfg",
+      "position": "Information Technology Software Engineer Internship",
+      "location": "Bandung, Indonesia",
+      "period": "Nov 2025 - May 2026",
+      "description": [
+        "Contributed to web application development using Next.js, MongoDB, and Docker within a team.",
+        "Developed features for the Salfok project, contributing approximately 20% of the team's target.",
+        "Performed Quality Assurance (QA) on an internal SAP system by creating more than 20 test cases and conducting manual and API testing with Postman across dozens of endpoints.",
+        "Managed and monitored more than 30 bugs through ClickUp and OpenProject until all issues were resolved.",
+        "Helped ensure application quality and stability through testing and issue resolution."
+      ],
+      "techStack": [
+        "Next.js",
         "MongoDB",
-        "JavaScript",
-        "jQuery",
-        "Bootstrap",
-        "Bulma",
-        "Git",
-        "Figma"
+        "Docker",
+        "Postman",
+        "ClickUp",
+        "OpenProject",
+        "QA Testing"
+      ]
+    },
+    {
+      "id": "4",
+      "company": "Haltev IT Learning Center",
+      "logo": "https://media.licdn.com/dms/image/v2/C510BAQFe5m12fqQeqA/company-logo_200_200/company-logo_200_200/0/1630602549140/haltegh_it_learning_center_logo?e=2147483647&v=beta&t=IEtmzolkjF295_W8qNHBY5u-AyTGzltcJzTT9rK5ei8",
+      "position": "Freelance Instructor",
+      "location": "Bekasi, Indonesia",
+      "period": "Feb 2025 - Jan 2026",
+      "description": [
+        "Taught coding courses to children and adults remotely (WFH) and in person (WFO), including a collaborative program with Unity School, conducting more than 50 learning sessions.",
+        "Developed the curriculum, materials, and company-standard evaluation questions across more than 10 structured modules.",
+        "Mentored more than 30 participants through practical approaches and case studies to ensure optimal comprehension.",
+        "Contributed to internal web development with the technical team.",
+        "Developed communication, collaboration, and mentoring skills through active interaction with participants and the team."
+      ],
+      "techStack": [
+        "Roblox Studio",
+        "Scratch",
+        "Alpine.js",
+        "Laravel",
+        "Teaching",
+        "Public Relations"
       ]
     },
     {
       "id": "2",
-      "company": "PT.Winnicode Garuda Indonesia",
+      "company": "PT Winnicode Garuda Teknologi",
       "logo": "https://media.licdn.com/dms/image/v2/D560BAQHBchDFb5AGrg/company-logo_200_200/company-logo_200_200/0/1728400424449/winnicodegarudateknologi_logo?e=2147483647&v=beta&t=DvI93tqUX1U-fhSCtFErpAhyKGeIf8JD-IpNEfsDYi4",
-      "position": "Web Development Intern",
-      "location": "Bandung (Remote)",
+      "position": "Fullstack Web Developer Intern",
+      "location": "Bandung, Indonesia",
       "period": "Sep 2024 - Dec 2024",
       "description": [
-        "Develop and maintain full-stack web applications, integrating backend services with frontend interfaces using modern web technologies.",
-        "Implement version control workflows using Git to manage code collaboration and project development efficiently.",
-        "Apply UI/UX design principles, including layout, color, typography, and spacing to create intuitive and user-friendly interfaces.",
-        "Conduct user analysis and interaction flow design to improve overall user experience and usability.",
-        "Implement responsive design techniques using CSS and grid systems to ensure optimal performance across multiple devices and screen sizes.",
-        "Apply web accessibility practices to ensure applications are usable by a wide range of users.",
-        "Implement basic web security practices, including prevention of common attacks such as XSS, CSRF, and SQL Injection.",
-        "Apply data encryption techniques (DES) to protect sensitive user information and enhance application security."
+        "Developed full-stack web applications by building more than 5 end-to-end features and improving system performance.",
+        "Used Git for collaboration, including more than 20 commits, branching, and code review.",
+        "Designed more than 10 pages using UI/UX principles and ensured responsive design across various devices.",
+        "Implemented basic web security practices such as XSS, CSRF, SQL Injection, and data encryption."
       ],
       "techStack": [
-        "Flask",
-        "Python",
-        "MongoDB",
         "Git",
-        "JWT",
-        "Swagger API",
-        "SMTP",
-        "Jinja"
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "UI/UX",
+        "Web Security"
+      ]
+    },
+    {
+      "id": "6",
+      "company": "S-TechX",
+      "logo": "/imgPortofolio/s-techx.jpeg",
+      "position": "Fullstack Java Web Developer Freelance",
+      "location": "Bekasi Regency, Indonesia",
+      "period": "Dec 2025 - Mar 2026",
+      "description": [
+        "Helped understand client business needs and translated them into technical solutions.",
+        "Supported the end-to-end system migration through full implementation.",
+        "Built a web application using Spring Boot, MySQL, and React.js with TanStack Query, including more than 5 APIs and 10 integrated main components.",
+        "Provided training sessions for users and created clear documentation, helping improve system understanding and usage to approximately 80%."
+      ],
+      "techStack": [
+        "Java",
+        "Spring Boot",
+        "MySQL",
+        "React.js",
+        "TanStack Query",
+        "Technical Training",
+        "Documentation"
       ]
     },
     {
@@ -85,80 +147,6 @@
         "JavaScript",
         "Node.js",
         "SMTP"
-      ]
-    },
-    {
-      "id": "4",
-      "company": "Haltev IT Learning Center",
-      "logo": "https://media.licdn.com/dms/image/v2/C510BAQFe5m12fqQeqA/company-logo_200_200/company-logo_200_200/0/1630602549140/haltegh_it_learning_center_logo?e=2147483647&v=beta&t=IEtmzolkjF295_W8qNHBY5u-AyTGzltcJzTT9rK5ei8",
-      "position": "Instructor",
-      "location": "Bekasi Barat (Hybrid)",
-      "period": "Feb 2025 - Jan 2026",
-      "description": [
-        "Deliver coding courses both remotely (WFH) and on-site (WFO), including collaboration programs with Unity Technologies.",
-        "Design and develop structured curriculum, learning materials, and certification assessments.",
-        "Conduct structured teaching sessions based on the developed syllabus to maintain consistent and effective learning delivery.",
-        "Evaluate student performance and prepare progress reports to measure learning outcomes.",
-        "Continuously learn and update technical knowledge to provide high-quality instruction (Roblox Studio, Scratch, Alpine, Laravel).",
-        "Contribute to internal web development projects, collaborating with the technical team when needed."
-      ],
-      "techStack": [
-        "Roblox Studio",
-        "Scratch",
-        "Alpine.js",
-        "Laravel",
-        "Teaching",
-        "Public Relations"
-      ]
-    },
-    {
-      "id": "5",
-      "company": "Lincah - Member of Ordonesia",
-      "logo": "https://media.licdn.com/dms/image/v2/D4D0BAQG1dfM_JU4iZA/company-logo_200_200/company-logo_200_200/0/1708671274468?e=2147483647&v=beta&t=-9_xJ6vRlFQsFzFlmc44uRtKXlgrCxBTzRSkyElMzfg",
-      "position": "Information Technology Software Engineer Intern",
-      "location": "Batununggal (On-site)",
-      "period": "Nov 2025 - Present",
-      "description": [
-        "Contributed to web development activities using Next.js, TanStack Query, Zod, Zustand, MongoDB, Docker, and GitLab.",
-        "Participated in development collaboration within the Salfok project, assisting in building and improving web application features.",
-        "Performed Quality Assurance testing for internal enterprise systems used by SAP.",
-        "Created Acceptance Criteria with AI-assisted analysis to ensure features met business and technical requirements.",
-        "Designed and executed test cases for various system modules to validate functionality.",
-        "Reported and tracked bugs using ClickUp and OpenProject.",
-        "Conducted API testing using Postman and performed manual testing across system modules."
-      ],
-      "techStack": [
-        "Next.js",
-        "TanStack Query",
-        "Zustand",
-        "Zod",
-        "MongoDB",
-        "Docker",
-        "GitLab",
-        "QA Testing",
-        "Postman"
-      ]
-    },
-    {
-      "id": "6",
-      "company": "S-TechX",
-      "logo": "/imgPortofolio/s-techx.jpeg",
-      "position": "Java Web Developer (Freelance)",
-      "location": "Bekasi (Remote)",
-      "period": "Dec 2025 - Present",
-      "description": [
-        "Conduct in-depth consultations with clients to analyze business processes and translate user requirements into technical specifications.",
-        "Design and develop high-performance web applications using Spring Boot and MySQL for reliable data management.",
-        "Build responsive frontend interfaces using React.js, integrated with TanStack Query for efficient state management.",
-        "Prepare and deliver tailored technical training (knowledge transfer) to ensure effective system adoption."
-      ],
-      "techStack": [
-        "Java",
-        "Spring Boot",
-        "MySQL",
-        "React.js",
-        "TanStack Query",
-        "Technical Training"
       ]
     }
   ]

@@ -19,12 +19,10 @@ const cvMenuConfig = {
       {
         key: "id",
         href: "/docs/portofolio/indonesia/salahudin-kholik-prasetyono-cvgambar_id_1.pdf",
-        previewSrc: "/docs/portofolio/preview/cv-id-image.png",
       },
       {
         key: "en",
         href: "/docs/portofolio/inggris/salahudin-kholik-prasetyono-cvgambar_en_1.pdf",
-        previewSrc: "/docs/portofolio/preview/cv-en-image.png",
       },
     ],
   },
@@ -34,12 +32,10 @@ const cvMenuConfig = {
       {
         key: "id",
         href: "/docs/portofolio/indonesia/salahudin-kholik-prasetyono-cv_id_1.pdf",
-        previewSrc: "/docs/portofolio/preview/cv-id-plain.png",
       },
       {
         key: "en",
         href: "/docs/portofolio/inggris/salahudin-kholik-prasetyono-cv_en_1.pdf",
-        previewSrc: "/docs/portofolio/preview/cv-en-plain.png",
       },
     ],
   },
@@ -48,7 +44,6 @@ const cvMenuConfig = {
 type CvMenuOption = {
   href: string;
   label: string;
-  previewSrc: string;
   viewLabel: string;
   downloadLabel: string;
 };
@@ -74,7 +69,6 @@ export default function Hero({ dict }: { dict: HeroDict }) {
       options: cvMenuConfig.image.items.map((item) => ({
         href: item.href,
         label: dict.buttons.cv.image[item.key],
-        previewSrc: item.previewSrc,
         viewLabel: dict.buttons.cv.viewLabel,
         downloadLabel: dict.buttons.cv.downloadLabel,
       })),
@@ -85,7 +79,6 @@ export default function Hero({ dict }: { dict: HeroDict }) {
       options: cvMenuConfig.plain.items.map((item) => ({
         href: item.href,
         label: dict.buttons.cv.plain[item.key],
-        previewSrc: item.previewSrc,
         viewLabel: dict.buttons.cv.viewLabel,
         downloadLabel: dict.buttons.cv.downloadLabel,
       })),
@@ -348,17 +341,9 @@ export default function Hero({ dict }: { dict: HeroDict }) {
                             {item.options.map((option) => (
                               <div
                                 key={option.href}
-                                className="flex gap-3 rounded-xl px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70"
+                                className="rounded-xl px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary/70"
                               >
-                                <ImageWithFallback
-                                  src={option.previewSrc}
-                                  alt={`${option.label} preview`}
-                                  fallbackSrc="/placeholders/education-fallback.svg"
-                                  width={48}
-                                  height={68}
-                                  className="h-17 w-12 shrink-0 rounded-md border border-border/70 object-cover"
-                                />
-                                <div className="flex min-w-0 flex-1 flex-col justify-center gap-1">
+                                <div className="flex min-w-0 flex-col justify-center gap-1">
                                   <span className="truncate">{option.label}</span>
                                   <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs">
                                     <a
