@@ -21,8 +21,6 @@
         "Utilize ChatGPT, Antigravity, and OpenCode with 9Router to improve development efficiency, validate generated code, and maintain a consistent software architecture.",
         "Collaborate with the team to solve technical challenges, improve existing systems, and support IT operations, including machine reinstallation and telephone setup."
       ],
-      "startDate": "2026-05-01",
-      "endDate": "2026-11-01",
       "techStack": [
         "Next.js",
         "React.js",
@@ -35,6 +33,29 @@
         "Antigravity",
         "OpenCode",
         "9Router"
+      ]
+    },
+    {
+      "id": "6",
+      "company": "S-TechX",
+      "logo": "/imgPortofolio/s-techx.jpeg",
+      "position": "Fullstack Java Web Developer Freelance",
+      "location": "Bekasi Regency, Indonesia",
+      "period": "Dec 2025 - Mar 2026",
+      "description": [
+        "Helped understand client business needs and translated them into technical solutions.",
+        "Supported the end-to-end system migration through full implementation.",
+        "Built a web application using Spring Boot, MySQL, and React.js with TanStack Query, including more than 5 APIs and 10 integrated main components.",
+        "Provided training sessions for users and created clear documentation, helping improve system understanding and usage to approximately 80%."
+      ],
+      "techStack": [
+        "Java",
+        "Spring Boot",
+        "MySQL",
+        "React.js",
+        "TanStack Query",
+        "Technical Training",
+        "Documentation"
       ]
     },
     {
@@ -51,8 +72,6 @@
         "Managed and monitored more than 30 bugs through ClickUp and OpenProject until all issues were resolved.",
         "Helped ensure application quality and stability through testing and issue resolution."
       ],
-      "startDate": "2025-11-01",
-      "endDate": "2026-05-01",
       "techStack": [
         "Next.js",
         "MongoDB",
@@ -77,8 +96,6 @@
         "Contributed to internal web development with the technical team.",
         "Developed communication, collaboration, and mentoring skills through active interaction with participants and the team."
       ],
-      "startDate": "2025-02-01",
-      "endDate": "2026-01-01",
       "techStack": [
         "Roblox Studio",
         "Scratch",
@@ -86,55 +103,6 @@
         "Laravel",
         "Teaching",
         "Public Relations"
-      ]
-    },
-    {
-      "id": "2",
-      "company": "PT Winnicode Garuda Teknologi",
-      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHBchDFb5AGrg/company-logo_200_200/company-logo_200_200/0/1728400424449/winnicodegarudateknologi_logo?e=2147483647&v=beta&t=DvI93tqUX1U-fhSCtFErpAhyKGeIf8JD-IpNEfsDYi4",
-      "position": "Fullstack Web Developer Intern",
-      "location": "Bandung, Indonesia",
-      "period": "Sep 2024 - Dec 2024",
-      "description": [
-        "Developed full-stack web applications by building more than 5 end-to-end features and improving system performance.",
-        "Used Git for collaboration, including more than 20 commits, branching, and code review.",
-        "Designed more than 10 pages using UI/UX principles and ensured responsive design across various devices.",
-        "Implemented basic web security practices such as XSS, CSRF, SQL Injection, and data encryption."
-      ],
-      "startDate": "2024-09-01",
-      "endDate": "2024-12-01",
-      "techStack": [
-        "Git",
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "UI/UX",
-        "Web Security"
-      ]
-    },
-    {
-      "id": "6",
-      "company": "S-TechX",
-      "logo": "/imgPortofolio/s-techx.jpeg",
-      "position": "Fullstack Java Web Developer Freelance",
-      "location": "Bekasi Regency, Indonesia",
-      "period": "Dec 2025 - Mar 2026",
-      "description": [
-        "Helped understand client business needs and translated them into technical solutions.",
-        "Supported the end-to-end system migration through full implementation.",
-        "Built a web application using Spring Boot, MySQL, and React.js with TanStack Query, including more than 5 APIs and 10 integrated main components.",
-        "Provided training sessions for users and created clear documentation, helping improve system understanding and usage to approximately 80%."
-      ],
-      "startDate": "2025-12-01",
-      "endDate": "2026-03-01",
-      "techStack": [
-        "Java",
-        "Spring Boot",
-        "MySQL",
-        "React.js",
-        "TanStack Query",
-        "Technical Training",
-        "Documentation"
       ]
     },
     {
@@ -151,14 +119,34 @@
         "Improved soft skills and professional English communication to align with industry standards.",
         "Prepared professional CV and career readiness skills to support transition into the technology industry."
       ],
-      "startDate": "2025-02-01",
-      "endDate": "2025-06-01",
       "techStack": [
         "Hapi.js",
         "Webpack",
         "JavaScript",
         "Node.js",
         "SMTP"
+      ]
+    },
+    {
+      "id": "2",
+      "company": "PT Winnicode Garuda Teknologi",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHBchDFb5AGrg/company-logo_200_200/company-logo_200_200/0/1728400424449/winnicodegarudateknologi_logo?e=2147483647&v=beta&t=DvI93tqUX1U-fhSCtFErpAhyKGeIf8JD-IpNEfsDYi4",
+      "position": "Fullstack Web Developer Intern",
+      "location": "Bandung, Indonesia",
+      "period": "Sep 2024 - Dec 2024",
+      "description": [
+        "Developed full-stack web applications by building more than 5 end-to-end features and improving system performance.",
+        "Used Git for collaboration, including more than 20 commits, branching, and code review.",
+        "Designed more than 10 pages using UI/UX principles and ensured responsive design across various devices.",
+        "Implemented basic web security practices such as XSS, CSRF, SQL Injection, and data encryption."
+      ],
+      "techStack": [
+        "Git",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "UI/UX",
+        "Web Security"
       ]
     }
   ]

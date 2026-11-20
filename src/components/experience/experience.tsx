@@ -1,7 +1,7 @@
 "use client";
 
-import { m } from "framer-motion";
-import { useMemo, useState, useRef, useEffect } from "react";
+import { m, useMotionValue } from "framer-motion";
+import { memo, useState, useRef, useEffect, useCallback } from "react";
 
 import { ExperienceDict } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
@@ -10,48 +10,55 @@ import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { whenMotionEnabled } from "@/lib/motion";
-import { sortExperiencesByDate } from "@/lib/experience";
 
-function ExperienceDot({ exp, isEven, dict, onSelect }: {
+const ExperienceDot = memo(function ExperienceDot({ exp, isEven, dict, onSelect, isActive, setNodeRef }: {
   exp: NonNullable<ExperienceDict["items"]>[number];
   isEven: boolean;
   dict: ExperienceDict;
-  onSelect: (id: string) => void;
+  onSelect: (id: string, trigger: HTMLButtonElement) => void;
+  isActive: boolean;
+  setNodeRef: (id: string, node: HTMLLIElement | null) => void;
 }) {
   const motionEnabled = useMotionEnabled();
   const { isActive: isHovered, handlers } = useLongPress("experience", exp.id, "lp-exp");
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const assignNodeRef = useCallback((node: HTMLLIElement | null) => {
+    setNodeRef(exp.id, node);
+  }, [exp.id, setNodeRef]);
+  const transitionClass = motionEnabled ? "transition-all duration-500" : "";
+  const colorTransitionClass = motionEnabled ? "transition-colors" : "";
+  const opacityTransitionClass = motionEnabled ? "transition-opacity duration-500" : "";
 
   useEffect(() => {
+    const description = descriptionRef.current;
+    if (!description) return;
+
     const checkTruncation = () => {
-      if (descriptionRef.current) {
-        const { scrollHeight, clientHeight } = descriptionRef.current;
-        setIsTruncated(scrollHeight > clientHeight || isExpanded);
-      }
+      const { scrollHeight, clientHeight } = description;
+      setIsTruncated(scrollHeight > clientHeight || isExpanded);
     };
+    checkTruncation();
+    const frame = window.requestAnimationFrame(checkTruncation);
+    const observer = typeof ResizeObserver === "undefined"
+      ? null
+      : new ResizeObserver(checkTruncation);
+    observer?.observe(description);
+    if (!observer) window.addEventListener("resize", checkTruncation);
 
-    // Multiple checks to handle layouts, animations, and image loads
-    const timers = [
-      setTimeout(checkTruncation, 10),
-      setTimeout(checkTruncation, 100),
-      setTimeout(checkTruncation, 500),
-      setTimeout(checkTruncation, 1000)
-    ];
-
-    window.addEventListener("resize", checkTruncation);
     return () => {
-      timers.forEach(clearTimeout);
-      window.removeEventListener("resize", checkTruncation);
+      window.cancelAnimationFrame(frame);
+      observer?.disconnect();
+      if (!observer) window.removeEventListener("resize", checkTruncation);
     };
-  }, [exp.description, isExpanded, isHovered]);
+  }, [exp.description, isExpanded]);
 
   return (
-    <div
-      key={exp.id}
+    <li
+      ref={assignNodeRef}
       role="listitem"
-      className={`relative flex w-full flex-col items-stretch pl-10 ${isEven ? "md:flex-row" : "md:flex-row-reverse"} md:items-center md:pl-0 ${isHovered ? "z-40" : "z-10"}`}
+      className={`relative flex w-full flex-col items-stretch pl-10 ${isEven ? "md:flex-row" : "md:flex-row-reverse"} md:items-center md:pl-0 ${isHovered || isActive ? "z-40" : "z-10"}`}
       onMouseEnter={() => {
         // Sync desktop hover with store
         if (window.matchMedia("(hover: hover)").matches) {
@@ -69,39 +76,37 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
       }}
     >
       {/* Card Section */}
-      <div className="w-full md:w-1/2 flex justify-center md:px-8 2xl:px-12 order-last md:order-0 mt-4 md:mt-0">
+      <div className="w-full md:w-1/2 flex justify-center md:px-8 2xl:px-12 order-none">
         <m.div
-          initial={false}
-          animate={{
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            rotateY: 0,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 80,
-            damping: 15,
-            mass: 1,
-            duration: 0.6,
-          }}
+          {...whenMotionEnabled(motionEnabled, {
+            initial: { opacity: 0, y: 24, scale: 0.98 },
+            whileInView: { opacity: 1, y: 0, scale: 1 },
+            viewport: { once: true, amount: 0.2 },
+            transition: {
+              type: "spring",
+              stiffness: 80,
+              damping: 15,
+              mass: 1,
+              duration: 0.6,
+            },
+          })}
           className="w-full max-w-md xl:max-w-lg 2xl:max-w-2xl z-20 pointer-events-auto"
         >
           <m.div
             {...whenMotionEnabled(motionEnabled, { whileHover: { y: -5, scale: 1.02 } })}
-            className={`lp-exp relative backdrop-blur-xl border rounded-3xl p-6 2xl:p-8 transition-all duration-500 group/card overflow-hidden ${isHovered ? "shadow-primary/10 bg-card border-primary/40 -translate-y-1 scale-[1.02]" : "bg-card/40 border-primary/20 shadow-2xl"}`}
+            className={`lp-exp relative backdrop-blur-xl border rounded-3xl p-6 2xl:p-8 ${transitionClass} group/card overflow-hidden ${isHovered ? "shadow-primary/10 bg-card border-primary/40 -translate-y-1 scale-[1.02]" : "bg-card/40 border-primary/20 shadow-2xl"}`}
             onMouseEnter={() => {
               useLongPressStore.getState().setActive("experience", exp.id);
             }}
             {...handlers}
           >
             {/* Hover Glow Effect */}
-            <div className={`absolute -inset-px bg-linear-to-br from-primary/20 via-transparent to-transparent transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0 md:group-hover/card:opacity-100"}`} />
+            <div className={`absolute -inset-px bg-linear-to-br from-primary/20 via-transparent to-transparent ${opacityTransitionClass} ${isHovered ? "opacity-100" : "opacity-0 md:group-hover/card:opacity-100"}`} />
 
-            <div className="relative z-10">
+            <div className="relative z-10 pt-8 md:pt-0">
               <div className="flex flex-col gap-1 mb-4 2xl:gap-2 2xl:mb-6">
                 <span className="text-[10px] xl:text-xs font-black text-primary/70 uppercase tracking-[0.2em]">{exp.period}</span>
-                <h3 className={`text-xl md:text-2xl xl:text-3xl font-black transition-colors leading-tight ${isHovered ? "text-primary" : "md:group-hover/card:text-primary"}`}>{exp.position}</h3>
+                <h3 className={`text-xl md:text-2xl xl:text-3xl font-black ${colorTransitionClass} leading-tight ${isHovered ? "text-primary" : "md:group-hover/card:text-primary"}`}>{exp.position}</h3>
                 <div className="flex items-center gap-2 2xl:gap-3">
                   {exp.logo && (
                     <ImageWithFallback
@@ -145,20 +150,21 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
               )}
               {!isTruncated && <div className="mb-4" />}
 
-              <div 
-                className="inline-flex items-center gap-2 text-[0.625rem] xl:text-xs font-black text-primary uppercase tracking-widest cursor-pointer hover:opacity-70 transition-opacity"
+                <button
+                type="button"
+                className={`inline-flex items-center gap-2 text-[0.625rem] xl:text-xs font-black text-primary uppercase tracking-widest cursor-pointer hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${opacityTransitionClass}`}
                 onClick={(e) => {
                   e.stopPropagation();
-                  onSelect(exp.id);
+                  onSelect(exp.id, e.currentTarget);
                 }}
               >
                 <span>{dict.viewDetails}</span>
-                <div className={`h-px bg-primary transition-all ${isHovered ? "w-8 xl:w-12" : "w-4 xl:w-6 md:group-hover/card:w-8 xl:md:group-hover/card:w-12"}`} />
-              </div>
+                <span aria-hidden="true" className={`h-px bg-primary ${transitionClass} ${isHovered ? "w-8 xl:w-12" : "w-4 xl:w-6 md:group-hover/card:w-8 xl:md:group-hover/card:w-12"}`} />
+              </button>
             </div>
 
-            <div className={`absolute top-6 right-6 transition-opacity ${isHovered ? "opacity-100" : "opacity-30 md:group-hover/card:opacity-100"}`}>
-              <div className="px-2 py-0.5 text-[8px] xl:text-[10px] bg-primary/10 text-primary border border-primary/20 rounded-full font-black tracking-widest uppercase">
+            <div className={`absolute top-6 right-6 max-w-[calc(100%-3rem)] transition-opacity ${isHovered ? "opacity-100" : "opacity-30 md:group-hover/card:opacity-100"}`}>
+              <div className="px-2 py-0.5 text-right text-[8px] leading-tight xl:text-[10px] bg-primary/10 text-primary border border-primary/20 rounded-full font-black tracking-widest uppercase whitespace-normal">
                 {exp.location}
               </div>
             </div>
@@ -172,22 +178,25 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
         onMouseEnter={() => {
           useLongPressStore.getState().setActive("experience", exp.id);
         }}
-        {...handlers}
       >
-        <m.div
+        <m.button
+          type="button"
           {...whenMotionEnabled(motionEnabled, {
             animate: {
-              scale: isHovered ? 1.8 : 1,
-              backgroundColor: isHovered ? "var(--primary)" : "rgba(0,0,0,0)"
+              scale: isHovered ? 1.8 : isActive ? 1.35 : 1,
+              backgroundColor: isHovered || isActive ? "var(--primary)" : "rgba(0,0,0,0)"
             },
           })}
-          className="h-6 w-6 xl:h-8 xl:w-8 rounded-full bg-background border-2 border-primary flex items-center justify-center cursor-pointer shadow-[0_0_20px_rgba(var(--primary),0.3)] transition-all group"
+          className={`h-6 w-6 xl:h-8 xl:w-8 rounded-full bg-background border-2 border-primary flex items-center justify-center cursor-pointer shadow-[0_0_20px_rgba(var(--primary),0.3)] ${motionEnabled ? "transition-all" : ""} group ${isActive ? "ring-2 ring-primary/40 ring-offset-2 ring-offset-background" : ""}`}
+          aria-current={isActive ? "step" : undefined}
+          aria-label={isActive ? `${exp.position} — current experience` : exp.position}
+          {...handlers}
         >
           <m.div
             {...whenMotionEnabled(motionEnabled, {
               animate: {
-                scale: isHovered ? 0.5 : 1,
-                backgroundColor: isHovered ? "#ffffff" : "var(--primary)"
+                scale: isHovered ? 0.5 : isActive ? 0.7 : 1,
+                backgroundColor: isHovered || isActive ? "#ffffff" : "var(--primary)"
               },
             })}
             className="h-2 w-2 xl:h-3 xl:w-3 rounded-full bg-primary"
@@ -202,7 +211,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
               className="absolute inset-0 rounded-full bg-primary/30"
             />
           )}
-        </m.div>
+        </m.button>
       </div>
 
       {/* Date/Period Section */}
@@ -225,26 +234,112 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
       <div className="md:hidden ml-12 mt-2 mb-4">
         <span className="text-[0.625rem] font-black text-muted-foreground tracking-widest">{exp.period}</span>
       </div>
-    </div>
+    </li>
   );
-}
+});
 
 export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
   const motionEnabled = useMotionEnabled();
   const isMobile = useIsMobile();
-  const experiences = useMemo(() => sortExperiencesByDate(dict.items), [dict.items]);
+  const experiences = dict.items;
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(() => experiences[0]?.id ?? null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const nodeRefs = useRef<Record<string, HTMLLIElement | null>>({});
+  const activeIdRef = useRef(activeId);
+  const progress = useMotionValue(0);
+  const frameRef = useRef<number | null>(null);
 
-  const selected = experiences?.find((exp) => String(exp.id) === String(selectedId)) ?? null;
+  const selected = experiences.find((exp) => String(exp.id) === String(selectedId)) ?? null;
+
+  const setNodeRef = useCallback((id: string, node: HTMLLIElement | null) => {
+    if (node) {
+      nodeRefs.current[id] = node;
+    } else {
+      delete nodeRefs.current[id];
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!experiences.some((exp) => exp.id === activeIdRef.current)) {
+      const nextActiveId = experiences[0]?.id ?? null;
+      activeIdRef.current = nextActiveId;
+      setActiveId(nextActiveId);
+    }
+  }, [experiences]);
 
   useEffect(() => {
     useLongPressStore.getState().clear();
   }, [isMobile]);
 
+  useEffect(() => {
+    const updateTimeline = () => {
+      frameRef.current = null;
+      const timeline = timelineRef.current;
+      if (!timeline || experiences.length === 0) return;
+
+      const timelineRect = timeline.getBoundingClientRect();
+      const anchor = window.innerHeight * 0.42;
+      let activeIndex = 0;
+      experiences.forEach((exp, index) => {
+        const node = nodeRefs.current[exp.id];
+        if (!node) return;
+        const nodeRect = node.getBoundingClientRect();
+        const nodeCenter = nodeRect.top + nodeRect.height / 2;
+        if (nodeCenter <= anchor) activeIndex = index;
+      });
+
+      const nextActiveId = experiences[activeIndex]?.id ?? null;
+      if (nextActiveId !== activeIdRef.current) {
+        activeIdRef.current = nextActiveId;
+        setActiveId(nextActiveId);
+      }
+
+      const activeNode = nextActiveId ? nodeRefs.current[nextActiveId] : null;
+      const activeRect = activeNode?.getBoundingClientRect();
+      const railStart = timelineRect.top;
+      const railLength = Math.max(timelineRect.height, 1);
+      const activePosition = activeRect
+        ? activeRect.top + activeRect.height / 2
+        : railStart;
+      const clampedPosition = Math.min(Math.max(activePosition, railStart), railStart + railLength);
+      progress.set((clampedPosition - railStart) / railLength);
+    };
+
+    const scheduleTimelineUpdate = () => {
+      if (frameRef.current === null) {
+        frameRef.current = window.requestAnimationFrame(updateTimeline);
+      }
+    };
+
+    scheduleTimelineUpdate();
+    window.addEventListener("scroll", scheduleTimelineUpdate, { passive: true });
+    window.addEventListener("resize", scheduleTimelineUpdate);
+
+    const timeline = timelineRef.current;
+    const timelineObserver = typeof ResizeObserver === "undefined"
+      ? null
+      : new ResizeObserver(scheduleTimelineUpdate);
+    if (timeline && timelineObserver) {
+      timelineObserver.observe(timeline);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", scheduleTimelineUpdate);
+      window.removeEventListener("resize", scheduleTimelineUpdate);
+      timelineObserver?.disconnect();
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+        frameRef.current = null;
+      }
+    };
+  }, [experiences, progress]);
+
   return (
-    <section id="experience" className="py-24 w-full px-4 sm:px-10 lg:px-20 xl:px-24 2xl:px-32 overflow-hidden relative">
+    <section id="experience" aria-labelledby="experience-title" className="py-24 w-full px-4 sm:px-10 lg:px-20 xl:px-24 2xl:px-32 relative">
       <div className="mx-auto">
         <m.h2
+          id="experience-title"
           {...whenMotionEnabled(motionEnabled, {
             initial: { opacity: 0, y: 20 },
             whileInView: { opacity: 1, y: 0 },
@@ -255,18 +350,28 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
           {dict.title}
         </m.h2>
 
-        <div className="relative">
+        <div ref={timelineRef} className="relative">
           {/* Vertical Line - Center Positioned */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-linear-to-b from-primary via-primary/50 to-transparent" />
+          <div
+            aria-hidden="true"
+            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-linear-to-b from-primary via-primary/50 to-transparent"
+          />
+          <m.div
+            aria-hidden="true"
+            className="absolute left-4 md:left-1/2 top-0 w-1 -translate-x-1/2 origin-top rounded-full bg-primary shadow-[0_0_12px_rgba(var(--primary),0.45)]"
+            style={{ scaleY: progress, height: "100%" }}
+          />
 
-          <div className="space-y-12 md:space-y-24">
-            {experiences?.map((exp, index) => (
+          <div role="list" aria-label={dict.title} className="space-y-12 md:space-y-24">
+            {experiences.map((exp, index) => (
               <ExperienceDot
                 key={exp.id}
                 exp={exp}
                 isEven={index % 2 === 0}
                 dict={dict}
                 onSelect={(id) => setSelectedId(id)}
+                isActive={activeId === exp.id}
+                setNodeRef={(id, node) => setNodeRef(id, node)}
               />
             ))}
           </div>

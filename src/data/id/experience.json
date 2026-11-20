@@ -21,8 +21,6 @@
         "Memanfaatkan ChatGPT, Antigravity, dan OpenCode dengan 9Router untuk meningkatkan efisiensi pengembangan, memvalidasi kode yang dihasilkan, dan menjaga arsitektur perangkat lunak yang konsisten.",
         "Berkolaborasi dengan tim untuk menyelesaikan tantangan teknis, meningkatkan sistem yang sudah ada, dan mendukung operasional IT, termasuk instalasi ulang mesin dan pengaturan telepon."
       ],
-      "startDate": "2026-05-01",
-      "endDate": "2026-11-01",
       "techStack": [
         "Next.js",
         "React.js",
@@ -35,6 +33,29 @@
         "Antigravity",
         "OpenCode",
         "9Router"
+      ]
+    },
+    {
+      "id": "6",
+      "company": "S-TechX",
+      "logo": "/imgPortofolio/s-techx.jpeg",
+      "position": "Fullstack Java Web Developer Freelance",
+      "location": "Kabupaten Bekasi, Indonesia",
+      "period": "Des 2025 - Mar 2026",
+      "description": [
+        "Menganalisis kebutuhan bisnis klien dan menerjemahkannya menjadi solusi teknis.",
+        "Mendukung proses migrasi sistem secara end-to-end hingga implementasi selesai.",
+        "Mengembangkan aplikasi web menggunakan Spring Boot, MySQL, dan React.js dengan TanStack Query, termasuk membangun lebih dari 5 API dan 10 komponen utama yang terintegrasi.",
+        "Memberikan sesi pelatihan kepada pengguna dan menyusun dokumentasi yang jelas untuk membantu meningkatkan pemahaman dan penggunaan sistem hingga sekitar 80%."
+      ],
+      "techStack": [
+        "Java",
+        "Spring Boot",
+        "MySQL",
+        "React.js",
+        "TanStack Query",
+        "Technical Training",
+        "Documentation"
       ]
     },
     {
@@ -51,8 +72,6 @@
         "Mengelola dan memantau lebih dari 30 bug melalui ClickUp dan OpenProject hingga seluruh issue terselesaikan.",
         "Membantu memastikan kualitas dan stabilitas aplikasi melalui pengujian dan penyelesaian issue."
       ],
-      "startDate": "2025-11-01",
-      "endDate": "2026-05-01",
       "techStack": [
         "Next.js",
         "MongoDB",
@@ -77,8 +96,6 @@
         "Berkontribusi dalam pengembangan web internal bersama tim teknis.",
         "Mengembangkan kemampuan komunikasi, kolaborasi, dan mentoring melalui interaksi aktif dengan peserta dan tim."
       ],
-      "startDate": "2025-02-01",
-      "endDate": "2026-01-01",
       "techStack": [
         "Roblox Studio",
         "Scratch",
@@ -86,55 +103,6 @@
         "Laravel",
         "Teaching",
         "Public Relations"
-      ]
-    },
-    {
-      "id": "2",
-      "company": "PT Winnicode Garuda Teknologi",
-      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHBchDFb5AGrg/company-logo_200_200/company-logo_200_200/0/1728400424449/winnicodegarudateknologi_logo?e=2147483647&v=beta&t=DvI93tqUX1U-fhSCtFErpAhyKGeIf8JD-IpNEfsDYi4",
-      "position": "Fullstack Web Developer Internship",
-      "location": "Bandung, Indonesia",
-      "period": "Sep 2024 - Des 2024",
-      "description": [
-        "Mengembangkan aplikasi web full-stack dengan membangun lebih dari 5 fitur end-to-end dan meningkatkan performa sistem.",
-        "Menggunakan Git untuk kolaborasi melalui lebih dari 20 commit, branching, dan code review.",
-        "Merancang lebih dari 10 halaman dengan prinsip UI/UX dan memastikan desain responsif di berbagai perangkat.",
-        "Menerapkan praktik keamanan web dasar seperti XSS, CSRF, SQL Injection, dan enkripsi data."
-      ],
-      "startDate": "2024-09-01",
-      "endDate": "2024-12-01",
-      "techStack": [
-        "Git",
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "UI/UX",
-        "Web Security"
-      ]
-    },
-    {
-      "id": "6",
-      "company": "S-TechX",
-      "logo": "/imgPortofolio/s-techx.jpeg",
-      "position": "Fullstack Java Web Developer Freelance",
-      "location": "Kabupaten Bekasi, Indonesia",
-      "period": "Des 2025 - Mar 2026",
-      "description": [
-        "Menganalisis kebutuhan bisnis klien dan menerjemahkannya menjadi solusi teknis.",
-        "Mendukung proses migrasi sistem secara end-to-end hingga implementasi selesai.",
-        "Mengembangkan aplikasi web menggunakan Spring Boot, MySQL, dan React.js dengan TanStack Query, termasuk membangun lebih dari 5 API dan 10 komponen utama yang terintegrasi.",
-        "Memberikan sesi pelatihan kepada pengguna dan menyusun dokumentasi yang jelas untuk membantu meningkatkan pemahaman dan penggunaan sistem hingga sekitar 80%."
-      ],
-      "startDate": "2025-12-01",
-      "endDate": "2026-03-01",
-      "techStack": [
-        "Java",
-        "Spring Boot",
-        "MySQL",
-        "React.js",
-        "TanStack Query",
-        "Technical Training",
-        "Documentation"
       ]
     },
     {
@@ -151,14 +119,34 @@
         "Meningkatkan soft skills dan komunikasi bahasa Inggris profesional agar selaras dengan standar industri dan persyaratan tempat kerja.",
         "Menyiapkan CV profesional dan keterampilan kesiapan karir untuk mendukung transisi ke industri teknologi."
       ],
-      "startDate": "2025-02-01",
-      "endDate": "2025-06-01",
       "techStack": [
         "Hapi.js",
         "Webpack",
         "JavaScript",
         "Node.js",
         "SMTP"
+      ]
+    },
+    {
+      "id": "2",
+      "company": "PT Winnicode Garuda Teknologi",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHBchDFb5AGrg/company-logo_200_200/company-logo_200_200/0/1728400424449/winnicodegarudateknologi_logo?e=2147483647&v=beta&t=DvI93tqUX1U-fhSCtFErpAhyKGeIf8JD-IpNEfsDYi4",
+      "position": "Fullstack Web Developer Internship",
+      "location": "Bandung, Indonesia",
+      "period": "Sep 2024 - Des 2024",
+      "description": [
+        "Mengembangkan aplikasi web full-stack dengan membangun lebih dari 5 fitur end-to-end dan meningkatkan performa sistem.",
+        "Menggunakan Git untuk kolaborasi melalui lebih dari 20 commit, branching, dan code review.",
+        "Merancang lebih dari 10 halaman dengan prinsip UI/UX dan memastikan desain responsif di berbagai perangkat.",
+        "Menerapkan praktik keamanan web dasar seperti XSS, CSRF, SQL Injection, dan enkripsi data."
+      ],
+      "techStack": [
+        "Git",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "UI/UX",
+        "Web Security"
       ]
     }
   ]
