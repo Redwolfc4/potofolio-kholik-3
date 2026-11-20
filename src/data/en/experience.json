@@ -9,53 +9,70 @@
   "skillsLabel": "Skills",
   "items": [
     {
-      "id": "1",
-      "company": "PT Qualita Indonesia",
-      "position": "Fullstack Developer",
-      "location": "Bekasi, Indonesia",
-      "period": "May 2026 - Nov 2026",
+      "id": "2",
+      "company": "PT Winnicode Garuda Teknologi",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHBchDFb5AGrg/company-logo_200_200/company-logo_200_200/0/1728400424449/winnicodegarudateknologi_logo?e=2147483647&v=beta&t=DvI93tqUX1U-fhSCtFErpAhyKGeIf8JD-IpNEfsDYi4",
+      "position": "Fullstack Web Developer Intern",
+      "location": "Bandung, Indonesia",
+      "period": "Sep 2024 - Dec 2024",
       "description": [
-        "Develop enterprise Field Service Management and Repair Management platforms using Next.js, React.js, and Go, with progress reaching 80% and 70% respectively.",
-        "Build and maintain more than 30 API endpoints using PostgreSQL, Redis, and MinIO.",
-        "Develop responsive interfaces using Tailwind CSS and modern state management tools.",
-        "Utilize ChatGPT, Antigravity, and OpenCode with 9Router to improve development efficiency, validate generated code, and maintain a consistent software architecture.",
-        "Collaborate with the team to solve technical challenges, improve existing systems, and support IT operations, including machine reinstallation and telephone setup."
+        "Developed full-stack web applications by building more than 5 end-to-end features and improving system performance.",
+        "Used Git for collaboration, including more than 20 commits, branching, and code review.",
+        "Designed more than 10 pages using UI/UX principles and ensured responsive design across various devices.",
+        "Implemented basic web security practices such as XSS, CSRF, SQL Injection, and data encryption."
       ],
       "techStack": [
-        "Next.js",
-        "React.js",
-        "Go (Golang)",
-        "PostgreSQL",
-        "Redis",
-        "MinIO",
-        "Tailwind CSS",
-        "ChatGPT",
-        "Antigravity",
-        "OpenCode",
-        "9Router"
+        "Git",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "UI/UX",
+        "Web Security"
       ]
     },
     {
-      "id": "6",
-      "company": "S-TechX",
-      "logo": "/imgPortofolio/s-techx.jpeg",
-      "position": "Fullstack Java Web Developer Freelance",
-      "location": "Bekasi Regency, Indonesia",
-      "period": "Dec 2025 - Mar 2026",
+      "id": "3",
+      "company": "Coding Camp powered by DBS Foundation",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQEONBPsiZnU8w/company-logo_200_200/company-logo_200_200/0/1729482329489?e=2147483647&v=beta&t=dkMktUDkXt7130IuDwAyygkV13ZUc5gnI4JksnlUQ84",
+      "position": "Participant - Fullstack Web Development",
+      "location": "Bandung (Remote)",
+      "period": "Feb 2025 - Jun 2025",
       "description": [
-        "Helped understand client business needs and translated them into technical solutions.",
-        "Supported the end-to-end system migration through full implementation.",
-        "Built a web application using Spring Boot, MySQL, and React.js with TanStack Query, including more than 5 APIs and 10 integrated main components.",
-        "Provided training sessions for users and created clear documentation, helping improve system understanding and usage to approximately 80%."
+        "Completed a Fullstack Web Development training program, focusing on modern web development technologies such as Hapi.js and Webpack.",
+        "Performed independent learning and hands-on assignments for each learning module to strengthen practical development skills.",
+        "Developed a Capstone Project that applied fullstack concepts, integrating backend services and frontend implementation.",
+        "Improved soft skills and professional English communication to align with industry standards.",
+        "Prepared professional CV and career readiness skills to support transition into the technology industry."
       ],
       "techStack": [
-        "Java",
-        "Spring Boot",
-        "MySQL",
-        "React.js",
-        "TanStack Query",
-        "Technical Training",
-        "Documentation"
+        "Hapi.js",
+        "Webpack",
+        "JavaScript",
+        "Node.js",
+        "SMTP"
+      ]
+    },
+    {
+      "id": "4",
+      "company": "Haltev IT Learning Center",
+      "logo": "https://media.licdn.com/dms/image/v2/C510BAQFe5m12fqQeqA/company-logo_200_200/company-logo_200_200/0/1630602549140/haltegh_it_learning_center_logo?e=2147483647&v=beta&t=IEtmzolkjF295_W8qNHBY5u-AyTGzltcJzTT9rK5ei8",
+      "position": "Freelance Instructor",
+      "location": "Bekasi, Indonesia",
+      "period": "Feb 2025 - Jan 2026",
+      "description": [
+        "Taught coding courses to children and adults remotely (WFH) and in person (WFO), including a collaborative program with Unity School, conducting more than 50 learning sessions.",
+        "Developed the curriculum, materials, and company-standard evaluation questions across more than 10 structured modules.",
+        "Mentored more than 30 participants through practical approaches and case studies to ensure optimal comprehension.",
+        "Contributed to internal web development with the technical team.",
+        "Developed communication, collaboration, and mentoring skills through active interaction with participants and the team."
+      ],
+      "techStack": [
+        "Roblox Studio",
+        "Scratch",
+        "Alpine.js",
+        "Laravel",
+        "Teaching",
+        "Public Relations"
       ]
     },
     {
@@ -83,70 +100,53 @@
       ]
     },
     {
-      "id": "4",
-      "company": "Haltev IT Learning Center",
-      "logo": "https://media.licdn.com/dms/image/v2/C510BAQFe5m12fqQeqA/company-logo_200_200/company-logo_200_200/0/1630602549140/haltegh_it_learning_center_logo?e=2147483647&v=beta&t=IEtmzolkjF295_W8qNHBY5u-AyTGzltcJzTT9rK5ei8",
-      "position": "Freelance Instructor",
+      "id": "6",
+      "company": "S-TechX",
+      "logo": "/imgPortofolio/s-techx.jpeg",
+      "position": "Fullstack Java Web Developer Freelance",
+      "location": "Bekasi Regency, Indonesia",
+      "period": "Dec 2025 - Mar 2026",
+      "description": [
+        "Helped understand client business needs and translated them into technical solutions.",
+        "Supported the end-to-end system migration through full implementation.",
+        "Built a web application using Spring Boot, MySQL, and React.js with TanStack Query, including more than 5 APIs and 10 integrated main components.",
+        "Provided training sessions for users and created clear documentation, helping improve system understanding and usage to approximately 80%."
+      ],
+      "techStack": [
+        "Java",
+        "Spring Boot",
+        "MySQL",
+        "React.js",
+        "TanStack Query",
+        "Technical Training",
+        "Documentation"
+      ]
+    },
+    {
+      "id": "1",
+      "company": "PT Qualita Indonesia",
+      "position": "Fullstack Developer",
       "location": "Bekasi, Indonesia",
-      "period": "Feb 2025 - Jan 2026",
+      "period": "May 2026 - Nov 2026",
       "description": [
-        "Taught coding courses to children and adults remotely (WFH) and in person (WFO), including a collaborative program with Unity School, conducting more than 50 learning sessions.",
-        "Developed the curriculum, materials, and company-standard evaluation questions across more than 10 structured modules.",
-        "Mentored more than 30 participants through practical approaches and case studies to ensure optimal comprehension.",
-        "Contributed to internal web development with the technical team.",
-        "Developed communication, collaboration, and mentoring skills through active interaction with participants and the team."
+        "Develop enterprise Field Service Management and Repair Management platforms using Next.js, React.js, and Go, with progress reaching 80% and 70% respectively.",
+        "Build and maintain more than 30 API endpoints using PostgreSQL, Redis, and MinIO.",
+        "Develop responsive interfaces using Tailwind CSS and modern state management tools.",
+        "Utilize ChatGPT, Antigravity, and OpenCode with 9Router to improve development efficiency, validate generated code, and maintain a consistent software architecture.",
+        "Collaborate with the team to solve technical challenges, improve existing systems, and support IT operations, including machine reinstallation and telephone setup."
       ],
       "techStack": [
-        "Roblox Studio",
-        "Scratch",
-        "Alpine.js",
-        "Laravel",
-        "Teaching",
-        "Public Relations"
-      ]
-    },
-    {
-      "id": "3",
-      "company": "Coding Camp powered by DBS Foundation",
-      "logo": "https://media.licdn.com/dms/image/v2/D560BAQEONBPsiZnU8w/company-logo_200_200/company-logo_200_200/0/1729482329489?e=2147483647&v=beta&t=dkMktUDkXt7130IuDwAyygkV13ZUc5gnI4JksnlUQ84",
-      "position": "Participant - Fullstack Web Development",
-      "location": "Bandung (Remote)",
-      "period": "Feb 2025 - Jun 2025",
-      "description": [
-        "Completed a Fullstack Web Development training program, focusing on modern web development technologies such as Hapi.js and Webpack.",
-        "Performed independent learning and hands-on assignments for each learning module to strengthen practical development skills.",
-        "Developed a Capstone Project that applied fullstack concepts, integrating backend services and frontend implementation.",
-        "Improved soft skills and professional English communication to align with industry standards.",
-        "Prepared professional CV and career readiness skills to support transition into the technology industry."
-      ],
-      "techStack": [
-        "Hapi.js",
-        "Webpack",
-        "JavaScript",
-        "Node.js",
-        "SMTP"
-      ]
-    },
-    {
-      "id": "2",
-      "company": "PT Winnicode Garuda Teknologi",
-      "logo": "https://media.licdn.com/dms/image/v2/D560BAQHBchDFb5AGrg/company-logo_200_200/company-logo_200_200/0/1728400424449/winnicodegarudateknologi_logo?e=2147483647&v=beta&t=DvI93tqUX1U-fhSCtFErpAhyKGeIf8JD-IpNEfsDYi4",
-      "position": "Fullstack Web Developer Intern",
-      "location": "Bandung, Indonesia",
-      "period": "Sep 2024 - Dec 2024",
-      "description": [
-        "Developed full-stack web applications by building more than 5 end-to-end features and improving system performance.",
-        "Used Git for collaboration, including more than 20 commits, branching, and code review.",
-        "Designed more than 10 pages using UI/UX principles and ensured responsive design across various devices.",
-        "Implemented basic web security practices such as XSS, CSRF, SQL Injection, and data encryption."
-      ],
-      "techStack": [
-        "Git",
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "UI/UX",
-        "Web Security"
+        "Next.js",
+        "React.js",
+        "Go (Golang)",
+        "PostgreSQL",
+        "Redis",
+        "MinIO",
+        "Tailwind CSS",
+        "ChatGPT",
+        "Antigravity",
+        "OpenCode",
+        "9Router"
       ]
     }
   ]
