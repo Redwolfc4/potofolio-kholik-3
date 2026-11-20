@@ -1,7 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 
 import { ExperienceDict } from "@/types/i18n";
 import { useLongPress } from "@/hooks/use-long-press";
@@ -10,6 +10,7 @@ import ImageWithFallback from "@/components/ui/image-with-fallback";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { whenMotionEnabled } from "@/lib/motion";
+import { sortExperiencesByDate } from "@/lib/experience";
 
 function ExperienceDot({ exp, isEven, dict, onSelect }: {
   exp: NonNullable<ExperienceDict["items"]>[number];
@@ -17,13 +18,11 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
   dict: ExperienceDict;
   onSelect: (id: string) => void;
 }) {
-  const isMobile = useIsMobile();
   const motionEnabled = useMotionEnabled();
   const { isActive: isHovered, handlers } = useLongPress("experience", exp.id, "lp-exp");
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const isCardVisible = isMobile || isHovered;
 
   useEffect(() => {
     const checkTruncation = () => {
@@ -51,7 +50,8 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
   return (
     <div
       key={exp.id}
-      className={`relative flex items-center w-full ${isEven ? "md:flex-row" : "md:flex-row-reverse"} flex-col ${isHovered ? "z-40" : "z-10"}`}
+      role="listitem"
+      className={`relative flex w-full flex-col items-stretch pl-10 ${isEven ? "md:flex-row" : "md:flex-row-reverse"} md:items-center md:pl-0 ${isHovered ? "z-40" : "z-10"}`}
       onMouseEnter={() => {
         // Sync desktop hover with store
         if (window.matchMedia("(hover: hover)").matches) {
@@ -73,10 +73,10 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
         <m.div
           initial={false}
           animate={{
-            opacity: isCardVisible ? 1 : 0,
-            x: isMobile ? 0 : (isCardVisible ? 0 : (isEven ? -100 : 100)),
-            scale: isMobile ? 1 : (isCardVisible ? 1 : 0.8),
-            rotateY: isMobile ? 0 : (isCardVisible ? 0 : (isEven ? 15 : -15)),
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            rotateY: 0,
           }}
           transition={{
             type: "spring",
@@ -85,7 +85,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
             mass: 1,
             duration: 0.6,
           }}
-          className={`w-full max-w-md xl:max-w-lg 2xl:max-w-2xl z-20 ${isCardVisible ? "pointer-events-auto" : "pointer-events-none"}`}
+          className="w-full max-w-md xl:max-w-lg 2xl:max-w-2xl z-20 pointer-events-auto"
         >
           <m.div
             {...whenMotionEnabled(motionEnabled, { whileHover: { y: -5, scale: 1.02 } })}
@@ -232,7 +232,7 @@ function ExperienceDot({ exp, isEven, dict, onSelect }: {
 export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
   const motionEnabled = useMotionEnabled();
   const isMobile = useIsMobile();
-  const experiences = dict.items;
+  const experiences = useMemo(() => sortExperiencesByDate(dict.items), [dict.items]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const selected = experiences?.find((exp) => String(exp.id) === String(selectedId)) ?? null;
@@ -333,7 +333,7 @@ export default function ExperienceJourney({ dict }: { dict: ExperienceDict }) {
                 ))}
               </ul>
 
-              <h4 className="font-bold text-xs uppercase tracking-widest text-muted-foreground mt-8 xl:mt-10">{dict.technologies}</h4>
+              <h4 className="font-bold text-xs uppercase tracking-widest text-muted-foreground mt-8 xl:mt-10">{dict.techStack}</h4>
               <div className="flex flex-wrap gap-2 xl:gap-3">
                 {selected.techStack.map((tech) => (
                   <span

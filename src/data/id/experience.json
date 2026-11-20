@@ -2,7 +2,7 @@
   "title": "Pengalaman Profesional",
   "viewDetails": "Lihat Detail",
   "responsibilities": "Tanggung Jawab Utama",
-  "technologies": "Teknologi",
+  "techStack": "Teknologi",
   "activitiesLabel": "Kegiatan dan masyarakat",
   "showMore": "Tampilkan lebih banyak",
   "showLess": "Tampilkan lebih sedikit",
@@ -21,6 +21,8 @@
         "Memanfaatkan ChatGPT, Antigravity, dan OpenCode dengan 9Router untuk meningkatkan efisiensi pengembangan, memvalidasi kode yang dihasilkan, dan menjaga arsitektur perangkat lunak yang konsisten.",
         "Berkolaborasi dengan tim untuk menyelesaikan tantangan teknis, meningkatkan sistem yang sudah ada, dan mendukung operasional IT, termasuk instalasi ulang mesin dan pengaturan telepon."
       ],
+      "startDate": "2026-05-01",
+      "endDate": "2026-11-01",
       "techStack": [
         "Next.js",
         "React.js",
@@ -49,6 +51,8 @@
         "Mengelola dan memantau lebih dari 30 bug melalui ClickUp dan OpenProject hingga seluruh issue terselesaikan.",
         "Membantu memastikan kualitas dan stabilitas aplikasi melalui pengujian dan penyelesaian issue."
       ],
+      "startDate": "2025-11-01",
+      "endDate": "2026-05-01",
       "techStack": [
         "Next.js",
         "MongoDB",
@@ -73,6 +77,8 @@
         "Berkontribusi dalam pengembangan web internal bersama tim teknis.",
         "Mengembangkan kemampuan komunikasi, kolaborasi, dan mentoring melalui interaksi aktif dengan peserta dan tim."
       ],
+      "startDate": "2025-02-01",
+      "endDate": "2026-01-01",
       "techStack": [
         "Roblox Studio",
         "Scratch",
@@ -95,6 +101,8 @@
         "Merancang lebih dari 10 halaman dengan prinsip UI/UX dan memastikan desain responsif di berbagai perangkat.",
         "Menerapkan praktik keamanan web dasar seperti XSS, CSRF, SQL Injection, dan enkripsi data."
       ],
+      "startDate": "2024-09-01",
+      "endDate": "2024-12-01",
       "techStack": [
         "Git",
         "HTML",
@@ -117,6 +125,8 @@
         "Mengembangkan aplikasi web menggunakan Spring Boot, MySQL, dan React.js dengan TanStack Query, termasuk membangun lebih dari 5 API dan 10 komponen utama yang terintegrasi.",
         "Memberikan sesi pelatihan kepada pengguna dan menyusun dokumentasi yang jelas untuk membantu meningkatkan pemahaman dan penggunaan sistem hingga sekitar 80%."
       ],
+      "startDate": "2025-12-01",
+      "endDate": "2026-03-01",
       "techStack": [
         "Java",
         "Spring Boot",
@@ -141,6 +151,8 @@
         "Meningkatkan soft skills dan komunikasi bahasa Inggris profesional agar selaras dengan standar industri dan persyaratan tempat kerja.",
         "Menyiapkan CV profesional dan keterampilan kesiapan karir untuk mendukung transisi ke industri teknologi."
       ],
+      "startDate": "2025-02-01",
+      "endDate": "2025-06-01",
       "techStack": [
         "Hapi.js",
         "Webpack",

@@ -2,7 +2,7 @@
   "title": "Professional Experience",
   "viewDetails": "View Details",
   "responsibilities": "Key Responsibilities",
-  "technologies": "Technologies",
+  "techStack": "Technologies",
   "activitiesLabel": "Activities and societies",
   "showMore": "Show more",
   "showLess": "Show less",
@@ -21,6 +21,8 @@
         "Utilize ChatGPT, Antigravity, and OpenCode with 9Router to improve development efficiency, validate generated code, and maintain a consistent software architecture.",
         "Collaborate with the team to solve technical challenges, improve existing systems, and support IT operations, including machine reinstallation and telephone setup."
       ],
+      "startDate": "2026-05-01",
+      "endDate": "2026-11-01",
       "techStack": [
         "Next.js",
         "React.js",
@@ -49,6 +51,8 @@
         "Managed and monitored more than 30 bugs through ClickUp and OpenProject until all issues were resolved.",
         "Helped ensure application quality and stability through testing and issue resolution."
       ],
+      "startDate": "2025-11-01",
+      "endDate": "2026-05-01",
       "techStack": [
         "Next.js",
         "MongoDB",
@@ -73,6 +77,8 @@
         "Contributed to internal web development with the technical team.",
         "Developed communication, collaboration, and mentoring skills through active interaction with participants and the team."
       ],
+      "startDate": "2025-02-01",
+      "endDate": "2026-01-01",
       "techStack": [
         "Roblox Studio",
         "Scratch",
@@ -95,6 +101,8 @@
         "Designed more than 10 pages using UI/UX principles and ensured responsive design across various devices.",
         "Implemented basic web security practices such as XSS, CSRF, SQL Injection, and data encryption."
       ],
+      "startDate": "2024-09-01",
+      "endDate": "2024-12-01",
       "techStack": [
         "Git",
         "HTML",
@@ -117,6 +125,8 @@
         "Built a web application using Spring Boot, MySQL, and React.js with TanStack Query, including more than 5 APIs and 10 integrated main components.",
         "Provided training sessions for users and created clear documentation, helping improve system understanding and usage to approximately 80%."
       ],
+      "startDate": "2025-12-01",
+      "endDate": "2026-03-01",
       "techStack": [
         "Java",
         "Spring Boot",
@@ -141,6 +151,8 @@
         "Improved soft skills and professional English communication to align with industry standards.",
         "Prepared professional CV and career readiness skills to support transition into the technology industry."
       ],
+      "startDate": "2025-02-01",
+      "endDate": "2025-06-01",
       "techStack": [
         "Hapi.js",
         "Webpack",

@@ -3,6 +3,8 @@ export interface ExperienceItem {
   company: string;
   position: string;
   period: string;
+  startDate: string;
+  endDate: string | null;
   location: string;
   description: string[];
   techStack: string[];
@@ -15,6 +17,6 @@ export interface ExperienceDict {
   showMore: string;
   showLess: string;
   responsibilities: string;
-  technologies: string;
+  techStack: string;
   items: ExperienceItem[];
 }
